@@ -1,10 +1,10 @@
-import * as React from "react";
-import { NextPageContext } from "next";
+import * as React from 'react';
+import { NextPageContext } from 'next';
 
-import { User } from "../../interfaces";
-import Layout from "../../components/Layout";
-import ListDetail from "../../components/ListDetail";
-import API from "../../utils/network-client";
+import { User } from '../../interfaces';
+import Layout from '../../components/Layout/Layout';
+import ListDetail from '../../components/ListDetail';
+import API from '../../utils/network-client';
 
 type Props = {
   item?: User;
@@ -16,7 +16,7 @@ class InitialPropsDetail extends React.Component<Props> {
     try {
       const { id } = query;
       const item = await API.get(
-        `http://localhost:3000/api/users/${Array.isArray(id) ? id[0] : id}`
+        `http://localhost:3000/api/users/${Array.isArray(id) ? id[0] : id}`,
       );
       return { item };
     } catch (err) {
@@ -29,23 +29,15 @@ class InitialPropsDetail extends React.Component<Props> {
 
     if (errors) {
       return (
-        <Layout title={`Error | Next.js + TypeScript Example`}>
+        <Layout>
           <p>
-            <span style={{ color: "red" }}>Error:</span> {errors}
+            <span style={{ color: 'red' }}>Error:</span> {errors}
           </p>
         </Layout>
       );
     }
 
-    return (
-      <Layout
-        title={`${
-          item ? item.name : "User Detail"
-        } | Next.js + TypeScript Example`}
-      >
-        {item && <ListDetail item={item} />}
-      </Layout>
-    );
+    return <Layout>{item && <ListDetail item={item} />}</Layout>;
   }
 }
 

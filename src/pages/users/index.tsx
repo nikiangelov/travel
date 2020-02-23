@@ -2,10 +2,11 @@ import React from 'react';
 import { NextPage } from 'next';
 import Link from 'next/link';
 
-import Layout from '../../components/Layout';
+import Layout from '../../components/Layout/Layout';
 import List from '../../components/List';
 import { User } from '../../interfaces';
 import API from '../../utils/network-client';
+import Head from 'next/head';
 
 type Props = {
   items: User[];
@@ -13,7 +14,10 @@ type Props = {
 };
 
 const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
-  <Layout title="Users List | Next.js + TypeScript Example">
+  <Layout>
+    <Head>
+      <title>Custom title</title>
+    </Head>
     <h1>Users List</h1>
     <p>
       Example fetching data from inside <code>getInitialProps()</code>.
