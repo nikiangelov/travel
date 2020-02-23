@@ -8,7 +8,7 @@ class IndexPage extends React.Component<NextPage> {
   render(): JSX.Element {
     return (
       <Layout>
-        <h1>Hello Next.js 👋</h1>
+        <h1 className="font-weight-bold">Hello Next.js 👋</h1>
         <p>
           <Link href="/about">
             <a>About</a>

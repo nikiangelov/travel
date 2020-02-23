@@ -1,8 +1,16 @@
 const colors = {
+  primaryDarker: '#E08308',
+  primaryDark: '#F5900A',
   primary: '#F7AA39',
 
   // neutrals
-  grey100: '#F1F1F1',
+  grey100: '#f8f9fa',
+  grey200: '#e9ecef',
+  grey300: '#dee2e6',
+  grey400: '#ced4da',
+  grey500: '#adb5bd',
+  grey600: '#6c757d',
+  grey700: '#495057',
 
   // ----- old ones
   transparent: 'rgba(0, 0, 0, 0)',

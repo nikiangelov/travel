@@ -7,8 +7,8 @@ export default function Header(): JSX.Element {
     <>
       <nav className="main-header mb-4 container-fluid">
         <Link href="/">
-          <a>
-            <img src="/assets/images/logo.svg" alt="" />
+          <a className="d-block">
+            <img src={require('../../assets/images/logo.svg')} />
           </a>
         </Link>
       </nav>

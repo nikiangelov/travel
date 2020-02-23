@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 // next.config.js
 const withSass = require('@zeit/next-sass');
-module.exports = withSass({
-  /* config options here */
-});
+
+const withImages = require('next-images');
+module.exports = withSass(
+  withImages({
+    webpack(config) {
+      return config;
+    },
+  }),
+);

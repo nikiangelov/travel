@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import theme from '../../constants/theme';
 
 interface SelectedIncidatorProps {
   className?: string;
-  indicatorPositionY: number;
+  indicatorPositionY?: number;
 }
 const indicatorConfig = {
   width: 6,
@@ -14,7 +15,9 @@ const indicatorConfig = {
 export default function SelectedIncidatorProps(
   props: SelectedIncidatorProps,
 ): JSX.Element {
-  const { indicatorPositionY } = props;
+  const router = useRouter();
+  console.log(router);
+  const { indicatorPositionY = 0 } = props;
 
   return (
     <>
@@ -23,7 +26,7 @@ export default function SelectedIncidatorProps(
       </div>
       <style jsx>{`
         .base {
-          background: ${theme.colors.grey100};
+          background: ${theme.colors.grey200};
           position: absolute;
           width: 2px;
           top: 50px;

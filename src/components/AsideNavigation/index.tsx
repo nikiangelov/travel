@@ -1,58 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import theme from '../../constants/theme';
-import SelectedIncidator from './SelectedIndicator';
+import routes from '../../constants/routes';
+import NavigationItem from './NavigationItem';
+import strings from '../../constants/strings';
 
 const AsideNavigation: React.FC = () => {
-  const [indicatorPosition, setIndicatorPosition] = useState(193);
-
-  const handleOnPress = (event: any): void => {
-    const position = event.target.getBoundingClientRect();
-    const { y, height } = position;
-    const newPosition = y + height / 2;
-
-    console.log({ newPosition, position, height });
-    setIndicatorPosition(newPosition);
-  };
+  const router = useRouter();
   return (
     <>
       <div className="base">
-        <SelectedIncidator indicatorPositionY={indicatorPosition} />
+        <div className="separator" />
         <Link href="/">
-          <a className="logo">
-            <img src="/assets/images/logo-t.svg" alt="" />
+          <a className="logo d-block mb-5">
+            <img src={require('../../assets/images/logo-t.svg')} />
           </a>
         </Link>
-        <button
-          type="button"
-          className="btn btn-sm btn-primary"
-          onClick={handleOnPress}
-        >
-          +
-        </button>
-        <br />
-        <br />
-        <br />
-        <br />
-        <button
-          type="button"
-          className="btn btn-sm btn-primary"
-          onClick={handleOnPress}
-        >
-          +
-        </button>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <button
-          type="button"
-          className="btn btn-sm btn-primary"
-          onClick={handleOnPress}
-        >
-          +
-        </button>
+        <div className="w-100">
+          {routes.map(route => (
+            <NavigationItem
+              key={route.index}
+              icon={route.icon}
+              title={route.title}
+              path={route.path}
+              isSelected={router.asPath === route.path}
+            />
+          ))}
+        </div>
+        <div className="mt-auto">
+          <NavigationItem
+            icon="cog"
+            title={strings.settings}
+            path="#"
+            noMargin={true}
+          />
+        </div>
       </div>
       <style jsx>{`
         .base {
@@ -64,9 +47,16 @@ const AsideNavigation: React.FC = () => {
           padding: ${theme.sizes.topOffset}px 0;
           position: relative;
         }
+        .separator {
+          background: ${theme.colors.grey200};
+          position: absolute;
+          width: 2px;
+          top: 50px;
+          right: 0;
+          bottom: 50px;
+        }
         .logo {
           display: block;
-          margin-bottom: 80px;
         }
       `}</style>
     </>

@@ -1,2 +1,19 @@
-$body-bg: white;
+$theme-colors: ("danger": #eb5757);
+
+$link-color: #2D9CDB;
+$link-hover-decoration: none;
+
+$spacer: 1rem;
+$spacers: (6: ($spacer * 5));
+
+:focus {
+    outline: none !important;
+    outline-offset: none !important;
+}
+
+
+$spacer: 1rem;
+$spacers: (6: ($spacer * 5));
+
+
 @import '~bootstrap/scss/bootstrap.scss';

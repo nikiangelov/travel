@@ -10,12 +10,6 @@ class CustomDocument extends Document {
             content="width=device-width,height=device-height"
             key="viewport"
           />
-          <link
-            rel="shortcut icon"
-            href="/static/shortcut-icon.png"
-            key="shortcutIcon"
-          />
-          <meta name="theme-color" content="#087da1" key="themeColor" />
         </Head>
 
         <body>

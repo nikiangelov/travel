@@ -11,7 +11,7 @@ const Layout: React.FunctionComponent = ({ children }: Props) => (
     <AsideNavigation />
     <div className="pageContent">
       <Header />
-      <div className="container-fluid">{children}</div>
+      <div className="container-fluid py-3">{children}</div>
     </div>
     <style jsx>{`
       .asideNavWrap {
