@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import theme from '../../constants/theme';
 
@@ -14,7 +14,7 @@ const indicatorConfig = {
 
 export default function SelectedIncidatorProps(
   props: SelectedIncidatorProps,
-): JSX.Element {
+): ReactElement {
   const router = useRouter();
   console.log(router);
   const { indicatorPositionY = 0 } = props;

@@ -1,24 +1,45 @@
-import * as React from 'react';
+import React, { ReactElement } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
-import theme from '../../constants/theme';
+import strings from '../../constants/strings';
+import SearchBar from './SearchBar';
 
-export default function Header(): JSX.Element {
+export default function Header(): ReactElement {
+  const router = useRouter();
+  console.log(router);
   return (
-    <>
-      <nav className="main-header mb-4 container-fluid">
-        <Link href="/">
-          <a className="d-block">
-            <img src={require('../../assets/images/logo.svg')} />
-          </a>
-        </Link>
+    <header className="pt-5 mb-3">
+      <nav className="d-flex main-header justify-content-between container-fluid">
+        <div className="d-flex">
+          {router.pathname !== '/' && (
+            <div>
+              <button
+                type="button"
+                className="btn btn-sm btn-primary rounded-circle mr-3"
+                onClick={(): void => router.back()}
+              >
+                &laquo;
+              </button>
+            </div>
+          )}
+          <Link href="/">
+            <a className="d-block">
+              <img src={require('../../assets/images/logo.svg')} />
+            </a>
+          </Link>
+        </div>
+        <div>
+          <SearchBar />
+        </div>
+        <div>
+          <Link href="/user/signin">
+            <a className="btn btn-link">{strings.signIn}</a>
+          </Link>
+          <Link href="/user/signup">
+            <a className="btn btn-link">{strings.signUp}</a>
+          </Link>
+        </div>
       </nav>
-      <style jsx>
-        {`
-          .main-header {
-            padding-top: ${theme.sizes.topOffset}px;
-          }
-        `}
-      </style>
-    </>
+    </header>
   );
 }

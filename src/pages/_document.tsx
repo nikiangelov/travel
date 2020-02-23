@@ -1,7 +1,8 @@
+import React, { ReactElement } from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class CustomDocument extends Document {
-  render(): JSX.Element {
+  render(): ReactElement {
     return (
       <Html lang="bg-BG">
         <Head>

@@ -42,7 +42,7 @@ const colors = {
 const sizes = {
   // global sizes
   topOffset: 45,
-  asideNavigation: 115,
+  asideNavigationWidth: 115,
   radius: 6,
 
   // ---- old ones

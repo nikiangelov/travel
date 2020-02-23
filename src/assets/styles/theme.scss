@@ -13,7 +13,32 @@ $spacers: (6: ($spacer * 5));
 
 
 $spacer: 1rem;
-$spacers: (6: ($spacer * 5));
+$spacers: (5: ($spacer * 2.5), 6: ($spacer * 3));
+
+
+
+
+
+/* UTILS */
+// TODO move to external file
+.bg-cover-img {
+    background: #eee center no-repeat;
+    background-size: cover;
+}
+
+.white-card-elevated {
+    background: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    /* border: 1px solid #e5e5e5; */
+    transition: all 0.2s ease-out;
+}
+
+.white-card-elevated.hover-translate:hover {
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
 
 
 @import '~bootstrap/scss/bootstrap.scss';
