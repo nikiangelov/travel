@@ -10,11 +10,11 @@ const AsideNavigation: React.FC = () => {
   const router = useRouter();
   const topRoute = '/' + router.pathname.split('/')[1];
   return (
-    <div className="base-placeholder">
+    <div className="d-none d-lg-block base-placeholder mr-5">
       <div className="base pt-5 pb-4 fixed-top ">
         <div className="separator my-4" />
         <Link href="/">
-          <a className="logo d-block mb-5 mt-n1">
+          <a className="logo d-block mb-6 mt-n1">
             <img
               src={require('../../assets/images/logo-t.svg')}
               className="mr-n2"

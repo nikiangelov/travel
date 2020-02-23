@@ -8,7 +8,7 @@ export default function Header(): ReactElement {
   const router = useRouter();
   console.log(router);
   return (
-    <header className="pt-5 mb-3">
+    <header className="pt-5 mb-4">
       <nav className="d-flex main-header justify-content-between container-fluid">
         <div className="d-flex">
           {router.pathname !== '/' && (
@@ -28,7 +28,7 @@ export default function Header(): ReactElement {
             </a>
           </Link>
         </div>
-        <div>
+        <div className="d-none d-lg-block">
           <SearchBar />
         </div>
         <div>

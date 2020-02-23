@@ -9,7 +9,7 @@ interface Props {
 
 function PageSection({ title, children }: Props): ReactElement {
   return (
-    <section className="mb-6">
+    <section className="mb-7">
       <div>
         {title && (
           <h2 className="mb-4">
