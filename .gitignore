@@ -25,7 +25,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# generated
 .now
-
-
 __generated__
+
+# data
+/src/data
