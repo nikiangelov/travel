@@ -1,0 +1,13 @@
+type User {
+    id: ID!
+    name: String!
+    status: String!
+}
+type Quote {
+    quote: String
+    author: String
+}
+type Query {
+    viewer: User!
+    quote: Quote 
+}
