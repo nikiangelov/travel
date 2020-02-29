@@ -6,5 +6,5 @@ const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
-
+// organize https://github.com/betaflag/graphql-server-scaffolding
 export default schema;
