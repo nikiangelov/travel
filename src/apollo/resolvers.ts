@@ -1,5 +1,4 @@
 import { IResolvers } from 'apollo-server-micro';
-import allQuotes from '../data/quotes.json';
 
 const resolvers: IResolvers = {
   Query: {
@@ -13,8 +12,7 @@ const resolvers: IResolvers = {
         _context,
         _info,
       });
-      const num = Math.floor(Math.random() * allQuotes.length);
-      return allQuotes[num];
+      return {};
     },
   },
 };

@@ -11,6 +11,10 @@ class CustomDocument extends Document {
             content="width=device-width,height=device-height"
             key="viewport"
           />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+          />
         </Head>
 
         <body>
