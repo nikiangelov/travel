@@ -6,6 +6,7 @@ type User {
 type City {
   id: ID!
   name: String
+  url_slug: String
   iata_code: String
   country_code: String
   description: String
@@ -17,6 +18,6 @@ type Quote {
 type Query {
   viewer(id: ID): User!
   citiesAll: [City]
-  city(id: ID): City
+  city(id: ID, url_slug: String): City
   quote: Quote
 }

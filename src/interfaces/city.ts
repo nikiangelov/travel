@@ -11,6 +11,7 @@ export type Population = {
 export default interface City {
   id: number;
   name: string;
+  url_slug: string;
   iata_code: string;
   country_code: string;
   wiki_article_url?: string;

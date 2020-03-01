@@ -10,7 +10,7 @@ export default function Header(): ReactElement {
     <header className="pt-5 mb-4">
       <nav className="d-flex main-header justify-content-between container-fluid">
         <div className="d-flex">
-          {router.pathname !== '/' && (
+          {false && router.pathname !== '/' && (
             <div>
               <button
                 type="button"

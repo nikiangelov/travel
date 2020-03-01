@@ -5,6 +5,8 @@ import theme from '../../constants/theme';
 export interface DestinationInfo {
   cityName: string;
   countryName: string;
+  href: string;
+  asPath: string;
   imageUrl: string;
 }
 interface Props extends DestinationInfo {
@@ -15,13 +17,15 @@ export default function GridItem({
   index,
   cityName,
   countryName,
+  href,
+  asPath,
   imageUrl,
 }: Props): ReactElement {
   return (
     <>
-      <Link href="">
+      <Link href={href} as={asPath}>
         <a
-          className="grid-item  white-card-elevated hover-translate bg-cover-img"
+          className="grid-item white-card-elevated hover-translate bg-cover-img"
           style={{ backgroundImage: `url("${imageUrl}")` }}
         >
           <span className="d-flex overlay px-4 py-3">

@@ -8,6 +8,9 @@ class City {
   static getById(id: number): CityInterface | null {
     return cities.find(x => x.id == id) || null;
   }
+  static getByUrlSlug(slug: string): CityInterface | null {
+    return cities.find(x => x.url_slug === slug) || null;
+  }
 }
 
 export default City;

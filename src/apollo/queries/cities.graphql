@@ -5,9 +5,11 @@ query Cities {
     description
   }
 }
-query City($id: ID) {
-  city(id: $id) {
+query City($id: ID, $url_slug: String) {
+  city(id: $id, url_slug: $url_slug) {
     id
+    url_slug
     name
+    description
   }
 }
