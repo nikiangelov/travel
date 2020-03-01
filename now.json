@@ -1,0 +1,12 @@
+{
+    "build": {
+        "env": {
+            "TEST_VAR": "@test_var",
+            "FIREBASE_AUTH_DOMAIN": "@firebase-auth-domain",
+            "FIREBASE_DATABASE_URL": "@firebase-database-url",
+            "FIREBASE_PROJECT_ID": "@firebase-project-id",
+            "FIREBASE_PUBLIC_API_KEY": "@firebase-pubic-api-key",
+            "FIREBASE_STORAGE_BUCKET": "@firebase-storage-bucket"
+        }
+    }
+}
