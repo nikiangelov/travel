@@ -30,4 +30,4 @@ yarn-error.log*
 __generated__
 
 # data
-# /src/data
+/src/data
