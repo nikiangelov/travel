@@ -14,7 +14,14 @@
         }
     },
     "rules": {
-        "react/react-in-jsx-scope": 0
+        "react/react-in-jsx-scope": 0,
+        "camelcase": "off",
+        "@typescript-eslint/camelcase": [
+            "error",
+            {
+                "properties": "never"
+            }
+        ]
     },
     "settings": {
         "react": {

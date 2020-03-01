@@ -3,11 +3,20 @@ type User {
   name: String!
   status: String!
 }
+type City {
+  id: ID!
+  name: String
+  iata_code: String
+  country_code: String
+  description: String
+}
 type Quote {
   quote: String
   author: String
 }
 type Query {
   viewer(id: ID): User!
+  citiesAll: [City]
+  city(id: ID): City
   quote: Quote
 }

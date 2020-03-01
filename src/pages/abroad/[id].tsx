@@ -5,7 +5,6 @@ import Layout from '../../components/Layout/Layout';
 
 class InitialPropsDetail extends React.Component {
   static getInitialProps = ({ query }: NextPageContext): any => {
-    console.log(query);
     return {
       test: 1,
     };

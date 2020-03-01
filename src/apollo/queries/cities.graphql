@@ -1,0 +1,13 @@
+query Cities {
+  citiesAll {
+    id
+    name
+    description
+  }
+}
+query City($id: ID) {
+  city(id: $id) {
+    id
+    name
+  }
+}
