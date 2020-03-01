@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import Layout from '../../components/Layout/Layout';
 import withApollo from '../../apollo/with-apollo';
-import { useQuoteQuery } from '../../apollo/quote.graphql';
+import { useQuoteQuery } from '../../apollo/queries/quote.graphql';
 
 function abroad(): ReactElement {
   const { data, loading } = useQuoteQuery();

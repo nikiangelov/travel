@@ -1,5 +1,5 @@
 query Viewer {
-  viewer {
+  viewer(id: 5) {
     id
     name
     status

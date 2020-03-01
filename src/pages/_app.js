@@ -5,11 +5,6 @@ import '../assets/styles/theme.scss';
 import constants from '../constants';
 
 export default function MyApp({ Component, pageProps, router }) {
-  console.log(
-    '%crouter',
-    'background-color:green; color: white;',
-    router.route,
-  );
   return (
     <>
       <Head>

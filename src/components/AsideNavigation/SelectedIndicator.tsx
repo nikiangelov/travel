@@ -15,8 +15,6 @@ const indicatorConfig = {
 export default function SelectedIncidatorProps(
   props: SelectedIncidatorProps,
 ): ReactElement {
-  const router = useRouter();
-  console.log(router);
   const { indicatorPositionY = 0 } = props;
 
   return (

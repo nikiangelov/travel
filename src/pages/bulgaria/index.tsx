@@ -2,12 +2,12 @@ import React, { ReactElement } from 'react';
 import Layout from '../../components/Layout/Layout';
 import withApollo from '../../apollo/with-apollo';
 import Link from 'next/link';
-import { useViewerQuery } from '../../apollo/viewer.graphql';
+import { useViewerQuery } from '../../apollo/queries/viewer.graphql';
 
 function bulgaria(): ReactElement {
   const { data, loading } = useViewerQuery();
   // if (!data) return <div>...</div>;
-
+  console.log(data);
   const { viewer } = data || {};
   return (
     <Layout>

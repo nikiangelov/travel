@@ -6,7 +6,6 @@ import SearchBar from './SearchBar';
 
 export default function Header(): ReactElement {
   const router = useRouter();
-  console.log(router);
   return (
     <header className="pt-5 mb-4">
       <nav className="d-flex main-header justify-content-between container-fluid">
