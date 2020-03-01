@@ -3,10 +3,15 @@ import CityInterface from '../../interfaces/city';
 
 export default {
   Query: {
-    citiesAll: (_parent, _args, _context, _info): CityInterface[] => {
+    citiesAll: (
+      _parent: any,
+      _args: any,
+      _context: any,
+      _info: any,
+    ): CityInterface[] => {
       return City.all();
     },
-    city: (_parent, _args, _context, _info) => {
+    city: (_parent: any, _args: any, _context: any, _info: any) => {
       const { id } = _args;
       return City.getById(id);
     },

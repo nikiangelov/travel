@@ -4,7 +4,7 @@ import { NextPageContext } from 'next';
 import Layout from '../../components/Layout/Layout';
 
 class InitialPropsDetail extends React.Component {
-  static getInitialProps = ({ query }: NextPageContext): any => {
+  static getInitialProps = ({}: NextPageContext): any => {
     return {
       test: 1,
     };
