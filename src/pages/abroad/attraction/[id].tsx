@@ -25,7 +25,7 @@ function AttractionDetail(): ReactElement {
         setImages(imgs);
       });
     }
-  }, [attractionId]);
+  }, [attraction?.id]);
 
   return (
     <Layout>
@@ -41,7 +41,7 @@ function AttractionDetail(): ReactElement {
                   images[3]}')`,
               }}
             />
-            <div className="container">
+            <div className="container-fluid px-5">
               <div className="row">
                 <div className="col-lg-4 col-md-3 pt-3">
                   <div className="pt-4">

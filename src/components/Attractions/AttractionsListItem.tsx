@@ -21,7 +21,7 @@ function AttractionsListItem(props: Props): ReactElement {
 
   return (
     <div className="movie-card white-card-elevated">
-      <Link href={`/abroad/attraction/${data.id}`}>
+      <Link href="/abroad/attraction/[id]" as={`/abroad/attraction/${data.id}`}>
         <a
           className="movie-card-pic bg-cover-img"
           style={{
