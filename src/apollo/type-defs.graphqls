@@ -54,6 +54,7 @@ type Query {
   viewer(id: ID): User!
   citiesAll: [City]
   city(id: ID, url_slug: String): City
-  attractions(city_url_slug: String): [Attraction]
+  attractions(id: ID, city_url_slug: String): [Attraction]
+  attraction(id: ID): Attraction
   quote: Quote
 }

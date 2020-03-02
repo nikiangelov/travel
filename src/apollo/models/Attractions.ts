@@ -9,6 +9,10 @@ class Attractions {
     const result = attractions.filter(x => x.city_url_slug === slug);
     return result as AttractionInterface[];
   }
+  static getById(id: string): AttractionInterface {
+    const result = attractions.find(x => x.id.toString() === id);
+    return result as AttractionInterface;
+  }
 }
 
 export default Attractions;

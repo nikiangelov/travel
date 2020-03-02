@@ -1,10 +1,32 @@
-query Attractions {
-  attractions {
+query Attractions($id: ID, $url_slug: String) {
+  attractions(id: $id, city_url_slug: $url_slug) {
     id
     name
+    city_url_slug
     coordinates {
       lat
       lng
     }
+    description
+    description_short
+    wikipedia_article_url
+    phone
+    work_time_description
+  }
+}
+query attraction($id: ID) {
+  attraction(id: $id) {
+    id
+    name
+    city_url_slug
+    coordinates {
+      lat
+      lng
+    }
+    description
+    description_short
+    wikipedia_article_url
+    phone
+    work_time_description
   }
 }

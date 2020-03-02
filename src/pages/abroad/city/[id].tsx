@@ -57,7 +57,7 @@ function CityDetails(): ReactElement {
                     <div className="d-flex justify-content-between align-items-center">
                       <h1 className="text-body">{city?.name}</h1>
                     </div>
-                    {!!city.name && (
+                    {!!city.sub_name && (
                       <p className="h5 text-white-50 pb-3">{city.sub_name}</p>
                     )}
                     <div className="row pt-4">

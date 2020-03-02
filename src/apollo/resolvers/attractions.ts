@@ -17,5 +17,18 @@ const query = {
     }
     return result;
   },
+  attraction: (
+    _parent: any,
+    _args: any,
+    _context: any,
+    _info: any,
+  ): AttractionInterface => {
+    const { id } = _args;
+    let attraction = null;
+    if (id) {
+      attraction = Attractions.getById(id);
+    }
+    return attraction as AttractionInterface;
+  },
 };
 export default { query };

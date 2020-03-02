@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
+import Link from 'next/link';
 import AttractionInterface from '../../interfaces/attraction';
 import { firebaseGetImages } from '../../firebase/storage';
 
@@ -20,14 +21,16 @@ function AttractionsListItem(props: Props): ReactElement {
 
   return (
     <div className="movie-card white-card-elevated">
-      <div
-        className="movie-card-pic bg-cover-img"
-        style={{
-          backgroundImage: `url(${
-            !!images && !!images.length ? images[0] : ''
-          })`,
-        }}
-      />
+      <Link href={`/abroad/attraction/${data.id}`}>
+        <a
+          className="movie-card-pic bg-cover-img"
+          style={{
+            backgroundImage: `url(${
+              !!images && !!images.length ? images[0] : ''
+            })`,
+          }}
+        />
+      </Link>
       <div className="movie-card-controls">
         <button
           type="button"
