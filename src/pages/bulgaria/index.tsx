@@ -7,7 +7,6 @@ import { useViewerQuery } from '../../apollo/queries/viewer.graphql';
 function bulgaria(): ReactElement {
   const { data, loading } = useViewerQuery();
   // if (!data) return <div>...</div>;
-  // console.log(data);
   const { viewer } = data || {};
   return (
     <Layout>

@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import Layout from '../../../components/Layout/Layout';
 import withApollo from '../../../apollo/with-apollo';
 import { useCityQuery } from '../../../apollo/queries/cities.graphql';
@@ -22,11 +21,6 @@ function CityDetails(): ReactElement {
     },
   });
   const { city, attractions } = data || {};
-  console.log(
-    '%c attractions',
-    'background-color:green; color: white;',
-    attractions,
-  );
 
   return (
     <Layout>
@@ -99,9 +93,7 @@ function CityDetails(): ReactElement {
                   <nav className="hero-navigation mb-5">
                     <ul className="d-flex">
                       <li className="selected mr-3">
-                        <Link href="/">
-                          <a className="text-dark">Инфо</a>
-                        </Link>
+                        <a className="text-dark">Инфо</a>
                       </li>
                       <li className=" mr-3">
                         <a
@@ -114,19 +106,13 @@ function CityDetails(): ReactElement {
                         </a>
                       </li>
                       <li className=" mr-3">
-                        <Link href="/">
-                          <a className="text-dark">Билети</a>
-                        </Link>
+                        <a className="text-dark">Билети</a>
                       </li>
                       <li className=" mr-3">
-                        <Link href="/">
-                          <a className="text-dark">Пътеписи</a>
-                        </Link>
+                        <a className="text-dark">Пътеписи</a>
                       </li>
                       <li className=" mr-3">
-                        <Link href="/">
-                          <a className="text-dark">Снимки</a>
-                        </Link>
+                        <a className="text-dark">Снимки</a>
                       </li>
                     </ul>
                   </nav>

@@ -444,7 +444,7 @@ select.custom-select {
   padding-bottom: 120%;
   border-radius: 16px;
   position: relative;
-  background-position: center bottom;
+  background-position: center bottom !important;
 }
 
 .movie-card-pic:after {
