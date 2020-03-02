@@ -7,6 +7,9 @@ type City {
   id: ID!
   name: String
   url_slug: String
+  backdrop_image: String
+  featured_image_vertical: String
+  featured_image_thumb: String
   iata_code: String
   country_code: String
   description: String

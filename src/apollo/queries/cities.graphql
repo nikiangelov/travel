@@ -9,6 +9,9 @@ query City($id: ID, $url_slug: String) {
   city(id: $id, url_slug: $url_slug) {
     id
     url_slug
+    backdrop_image
+    featured_image_vertical
+    featured_image_thumb
     name
     description
   }

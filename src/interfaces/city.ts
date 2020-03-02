@@ -14,6 +14,9 @@ export default interface City {
   url_slug: string;
   iata_code: string;
   country_code: string;
+  backdrop_image?: string;
+  featured_image_vertical?: string;
+  featured_image_thumb?: string;
   wiki_article_url?: string;
   population?: Population;
   coordinates?: Coordinates;

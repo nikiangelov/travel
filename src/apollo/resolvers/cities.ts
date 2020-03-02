@@ -11,12 +11,7 @@ export default {
     ): CityInterface[] => {
       return City.all();
     },
-    city: (
-      _parent: any,
-      _args: any,
-      _context: any,
-      _info: any,
-    ): CityInterface | null => {
+    city: (_parent: any, _args: any, _context: any, _info: any) => {
       const { id, url_slug } = _args;
       let city = null;
       if (id) {

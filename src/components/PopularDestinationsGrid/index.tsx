@@ -7,32 +7,28 @@ const images: DestinationInfo[] = [
     countryName: 'Италия',
     href: 'abroad/city/[id]',
     asPath: 'abroad/city/rome',
-    imageUrl:
-      'https://images.unsplash.com/photo-1529260830199-42c24126f198?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80',
+    imageUrl: 'images/cities/rome/christopher-czermak-7ybKmhDTcz0-unsplash.jpg',
   },
   {
     cityName: 'Венеция',
     countryName: 'Италия',
     href: 'abroad/city/[id]',
     asPath: 'abroad/city/venice',
-    imageUrl:
-      'https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    imageUrl: 'images/cities/venice/backdrop_mine_thumb.jpg',
   },
   {
     cityName: 'Париж',
     countryName: 'Франция',
     href: 'abroad/city/[id]',
     asPath: 'abroad/city/paris',
-    imageUrl:
-      'https://images.unsplash.com/photo-1512397739299-fe5a4327d192?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    imageUrl: 'images/cities/paris/42-north-fhO8zmW5Mpk-unsplash.jpg',
   },
   {
     cityName: 'Барселона',
     countryName: 'Испания',
     href: 'abroad/city/[id]',
     asPath: 'abroad/city/barcelona',
-    imageUrl:
-      'https://images.unsplash.com/photo-1541777750-47555f6eddaf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    imageUrl: 'images/cities/barcelona/david-russeler-E0xK8SrIzYA-unsplash.jpg',
   },
   {
     cityName: 'Лондон',
@@ -40,7 +36,7 @@ const images: DestinationInfo[] = [
     href: 'abroad/city/[id]',
     asPath: 'abroad/city/london',
     imageUrl:
-      'https://images.unsplash.com/photo-1536781910396-bb64dbe103e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+      'images/cities/london/claudio-testa-iqeG5xA96M4-unsplash-thumb.jpg',
   },
 ];
 const DestinationsGrid: React.FC = () => {
