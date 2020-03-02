@@ -1,0 +1,10 @@
+query Attractions {
+  attractions {
+    id
+    name
+    coordinates {
+      lat
+      lng
+    }
+  }
+}

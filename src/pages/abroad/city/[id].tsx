@@ -7,8 +7,10 @@ import { useCityQuery } from '../../../apollo/queries/cities.graphql';
 import LoadingState from '../../../components/LoadingStates/CityDetails';
 import numeral from 'numeral';
 import ReadMoreReact from 'read-more-react';
+import AttractionsListItem from '../../../components/Attractions/AttractionsListItem';
 
-const scrollToRef = (ref: any) => window.scrollTo(0, ref.current.offsetTop);
+const scrollToRef = (ref: any): void =>
+  window.scrollTo(0, ref.current.offsetTop);
 function CityDetails(): ReactElement {
   const router = useRouter();
   const citySlug = router.query.id;
@@ -19,7 +21,12 @@ function CityDetails(): ReactElement {
       url_slug: `${citySlug}`,
     },
   });
-  const { city } = data || {};
+  const { city, attractions } = data || {};
+  console.log(
+    '%c attractions',
+    'background-color:green; color: white;',
+    attractions,
+  );
 
   return (
     <Layout>
@@ -113,7 +120,12 @@ function CityDetails(): ReactElement {
                       </li>
                       <li className=" mr-3">
                         <Link href="/">
-                          <a className="text-dark">Идеи</a>
+                          <a className="text-dark">Пътеписи</a>
+                        </Link>
+                      </li>
+                      <li className=" mr-3">
+                        <Link href="/">
+                          <a className="text-dark">Снимки</a>
                         </Link>
                       </li>
                     </ul>
@@ -135,6 +147,15 @@ function CityDetails(): ReactElement {
                   <div ref={attrationsRef}>
                     <h4>Забележителности</h4>
                   </div>
+                  {!!attractions && !!attractions.length && (
+                    <div className="row">
+                      {attractions.map((item: any) => (
+                        <div key={item.id} className="col-lg-4 col-md-6 mb-5">
+                          <AttractionsListItem data={item} />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

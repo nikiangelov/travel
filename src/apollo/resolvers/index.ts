@@ -1,10 +1,12 @@
 import { IResolvers } from 'apollo-server-micro';
-import viewerResolvers from './viewer';
 import citiesResolvers from './cities';
+import attractionsResolvers from './attractions';
 
 const resolvers: IResolvers = {
-  ...viewerResolvers,
-  ...citiesResolvers,
+  Query: {
+    ...citiesResolvers.query,
+    ...attractionsResolvers.query,
+  },
 };
 
 export default resolvers;

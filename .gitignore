@@ -31,4 +31,5 @@ __generated__
 
 # data
 /src/data
+/public/images/attractions
 /public/images/cities

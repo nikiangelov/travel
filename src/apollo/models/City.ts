@@ -1,5 +1,5 @@
 import CityInterface from '../../interfaces/city';
-import cities from '../../data/cities';
+import cities from '../../data/cities/index';
 
 class City {
   static all(): CityInterface[] {

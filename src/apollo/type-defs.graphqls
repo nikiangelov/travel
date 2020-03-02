@@ -8,6 +8,15 @@ type Population {
   total: Int
   density: Int
 }
+type Coordinates {
+  lat: Float
+  lng: Float
+}
+type TicketsType {
+  adult: Int
+  reduced: Int
+  currency: String
+}
 type City {
   id: ID!
   name: String
@@ -21,6 +30,22 @@ type City {
   country_code: String
   description: String
 }
+# union PhoneType = St | Droid | Starship
+type Attraction {
+  id: ID!
+  name: String
+  description: String
+  description_short: String
+  city_code: String
+  city_url_slug: String
+  country_code: String
+  wikipedia_article_url: String
+  coordinates: Coordinates
+  phone: String
+  work_time_description: String
+  is_free: Boolean
+  tickets: TicketsType
+}
 type Quote {
   quote: String
   author: String
@@ -29,5 +54,6 @@ type Query {
   viewer(id: ID): User!
   citiesAll: [City]
   city(id: ID, url_slug: String): City
+  attractions(city_url_slug: String): [Attraction]
   quote: Quote
 }
