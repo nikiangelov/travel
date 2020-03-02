@@ -1,14 +1,18 @@
 import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
-
+import Link from 'next/link';
 import Layout from '../../../components/Layout/Layout';
 import withApollo from '../../../apollo/with-apollo';
 import { useCityQuery } from '../../../apollo/queries/cities.graphql';
 import LoadingState from '../../../components/LoadingStates/CityDetails';
+import numeral from 'numeral';
+import ReadMoreReact from 'read-more-react';
 
+const scrollToRef = (ref: any) => window.scrollTo(0, ref.current.offsetTop);
 function CityDetails(): ReactElement {
   const router = useRouter();
   const citySlug = router.query.id;
+  const attrationsRef = React.createRef<HTMLDivElement>();
 
   const { data, loading } = useCityQuery({
     variables: {
@@ -20,7 +24,7 @@ function CityDetails(): ReactElement {
   return (
     <Layout>
       {!!loading && <LoadingState />}
-      {!loading && (
+      {!loading && !!city && (
         <main className="main-layout-container">
           <div className="movie-details-page pb-6">
             <div
@@ -47,32 +51,34 @@ function CityDetails(): ReactElement {
                     className={`over_the_backdrop pt-5 ${
                       false ? 'text-light' : 'text-dark'
                     }`}
-                    style={{ height: 360 }}
+                    style={{ height: 330 }}
                   >
                     <div className="d-flex justify-content-between align-items-center">
-                      <h1>{city?.name}</h1>
+                      <h1 className="text-body">{city?.name}</h1>
                     </div>
-                    <p className="h5 text-white-50 pb-3">24 Април 2020</p>
-                    <div className="mb-2" style={{ width: '200px' }}>
-                      <div className="hot-meter bg-secondary">
-                        <span style={{ width: `70%` }} />
-                      </div>
-                    </div>
-
+                    {!!city.name && (
+                      <p className="h5 text-white-50 pb-3">{city.sub_name}</p>
+                    )}
                     <div className="row pt-4">
+                      {!!city.population && (
+                        <div className="col mb-3">
+                          <h5 className="text-white-80 text-truncate">
+                            <i className="fas fa-users mr-2" />
+                            Население
+                          </h5>
+                          <p className="h2">
+                            {numeral(city.population.total)
+                              .format('0,00')
+                              .replace(/,/g, ' ')}
+                          </p>
+                        </div>
+                      )}
                       <div className="col mb-3">
                         <h5 className="text-white-80 text-truncate">
-                          <i className="far fa-star mr-2" />
-                          Оценка
+                          <i className="far fa-money-bill-alt mr-2" />
+                          Пътувай за около
                         </h5>
-                        <p className="h2">25/354</p>
-                      </div>
-                      <div className="col mb-3">
-                        <h5 className="text-white-80 text-truncate">
-                          <i className="far fa-clock mr-2" />
-                          Продължителност
-                        </h5>
-                        <p className="h2">2 часа</p>
+                        <p className="h2">500лв</p>
                       </div>
                       <div className="col mb-3">
                         <h5 className="text-white-80 text-truncate">
@@ -83,52 +89,51 @@ function CityDetails(): ReactElement {
                       </div>
                     </div>
                   </div>
-                  <div className="mb-5">
-                    <h4>Описание</h4>
-                    <p className="lead">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Pariatur quisquam unde consequuntur eligendi sed suscipit
-                      ex animi earum reiciendis eaque voluptas, porro sit rerum
-                      doloremque mollitia asperiores aut vero dicta! Recusandae
-                      voluptatem ipsam molestiae eum illum maxime earum
-                      accusantium fuga iure? Molestias debitis exercitationem
-                      placeat ut ratione aliquam soluta, sequi maxime magnam
-                      magni aliquid repellendus quae mollitia. Dignissimos,
-                      quisquam expedita. Velit voluptas voluptatum, quod
-                      molestiae in tempora porro saepe facilis excepturi harum
-                      aliquam explicabo itaque consequatur sit molestias
-                      laboriosam a culpa neque impedit. Velit perferendis
-                      obcaecati officiis voluptas ea libero. Quidem sint vero
-                      quasi minus ea numquam, excepturi reiciendis, fuga
-                      tempore, culpa distinctio libero debitis autem vitae. A
-                      quos iste dolore aliquid! Sint atque autem, sequi
-                      assumenda magnam suscipit nihil? Deserunt aspernatur
-                      consequatur dolorum nemo, corporis eligendi quam ipsa, rem
-                      provident qui accusamus? Voluptate, facilis laborum
-                      recusandae repudiandae suscipit impedit sunt veritatis at
-                      voluptatem perferendis delectus similique dolorum, tempora
-                      architecto. Nemo, consequuntur sequi magnam officia
-                      praesentium quia est. Nemo corporis impedit a ut! Numquam
-                      corporis molestiae officia deleniti sit! Sed repudiandae
-                      ipsa sit eius at libero, illum iusto officia incidunt.
-                      Debitis exercitationem, minus reiciendis iste odit
-                      accusamus placeat quisquam nam quasi maiores eos veritatis
-                      porro, voluptatem impedit non quibusdam error, ipsum
-                      recusandae aliquid tempora quidem! Molestiae doloremque ut
-                      id harum. Facere, esse. Rem deleniti accusamus aperiam
-                      explicabo laboriosam ad quod dolores hic! Voluptatem modi
-                      ut accusantium? Ea voluptates quam nesciunt repellendus
-                      labore corrupti dignissimos quis hic quidem numquam,
-                      beatae ullam. Consequuntur fugit quos expedita temporibus
-                      ipsam obcaecati consectetur labore ratione explicabo
-                      similique! Laudantium, obcaecati quis ab, dolores quia
-                      officia, animi dolor neque illo ex in unde. Nihil ipsum
-                      pariatur a! Aperiam accusantium at, tempora vero expedita
-                      deleniti fugit veritatis sint voluptatem deserunt velit
-                      consequuntur aliquam incidunt ipsum. Sapiente laudantium
-                      cum iste, corporis quos consectetur enim quas neque, optio
-                      tempora unde.
-                    </p>
+                  <nav className="hero-navigation mb-5">
+                    <ul className="d-flex">
+                      <li className="selected mr-3">
+                        <Link href="/">
+                          <a className="text-dark">Инфо</a>
+                        </Link>
+                      </li>
+                      <li className=" mr-3">
+                        <a
+                          onClick={(): void => {
+                            scrollToRef(attrationsRef);
+                          }}
+                          className="text-dark"
+                        >
+                          Забележителности
+                        </a>
+                      </li>
+                      <li className=" mr-3">
+                        <Link href="/">
+                          <a className="text-dark">Билети</a>
+                        </Link>
+                      </li>
+                      <li className=" mr-3">
+                        <Link href="/">
+                          <a className="text-dark">Идеи</a>
+                        </Link>
+                      </li>
+                    </ul>
+                  </nav>
+                  {!!city.description && (
+                    <div className="mb-5">
+                      <h4>Информация</h4>
+                      <div className="lead react-read-more-text">
+                        <ReadMoreReact
+                          text={city.description}
+                          min={150}
+                          ideal={200}
+                          max={250}
+                          readMoreText="Прочети повече"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  <div ref={attrationsRef}>
+                    <h4>Забележителности</h4>
                   </div>
                 </div>
               </div>

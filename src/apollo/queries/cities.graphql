@@ -8,11 +8,15 @@ query Cities {
 query City($id: ID, $url_slug: String) {
   city(id: $id, url_slug: $url_slug) {
     id
+    name
+    sub_name
+    population {
+      total
+    }
     url_slug
     backdrop_image
     featured_image_vertical
     featured_image_thumb
-    name
     description
   }
 }

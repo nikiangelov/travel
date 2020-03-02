@@ -1,119 +1,165 @@
 @import 'custom';
-
-$theme-colors: ('primary': #F7AA39,
-    'danger': #eb5757,
+$primary: #f7aa39;
+$gray-800: #343a40;
+$theme-colors: (
+  'primary': $primary,
+  'danger': #eb5757,
 );
 
 $link-color: #2d9cdb;
 $link-hover-decoration: none;
 
 $spacer: 1rem;
-$spacers: (6: ($spacer * 5,
-    ),
+$spacers: (
+  6: (
+    $spacer * 5,
+  ),
 );
+$font-size-base: 1rem;
+$h1-font-size: $font-size-base * 3;
 
 :focus {
-    outline: none !important;
-    outline-offset: none !important;
+  outline: none !important;
+  outline-offset: none !important;
 }
 
 $spacer: 1rem;
-$spacers: (5: ($spacer * 2.5,
-    ),
-    6: ($spacer * 3,
-    ),
-    7: ($spacer * 4,
-    ),
+$spacers: (
+  5: (
+    $spacer * 2.5,
+  ),
+  6: (
+    $spacer * 3,
+  ),
+  7: (
+    $spacer * 4,
+  ),
 );
 
 /* UTILS */
+.react-read-more-text .read-more-button {
+  color: $link-color;
+  font-weight: bold;
+  font-size: 0.785em;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+
+.hero-navigation > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-navigation > ul > li > a {
+  display: block;
+  font-size: 1.2em;
+  color: $gray-800;
+  /* 24pt */
+  padding: 0.416em 0.625em;
+  /* 10pt 15pt */
+  text-decoration: none;
+  transition: background-color 0.2s ease-out;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hero-navigation > ul > li > a:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.hero-navigation > ul > li.selected > a {
+  background: none;
+  border-bottom: 4px solid $primary;
+  border-radius: 0;
+}
+
 // TODO move to external file
 .white-card-elevated {
-    background: #ffffff;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
-    /* border: 1px solid #e5e5e5; */
-    transition: transform 0.2s ease-out;
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  /* border: 1px solid #e5e5e5; */
+  transition: transform 0.2s ease-out;
 }
 
 .white-card-elevated.hover-translate:hover {
-    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .bg-cover-img {
-    background: #eee center no-repeat;
-    background-size: cover;
+  background: #eee center no-repeat;
+  background-size: cover;
 }
 
-
 .elevation-1 {
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1), 0px 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1), 0px 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .elevation-2 {
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .elevation-3 {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 0px 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 0px 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .elevation-4 {
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1), 0px 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1), 0px 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .elevation-5 {
-    box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.1), 0px 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.1), 0px 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .flex-1 {
-    flex: 1;
+  flex: 1;
 }
 
 // TODO create a mixin
 .opacity-0 {
-    opacity: 0;
+  opacity: 0;
 }
 
 .opacity-10 {
-    opacity: .1;
+  opacity: 0.1;
 }
 
 .opacity-20 {
-    opacity: .2;
+  opacity: 0.2;
 }
 
 .opacity-30 {
-    opacity: .3;
+  opacity: 0.3;
 }
 
 .opacity-40 {
-    opacity: .4;
+  opacity: 0.4;
 }
 
 .opacity-50 {
-    opacity: .5;
+  opacity: 0.5;
 }
 
 .opacity-60 {
-    opacity: .6;
+  opacity: 0.6;
 }
 
 .opacity-70 {
-    opacity: .7;
+  opacity: 0.7;
 }
 
 .opacity-80 {
-    opacity: .8;
+  opacity: 0.8;
 }
 
 .opacity-90 {
-    opacity: .9;
+  opacity: 0.9;
 }
 
 .opacity-100 {
-    opacity: 1;
+  opacity: 1;
 }
 
 @import '~bootstrap/scss/bootstrap.scss';
