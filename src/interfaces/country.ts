@@ -10,6 +10,13 @@ export interface QualityOfLife {
   pollution_index: number;
   climate_index: number;
 }
+export interface QualityOfLifePercentage {
+  total: number;
+  safety: number;
+  healt_care: number;
+  pollution: number;
+  climate: number;
+}
 export interface Covid {
   cases: number;
   cases_new: number;
@@ -46,6 +53,7 @@ export default interface CountryInterface {
   price_level_max: number;
   price_level_min: number;
   qal: QualityOfLife;
+  qol: QualityOfLifePercentage;
   covid: Covid;
   languages: string[];
   wikipedia_article: string;

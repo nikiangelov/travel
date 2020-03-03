@@ -667,15 +667,13 @@ select.custom-select {
   order: 1;
 }
 
-/* Movie Details Page */
-.movie-details-page .white-card-elevated.poster {
-  min-height: 50vh;
+/* City Details Page */
+.city-details-page .white-card-elevated.poster {
+  margin: 0 auto;
 }
 
-.movie-details-page .white-card-elevated.poster,
-.movie-details-page .movie-controls {
-  max-width: 60vw;
-  margin: 0 auto;
+.city-poster-image {
+  padding-bottom: 125%;
 }
 
 .over_the_backdrop.text-dark .text-white-50 {

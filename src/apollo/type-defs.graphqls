@@ -33,6 +33,13 @@ type QualityOfLife {
   pollution_index: Float
   climate_index: Float
 }
+type QualityOfLifePercentage {
+  total: Int
+  safety: Int
+  healt_care: Int
+  pollution: Int
+  climate: Int
+}
 type Country {
   id: Int
   name: String
@@ -64,6 +71,7 @@ type Country {
   price_level_max: Int
   price_level_min: Int
   qal: QualityOfLife
+  qol: QualityOfLifePercentage
   covid: Covid
   languages: [String]
   wikipedia_article: String
@@ -82,6 +90,7 @@ type City {
   iata_code: String
   country_code: String
   description: String
+  climate_description: String
 }
 type Attraction {
   id: ID!

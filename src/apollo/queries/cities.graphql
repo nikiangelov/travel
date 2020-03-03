@@ -11,6 +11,7 @@ query City($id: ID, $url_slug: String, $attractions_limit: Int) {
     name
     country_code
     sub_name
+    climate_description
     population {
       total
     }

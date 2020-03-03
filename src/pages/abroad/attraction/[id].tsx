@@ -26,35 +26,38 @@ function AttractionDetail(): ReactElement {
       });
     }
   }, [attraction?.id]);
+  let featuredImage = false;
+  let backdropImage = false;
+  if (images && images.length) {
+    featuredImage = images[0];
+    backdropImage = images[1] ? images[1] : featuredImage;
+  }
 
   return (
     <AnimatedLayout>
       {!attraction && <LoadingState />}
       {!!attraction && (
         <main className="main-layout-container">
-          <div className="movie-details-page pb-6">
+          <div className="city-details-page pb-6">
             <div
               className="backdrop-bg"
               style={{
-                backgroundImage: `url('${images &&
-                  images.length &&
-                  images[3]}')`,
+                backgroundImage: `url('${backdropImage}')`,
               }}
             />
             <div className="container-fluid px-5">
-              <div className="row">
-                <div className="col-lg-4 col-md-3 pt-3">
+              <div className="row mx-n4">
+                <div className="col-lg-4 col-md-3 pt-3 px-4">
                   <div className="pt-4">
                     <div className="white-card-elevated poster p-2 p-md-2 p-lg-3 ">
-                      <img
-                        src={images && images.length && images[0]}
-                        alt=""
-                        className="img-fluid w-100 rounded-lg"
+                      <div
+                        className="city-poster-image bg-cover-img rounded-lg"
+                        style={{ backgroundImage: `url('${featuredImage}')` }}
                       />
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-8 col-md-9">
+                <div className="col-lg-8 col-md-9 px-4">
                   <div
                     className={`over_the_backdrop pt-5 ${
                       false ? 'text-light' : 'text-dark'

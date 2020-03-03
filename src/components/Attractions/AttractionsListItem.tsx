@@ -52,25 +52,6 @@ function AttractionsListItem(props: Props): ReactElement {
           <span className="d-block text-dark h6 mb-0 text-truncate title">
             <b>{data.name}</b>
           </span>
-          <div className="movie-card-controls-wide">
-            <button
-              type="button"
-              className={`btn ${
-                false ? 'btn-primary' : 'btn-light'
-              } btn-sm mr-2 mr-lg-0 ml-lg-2`}
-            >
-              <i className={`${false ? 'fas' : 'far'} fa-bookmark mr-1`} /> За
-              гледане
-            </button>
-            <button
-              type="button"
-              className={`btn ${
-                false ? 'btn-danger' : 'btn-light'
-              } btn-sm mr-2 mr-lg-0 ml-lg-2`}
-            >
-              <i className={`${false ? 'fas' : 'far'} fa-heart mr-1`} /> Любими
-            </button>
-          </div>
         </div>
         {!!voteCount && !!voteAverage && (
           <div className="hot-meter-wrap d-flex justify-content-between align-items-center">
@@ -82,12 +63,8 @@ function AttractionsListItem(props: Props): ReactElement {
             </small>
           </div>
         )}
-        <p className="my-0 text-black-50 text-truncate genres">категории</p>
-        <p className="text-muted description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
-          architecto, nulla aspernatur nobis temporibus maiores, dolores in
-          recusandae at harum suscipit officia. Exercitationem laboriosam ipsam
-          earum consequatur aut quae in.
+        <p className="my-0 pt-1 small text-black-50 text-truncate genres">
+          {data?.description_short}
         </p>
       </div>
     </div>
