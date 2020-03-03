@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Layout from '../../../components/Layout/Layout';
+import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
 import withApollo from '../../../apollo/with-apollo';
 import { useAttractionQuery } from '../../../apollo/queries/attractions.graphql';
 import LoadingState from '../../../components/LoadingStates/CityDetails';
@@ -28,7 +28,7 @@ function AttractionDetail(): ReactElement {
   }, [attraction?.id]);
 
   return (
-    <Layout>
+    <AnimatedLayout>
       {!attraction && <LoadingState />}
       {!!attraction && (
         <main className="main-layout-container">
@@ -90,7 +90,7 @@ function AttractionDetail(): ReactElement {
           </div>
         </main>
       )}
-    </Layout>
+    </AnimatedLayout>
   );
 }
 export default withApollo(AttractionDetail);

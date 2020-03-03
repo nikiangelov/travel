@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 
 import Link from 'next/link';
-import Layout from '../components/Layout/Layout';
+import AnimatedLayout from '../components/Layout/AnimatedLayout';
 import { NextPage } from 'next';
 
 import { motion } from 'framer-motion';
@@ -30,7 +30,7 @@ const postVariants = {
 class IndexPage extends React.Component<NextPage> {
   render(): ReactElement {
     return (
-      <Layout>
+      <AnimatedLayout>
         <div className="row">
           <div className="col">
             <PageSection title={strings.popularDestinationsAbroad}>
@@ -160,7 +160,7 @@ class IndexPage extends React.Component<NextPage> {
             sidebar
           </aside>
         </div>
-      </Layout>
+      </AnimatedLayout>
     );
   }
 }

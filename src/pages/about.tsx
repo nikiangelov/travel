@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Link from 'next/link';
-import Layout from '../components/Layout/Layout';
+import AnimatedLayout from '../components/Layout/AnimatedLayout';
 
 const AboutPage: React.FunctionComponent = () => (
-  <Layout>
+  <AnimatedLayout>
     <h1>About</h1>
     <p>This is the about page</p>
     <p>
@@ -11,7 +11,7 @@ const AboutPage: React.FunctionComponent = () => (
         <a>Go home</a>
       </Link>
     </p>
-  </Layout>
+  </AnimatedLayout>
 );
 
 export default AboutPage;

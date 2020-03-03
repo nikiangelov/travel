@@ -37,7 +37,7 @@ const AsideNavigation: React.FC = () => {
           <NavigationItem
             icon="cog"
             title={strings.settings}
-            path="#"
+            path="/profile"
             noMargin={true}
           />
         </div>

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
-import Layout from '../../../components/Layout/Layout';
+import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
 import withApollo from '../../../apollo/with-apollo';
 import { useCityQuery } from '../../../apollo/queries/cities.graphql';
 import LoadingState from '../../../components/LoadingStates/CityDetails';
@@ -23,7 +23,7 @@ function CityDetails(): ReactElement {
   const { city, attractions } = data || {};
 
   return (
-    <Layout>
+    <AnimatedLayout>
       {!city && <LoadingState />}
       {!!city && (
         <main className="main-layout-container">
@@ -148,7 +148,7 @@ function CityDetails(): ReactElement {
           </div>
         </main>
       )}
-    </Layout>
+    </AnimatedLayout>
   );
 }
 export default withApollo(CityDetails);

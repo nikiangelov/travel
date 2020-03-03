@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NextPageContext } from 'next';
 
 import { User } from '../../interfaces';
-import Layout from '../../components/Layout/Layout';
+import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import ListDetail from '../../components/ListDetail';
 import API from '../../utils/network-client';
 
@@ -29,15 +29,17 @@ class InitialPropsDetail extends React.Component<Props> {
 
     if (errors) {
       return (
-        <Layout>
+        <AnimatedLayout>
           <p>
             <span style={{ color: 'red' }}>Error:</span> {errors}
           </p>
-        </Layout>
+        </AnimatedLayout>
       );
     }
 
-    return <Layout>{item && <ListDetail item={item} />}</Layout>;
+    return (
+      <AnimatedLayout>{item && <ListDetail item={item} />}</AnimatedLayout>
+    );
   }
 }
 

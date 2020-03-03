@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import Layout from '../../components/Layout/Layout';
+import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import withApollo from '../../apollo/with-apollo';
 import Link from 'next/link';
 import { useViewerQuery } from '../../apollo/queries/viewer.graphql';
@@ -9,7 +9,7 @@ function bulgaria(): ReactElement {
   // if (!data) return <div>...</div>;
   const { viewer } = data || {};
   return (
-    <Layout>
+    <AnimatedLayout>
       <div>bulgaria</div>
       {loading && <div>Loading...</div>}
       {!!viewer && (
@@ -34,7 +34,7 @@ function bulgaria(): ReactElement {
         src="https://images.unsplash.com/photo-1582429446367-24ea643ce428?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
         alt=""
       />
-    </Layout>
+    </AnimatedLayout>
   );
 }
 

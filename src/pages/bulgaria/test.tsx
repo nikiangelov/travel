@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
-import Layout from '../../components/Layout/Layout';
+import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 
 function Test(): ReactElement {
   return (
-    <Layout>
+    <AnimatedLayout>
       <div>test</div>
-    </Layout>
+    </AnimatedLayout>
   );
 }
 

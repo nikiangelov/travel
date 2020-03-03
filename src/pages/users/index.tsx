@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import Link from 'next/link';
 
-import Layout from '../../components/Layout/Layout';
+import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import List from '../../components/List';
 import { User } from '../../interfaces';
 import API from '../../utils/network-client';
@@ -14,7 +14,7 @@ type Props = {
 };
 
 const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
-  <Layout>
+  <AnimatedLayout>
     <Head>
       <title>Custom title</title>
     </Head>
@@ -29,7 +29,7 @@ const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
         <a>Go home</a>
       </Link>
     </p>
-  </Layout>
+  </AnimatedLayout>
 );
 
 WithInitialProps.getInitialProps = async ({ pathname }) => {

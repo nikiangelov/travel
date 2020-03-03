@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react';
-import Layout from '../../components/Layout/Layout';
+import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import withApollo from '../../apollo/with-apollo';
 
 function abroad(): ReactElement {
   return (
-    <Layout>
+    <AnimatedLayout>
       <div>abroad</div>
-    </Layout>
+    </AnimatedLayout>
   );
 }
 
