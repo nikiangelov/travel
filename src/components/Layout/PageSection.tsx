@@ -4,18 +4,24 @@ import ReactMarkdown from 'react-markdown';
 interface Props {
   title?: string;
   titleBold?: string;
+  titleRightComponent?: any;
   children?: ReactNode;
 }
 
-function PageSection({ title, children }: Props): ReactElement {
+function PageSection({
+  title,
+  children,
+  titleRightComponent,
+}: Props): ReactElement {
   return (
     <section className="mb-7">
-      <div>
+      <div className="d-flex align-items-center">
         {title && (
-          <h2 className="mb-4">
+          <h2 className="mb-2 flex-fill">
             <ReactMarkdown source={title} />
           </h2>
         )}
+        {!!titleRightComponent && titleRightComponent()}
       </div>
       <div>{children}</div>
     </section>

@@ -33,12 +33,13 @@ const AsideNavigation: React.FC = () => {
             />
           ))}
         </div>
-        <div className="mt-auto">
+        <div className="mt-auto w-100">
           <NavigationItem
             icon="cog"
-            title={strings.settings}
+            title={strings.profile}
             path="/profile"
             noMargin={true}
+            isSelected={topRoute === '/profile'}
           />
         </div>
       </div>

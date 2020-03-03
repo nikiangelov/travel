@@ -5,7 +5,7 @@ function CityDetails(): ReactElement {
     <main className="main-layout-container">
       <div className="movie-details-page pb-6">
         <div className="backdrop-bg" />
-        <div className="container">
+        <div className="container-fluid px-5">
           <div className="row">
             <div className="col-lg-4 col-md-3 pt-3">
               <div className="pt-4">

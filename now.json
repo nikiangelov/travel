@@ -2,6 +2,7 @@
     "build": {
         "env": {
             "TEST_VAR": "@test_var",
+            "MAP_BOX_API_KEY": "@map-box-api-key",
             "FIREBASE_AUTH_DOMAIN": "@firebase-auth-domain",
             "FIREBASE_DATABASE_URL": "@firebase-database-url",
             "FIREBASE_PROJECT_ID": "@firebase-project-id",

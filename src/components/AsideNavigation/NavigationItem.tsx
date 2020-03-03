@@ -25,12 +25,16 @@ function NavigationItem({
             noMargin ? 'py-1' : 'mb-4 py-2'
           } `}
         >
-          <img
-            src={require(`../../assets/icons/${icon}${
-              isSelected ? '-selected' : ''
-            }.svg`)}
-            className="icon mb-2"
-          />
+          {icon === 'cog' ? (
+            <i className="far icon-fa fa-user-circle mb-2" />
+          ) : (
+            <img
+              src={require(`../../assets/icons/${icon}${
+                isSelected ? '-selected' : ''
+              }.svg`)}
+              className="icon mb-2"
+            />
+          )}
           <small>{title}</small>
           {isSelected && <span className="indicator" />}
         </a>
@@ -41,6 +45,9 @@ function NavigationItem({
             ? theme.colors.primaryDark
             : theme.colors.grey600};
           position: relative;
+        }
+        .icon-fa {
+          font-size: 26px;
         }
         .icon {
           opacity: ${isSelected ? 0.7 : 0.5};

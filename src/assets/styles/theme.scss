@@ -1,18 +1,15 @@
 @import 'custom';
 $primary: #f7aa39;
 $gray-800: #343a40;
-$theme-colors: (
-  'primary': $primary,
+$theme-colors: ('primary': $primary,
   'danger': #eb5757,
-);
+  'info': #008AEC);
 
 $link-color: #2d9cdb;
 $link-hover-decoration: none;
 
 $spacer: 1rem;
-$spacers: (
-  6: (
-    $spacer * 5,
+$spacers: (6: ($spacer * 5,
   ),
 );
 $font-size-base: 1rem;
@@ -24,15 +21,11 @@ $h1-font-size: $font-size-base * 3;
 }
 
 $spacer: 1rem;
-$spacers: (
-  5: (
-    $spacer * 2.5,
+$spacers: (5: ($spacer * 2.5,
   ),
-  6: (
-    $spacer * 3,
+  6: ($spacer * 3,
   ),
-  7: (
-    $spacer * 4,
+  7: ($spacer * 4,
   ),
 );
 
@@ -45,13 +38,13 @@ $spacers: (
   cursor: pointer;
 }
 
-.hero-navigation > ul {
+.hero-navigation>ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.hero-navigation > ul > li > a {
+.hero-navigation>ul>li>a {
   display: block;
   font-size: 1.2em;
   color: $gray-800;
@@ -64,11 +57,11 @@ $spacers: (
   cursor: pointer;
 }
 
-.hero-navigation > ul > li > a:hover {
+.hero-navigation>ul>li>a:hover {
   background: rgba(0, 0, 0, 0.1);
 }
 
-.hero-navigation > ul > li.selected > a {
+.hero-navigation>ul>li.selected>a {
   background: none;
   border-bottom: 4px solid $primary;
   border-radius: 0;

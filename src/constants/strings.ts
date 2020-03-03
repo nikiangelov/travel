@@ -3,6 +3,7 @@ export default {
   bg: 'България',
   abroad: 'Чужбина',
   settings: 'Настройки',
+  profile: 'Профил',
   signIn: 'Вход',
   signUp: 'Регистрация',
   popularDestinationsAbroad: 'Популярни **Дестинации** в чужбина',
