@@ -9,6 +9,7 @@ import {
 import mapboxgl from 'mapbox-gl';
 import theme from '../../../constants/theme';
 import PageSection from '../../Layout/PageSection';
+import strings from '../../../constants/strings';
 mapboxgl.accessToken = process.env.MAP_BOX_API_KEY || '';
 
 // interface Props {}
@@ -133,11 +134,11 @@ function index({}): ReactElement {
   useEffect(() => {
     setTimeout(() => {
       initMap();
-    }, 500);
+    }, 300);
   });
   return (
     <PageSection
-      title="Какво съм **посетил**"
+      title={strings.myVisitedPlaces}
       titleRightComponent={(): ReactElement => (
         <SwitcherButtons onChange={jumpToBounds} />
       )}
@@ -163,6 +164,8 @@ type SwitcherButtonsProps = {
 };
 function SwitcherButtons({ onChange }: SwitcherButtonsProps): ReactElement {
   const [selectedBound, setSelectedBound] = useState('world');
+  const defaultClass = 'btn-light';
+  const selectedClass = 'btn-primary text-white';
   function jumpToBounds(bound: string): boolean {
     console.log('%cbound', 'background-color:orange; color: white;', bound);
     setSelectedBound(bound);
@@ -176,16 +179,16 @@ function SwitcherButtons({ onChange }: SwitcherButtonsProps): ReactElement {
           onClick={(): boolean => jumpToBounds('world')}
           type="button"
           className={`btn btn-sm ml-2 ${
-            selectedBound === 'world' ? 'btn-info' : 'btn-light'
+            selectedBound === 'world' ? selectedClass : defaultClass
           }`}
         >
-          Свят
+          Целия свят
         </button>
         <button
           onClick={(): boolean => jumpToBounds('europe')}
           type="button"
           className={`btn btn-sm ml-2 ${
-            selectedBound === 'europe' ? 'btn-info' : 'btn-light'
+            selectedBound === 'europe' ? selectedClass : defaultClass
           }`}
         >
           Европа
@@ -194,7 +197,7 @@ function SwitcherButtons({ onChange }: SwitcherButtonsProps): ReactElement {
           onClick={(): boolean => jumpToBounds('bulgaria')}
           type="button"
           className={`btn btn-sm ml-2 ${
-            selectedBound === 'bulgaria' ? 'btn-info' : 'btn-light'
+            selectedBound === 'bulgaria' ? selectedClass : defaultClass
           }`}
         >
           България

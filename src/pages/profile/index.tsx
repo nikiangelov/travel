@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
-import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import dynamic from 'next/dynamic';
+import AnimatedLayout from '../../components/Layout/AnimatedLayout';
+import PageSection from '../../components/Layout/PageSection';
+import UserPhotosGrid from '../../components/Profile/UserPhotosGrid';
+import strings from '../../constants/strings';
 
 const VisitedPlacesMap = dynamic(
   () => import('../../components/Maps/VisitedPlacesMap'),
@@ -13,6 +15,13 @@ interface Props {
 }
 
 function index({}: Props): ReactElement {
+  const visitedPlacesSectionRef = React.createRef<HTMLDivElement>();
+  const photosSectionRef = React.createRef<HTMLDivElement>();
+
+  function scrollToRef(ref: any): void {
+    window.scrollTo(0, ref.current.offsetTop);
+  }
+
   return (
     <AnimatedLayout>
       <Head>
@@ -20,12 +29,16 @@ function index({}: Props): ReactElement {
           rel="stylesheet"
           href="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css"
         />
+        <link
+          href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
       <main>
         <div className="container-fluid mx-n4">
           <div className="row">
             <div className="col-lg-3 px-4">
-              <div className="aside-user-box white-card-elevated p-4 mb-4">
+              <div className="aside-user-box white-card-elevated p-4 mb-4 sticky-top">
                 <div
                   className="aside-user-box-avatar mt-n6 mb-2 bg-cover-img"
                   style={{
@@ -40,52 +53,101 @@ function index({}: Props): ReactElement {
                 <p className="text-black-50 text-center">
                   info@nikiangelov.com
                 </p>
+                <div className="d-flex justify-content-center">
+                  <button className="btn flex-fill text-dark btn-light mt-2 ">
+                    <i className="fas fa-user-plus mr-2" />
+                    Последвай
+                  </button>
+                </div>
                 <hr />
                 <nav className="nav flex-column nav-pills mt-4">
-                  <a href="home.html" className="nav-link">
+                  <span
+                    onClick={(): void => {
+                      scrollToRef(visitedPlacesSectionRef);
+                    }}
+                    className="link nav-link"
+                  >
                     <i className="far fa-compass mr-2"></i>
-                    Моята стена
-                  </a>
-
-                  <Link href="#fragment">
-                    <a className="nav-link">
-                      <i className="fas fa-comment mr-2"></i>
-                      Моите отзиви
-                    </a>
-                  </Link>
-                  <a href="public_reviews.html" className="nav-link active">
-                    <i className="fas fa-heart mr-2"></i>
-                    Всички отзиви
-                  </a>
-                  <a
-                    href="user_list.html#FAVORITES"
-                    className="nav-link"
-                    data-type="FAVORITES"
+                    Посетени места
+                  </span>
+                  <span
+                    onClick={(): void => {
+                      scrollToRef(photosSectionRef);
+                    }}
+                    className="link nav-link"
                   >
-                    <i className="fas fa-heart mr-2"></i>
-                    Любими
-                  </a>
-                  <a
-                    href="user_list.html#WATCHED"
-                    className="nav-link"
-                    data-type="WATCHED"
-                  >
-                    <i className="far fa-check-circle mr-2"></i>
-                    Гледани
-                  </a>
-                  <a
-                    href="user_list.html#WATCH_LATER"
-                    className="nav-link"
-                    data-type="WATCH_LATER"
-                  >
-                    <i className="far fa-clock mr-2"></i>
-                    За гледане по-късно
-                  </a>
+                    <i className="far fa-images mr-2"></i>
+                    Добавени снимки
+                  </span>
                 </nav>
               </div>
             </div>
             <div className="col-lg-9 px-4">
-              <VisitedPlacesMap />
+              <PageSection title="Моята **активност**">
+                <div className="row text-center">
+                  <div className="col-lg-3">
+                    <div className="white-card-elevated p-2 py-3 elevation-2">
+                      <strong className="digits h1">64</strong>
+                      <p className="">
+                        посетени
+                        <br />
+                        държави
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3">
+                    <div className="white-card-elevated p-2 py-3 elevation-2">
+                      <strong className="digits h1">35%</strong>
+                      <p className="">
+                        от
+                        <br />
+                        Европа
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3">
+                    <div className="white-card-elevated p-2 py-3 elevation-2">
+                      <strong className="digits h1">12</strong>
+                      <p className="">
+                        добавени
+                        <br />
+                        пътеписа
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3">
+                    <div className="white-card-elevated p-2 py-3 elevation-2">
+                      <strong className="digits h1">5</strong>
+                      <p className="">
+                        добавени
+                        <br />
+                        снимки
+                      </p>
+                    </div>
+                  </div>
+                  <style jsx>{`
+                    .digits {
+                      font-family: 'Roboto Condensed', sans-serif;
+                    }
+                  `}</style>
+                </div>
+              </PageSection>
+              <div ref={visitedPlacesSectionRef}>
+                <VisitedPlacesMap />
+              </div>
+              <div ref={photosSectionRef}>
+                <PageSection
+                  title={strings.travelPhotos}
+                  titleRightComponent={(): ReactElement => (
+                    <button className="btn btn-sm btn-light">
+                      Разгледай всички
+                    </button>
+                  )}
+                >
+                  <UserPhotosGrid path="/site/uploads/users/nikiangelov" />
+                </PageSection>
+              </div>
+
               <div className="white-card-elevated p-4 mb-5">
                 <p>
                   <span>

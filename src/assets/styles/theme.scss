@@ -30,6 +30,11 @@ $spacers: (5: ($spacer * 2.5,
 );
 
 /* UTILS */
+.link {
+  color: $link-color;
+  cursor: pointer;
+}
+
 .react-read-more-text .read-more-button {
   color: $link-color;
   font-weight: bold;

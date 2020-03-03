@@ -8,4 +8,6 @@ export default {
   signUp: 'Регистрация',
   popularDestinationsAbroad: 'Популярни **Дестинации** в чужбина',
   travelIdeasBulgaria: 'Идеи за пътешествия в **България**',
+  myVisitedPlaces: '**Посетени** места',
+  travelPhotos: '**Снимки** от пътешествия',
 };
