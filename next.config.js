@@ -30,6 +30,5 @@ module.exports = withSass(
       FIREBASE_PUBLIC_API_KEY: process.env.FIREBASE_PUBLIC_API_KEY,
       FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
     },
-    distDir: '_next',
   }),
 );

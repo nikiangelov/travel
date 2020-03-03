@@ -19,43 +19,7 @@ function CityDetails(): ReactElement {
                 className="over_the_backdrop pt-5 text-light"
                 style={{ height: 330 }}
               >
-                <div className="d-flex justify-content-between align-items-center">
-                  <h1>-</h1>
-                </div>
-                <p className="h5 text-white-50 pb-3">-</p>
-                <div className="mb-2" style={{ width: '200px' }}>
-                  <div className="hot-meter">
-                    <span style={{ width: '0%' }} />
-                  </div>
-                </div>
-
-                <div className="row pt-4">
-                  <div className="col mb-3">
-                    <h5 className="text-white-80 text-truncate">
-                      <i className="far fa-star mr-2" />
-                      Оценка
-                    </h5>
-                    <p className="h2">-</p>
-                  </div>
-                  <div className="col mb-3">
-                    <h5 className="text-white-80 text-truncate">
-                      <i className="far fa-clock mr-2" />
-                      Продължителност
-                    </h5>
-                    <p className="h2">-</p>
-                  </div>
-                  <div className="col mb-3">
-                    <h5 className="text-white-80 text-truncate">
-                      <i className="fas fa-dollar-sign mr-2" />
-                      Бюджет
-                    </h5>
-                    <p className="h2">-</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mb-5">
-                <h4>Описание</h4>
-                <p className="lead">-</p>
+                <div className="d-flex justify-content-between align-items-center"></div>
               </div>
             </div>
           </div>

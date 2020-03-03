@@ -49,7 +49,7 @@ function AttractionsListItem(props: Props): ReactElement {
       </div>
       <div className="movie-card-float-box">
         <div className="d-lg-flex justify-content-between">
-          <span className="d-block text-dark h5 text-truncate title">
+          <span className="d-block text-dark h6 mb-0 text-truncate title">
             <b>{data.name}</b>
           </span>
           <div className="movie-card-controls-wide">
@@ -82,10 +82,7 @@ function AttractionsListItem(props: Props): ReactElement {
             </small>
           </div>
         )}
-        <p className="mb-0 text-muted text-truncate release_date">
-          {'D MMMM YYYYг.'}
-        </p>
-        <p className="mb-0 text-black-50 text-truncate genres">категории</p>
+        <p className="my-0 text-black-50 text-truncate genres">категории</p>
         <p className="text-muted description">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
           architecto, nulla aspernatur nobis temporibus maiores, dolores in

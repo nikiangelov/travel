@@ -15,7 +15,7 @@ function CityDetails(): ReactElement {
   const citySlug = router.query.id;
   const attrationsRef = React.createRef<HTMLDivElement>();
 
-  const { data, loading } = useCityQuery({
+  const { data } = useCityQuery({
     variables: {
       url_slug: `${citySlug}`,
     },
@@ -24,8 +24,8 @@ function CityDetails(): ReactElement {
 
   return (
     <Layout>
-      {!!loading && <LoadingState />}
-      {!loading && !!city && (
+      {!city && <LoadingState />}
+      {!!city && (
         <main className="main-layout-container">
           <div className="movie-details-page pb-6">
             <div

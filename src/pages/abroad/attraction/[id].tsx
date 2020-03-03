@@ -10,7 +10,7 @@ function AttractionDetail(): ReactElement {
   const router = useRouter();
   const [images, setImages] = useState();
   const attractionId = router.query.id;
-  const { data, loading } = useAttractionQuery({
+  const { data } = useAttractionQuery({
     variables: {
       id: `${attractionId}`,
     },
@@ -29,8 +29,8 @@ function AttractionDetail(): ReactElement {
 
   return (
     <Layout>
-      {!!loading && <LoadingState />}
-      {!loading && !!attraction && (
+      {!attraction && <LoadingState />}
+      {!!attraction && (
         <main className="main-layout-container">
           <div className="movie-details-page pb-6">
             <div
