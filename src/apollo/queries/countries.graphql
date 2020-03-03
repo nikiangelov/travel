@@ -1,0 +1,6 @@
+query Country($code: String) {
+  country(code: $code) {
+    id
+    name
+  }
+}

@@ -5,10 +5,11 @@ query Cities {
     description
   }
 }
-query City($id: ID, $url_slug: String) {
+query City($id: ID, $url_slug: String, $attractions_limit: Int) {
   city(id: $id, url_slug: $url_slug) {
     id
     name
+    country_code
     sub_name
     population {
       total
@@ -19,7 +20,7 @@ query City($id: ID, $url_slug: String) {
     featured_image_thumb
     description
   }
-  attractions(city_url_slug: $url_slug) {
+  attractions(city_url_slug: $url_slug, limit: $attractions_limit) {
     id
     name
     city_url_slug

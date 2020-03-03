@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
 import withApollo from '../../../apollo/with-apollo';
 import { useCityQuery } from '../../../apollo/queries/cities.graphql';
+// import { useCountryQuery } from '../../../apollo/queries/countries.graphql';
 import LoadingState from '../../../components/LoadingStates/CityDetails';
 import numeral from 'numeral';
 import ReadMoreReact from 'read-more-react';
@@ -18,9 +19,17 @@ function CityDetails(): ReactElement {
   const { data } = useCityQuery({
     variables: {
       url_slug: `${citySlug}`,
+      attractions_limit: 6,
     },
   });
   const { city, attractions } = data || {};
+  /*
+  const { data: countryData } = useCountryQuery({
+    variables: {
+      code: city?.country_code,
+    },
+  });
+  */
 
   return (
     <AnimatedLayout>
@@ -118,7 +127,7 @@ function CityDetails(): ReactElement {
                   </nav>
                   {!!city.description && (
                     <div className="mb-5">
-                      <h4>Информация</h4>
+                      <h4 className="mb-3">Информация</h4>
                       <div className="lead react-read-more-text">
                         <ReadMoreReact
                           text={city.description}
@@ -131,7 +140,7 @@ function CityDetails(): ReactElement {
                     </div>
                   )}
                   <div ref={attrationsRef}>
-                    <h4>Забележителности</h4>
+                    <h4 className="mb-4">Топ забележителности</h4>
                   </div>
                   {!!attractions && !!attractions.length && (
                     <div className="row">

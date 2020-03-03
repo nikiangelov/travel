@@ -5,8 +5,14 @@ class Attractions {
   static all(): AttractionInterface[] {
     return attractions as AttractionInterface[];
   }
-  static getByUrlSlug(slug: string): AttractionInterface[] {
+  static getByUrlSlug(
+    slug: string,
+    limit: number | null,
+  ): AttractionInterface[] {
     const result = attractions.filter(x => x.city_url_slug === slug);
+    if (limit) {
+      return [...result].splice(0, limit) as AttractionInterface[];
+    }
     return result as AttractionInterface[];
   }
   static getById(id: string): AttractionInterface {

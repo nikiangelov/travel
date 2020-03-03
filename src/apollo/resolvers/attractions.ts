@@ -8,10 +8,10 @@ const query = {
     _context: any,
     _info: any,
   ): AttractionInterface[] => {
-    const { city_url_slug } = _args;
+    const { city_url_slug, limit } = _args;
     let result: AttractionInterface[] = [];
     if (city_url_slug) {
-      result = Attractions.getByUrlSlug(city_url_slug);
+      result = Attractions.getByUrlSlug(city_url_slug, limit);
     } else {
       result = Attractions.all();
     }

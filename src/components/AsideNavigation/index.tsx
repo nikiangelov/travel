@@ -65,6 +65,13 @@ const AsideNavigation: React.FC = () => {
         }
         .logo {
           display: block;
+          transition: transform 0.2s ease-out;
+        }
+        .logo:hover {
+          transform: scale(1.1);
+        }
+        .logo:active {
+          transform: scale(0.95);
         }
       `}</style>
     </div>
