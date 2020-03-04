@@ -6,6 +6,8 @@ import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
 import Link from 'next/link';
 import travelLogPlacesData from '../../../constants/travellog';
 import TravelLogPlan from '../../../components/TravelLogs/TravelLogPlan';
+import { motion } from 'framer-motion';
+import { slideUpVariants } from '../../../constants/animations';
 const MarkersMap = dynamic(
   () => import('../../../components/Maps/MarkersMap'),
   { loading: () => <div className="loading-map-placeholder" />, ssr: false },
@@ -108,7 +110,7 @@ function TravelLogDetails(): ReactElement {
               </section>
             )}
             {(!selectedTab || selectedTab === 'info') && (
-              <div>
+              <motion.div variants={slideUpVariants}>
                 <section className="mb-5">
                   <h2 className="mb-3">{`Язовир "Въча"`}</h2>
                   <figure className="figure float-right ml-5">
@@ -213,7 +215,7 @@ function TravelLogDetails(): ReactElement {
                     <span className="clearfix" />
                   </p>
                 </section>
-              </div>
+              </motion.div>
             )}
           </div>
           <div className="col-lg-3">
