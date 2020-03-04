@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import { useRouter } from 'next/router';
+import React, { ReactElement, useState } from 'react';
+// import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
@@ -9,20 +9,12 @@ const MarkersMap = dynamic(
   () => import('../../../components/Maps/MarkersMap'),
   { loading: () => <p>...</p>, ssr: false },
 );
-// import withApollo from '../../../apollo/with-apollo';
-// import { useCityQuery } from '../../../apollo/queries/cities.graphql';
-// import { useCountryQuery } from '../../../apollo/queries/countries.graphql';
-// import numeral from 'numeral';
-// import ReadMoreReact from 'read-more-react';
 
+const pageTabs = ['info', 'map', 'plan', 'comments'];
 function TravelLogDetails(): ReactElement {
-  const router = useRouter();
-  const travelLogId = router.query.id;
-  console.log(
-    '%ctravelLogId',
-    'background-color:green; color: white;',
-    travelLogId,
-  );
+  // const router = useRouter();
+  // const travelLogId = router.query.id;
+  const [selectedTab, setSelectedTab] = useState(pageTabs[0]);
 
   return (
     <AnimatedLayout>
@@ -53,130 +45,170 @@ function TravelLogDetails(): ReactElement {
               </div>
               <nav className="hero-navigation mb-5 d-none d-lg-block">
                 <ul className="d-flex">
-                  <li className="selected mr-3">
-                    <a className="text-dark">Пътепис</a>
+                  <li
+                    className={`mr-3 ${
+                      selectedTab === 'info' ? 'selected' : ''
+                    }`}
+                  >
+                    <a
+                      onClick={(): void => setSelectedTab('info')}
+                      className="text-dark"
+                    >
+                      Пътепис
+                    </a>
                   </li>
-                  <li className="mr-3">
-                    <a className="text-muted">Карта на местата</a>
+                  <li
+                    className={`mr-3 ${
+                      selectedTab === 'map' ? 'selected' : ''
+                    }`}
+                  >
+                    <a
+                      onClick={(): void => setSelectedTab('map')}
+                      className="text-muted"
+                    >
+                      Карта на местата
+                    </a>
                   </li>
-                  <li className="mr-3">
-                    <a className="text-muted">План</a>
+                  <li
+                    className={`mr-3 ${
+                      selectedTab === 'plan' ? 'selected' : ''
+                    }`}
+                  >
+                    <a
+                      onClick={(): void => setSelectedTab('plan')}
+                      className="text-muted"
+                    >
+                      План
+                    </a>
                   </li>
-                  <li className="mr-3">
-                    <a className="text-muted">Коментари</a>
+                  <li
+                    className={`mr-3 ${
+                      selectedTab === 'comments' ? 'selected' : ''
+                    }`}
+                  >
+                    <a
+                      onClick={(): void => setSelectedTab('comments')}
+                      className="text-muted"
+                    >
+                      Коментари
+                    </a>
                   </li>
                 </ul>
               </nav>
-              {/* <img
-                className="img-fluid w-100 mb-4 "
-                src="https://images.unsplash.com/photo-1528826542659-27db5adea13c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                alt=""
-              /> */}
             </section>
-            <section className="mb-5">
-              <MarkersMap markers={travelLogPlacesData.places} />
-            </section>
-            <section className="mb-5">
-              <h2 className="mb-3">{`Язовир "Въча"`}</h2>
-              <figure className="figure float-right ml-5">
-                <img
-                  width={350}
-                  src="https://images.unsplash.com/photo-1497668319663-af2fa49df87e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                  className="figure-img img-fluid rounded"
-                  alt="..."
-                />
-                <figcaption className="figure-caption">
-                  Страхотната гледа към язовира.
-                </figcaption>
-              </figure>
-              <p className="text-muted">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
-                illum impedit culpa aliquid ea ratione exercitationem
-                consequuntur. Totam veritatis impedit ex qui voluptas sed
-                voluptate, nobis laboriosam minima laborum sequi! Praesentium
-                illum voluptatum ipsam aperiam, sit esse eius, ad vitae sed
-                corrupti cum rem facere aspernatur impedit exercitationem
-                commodi? Ullam neque soluta cum doloremque expedita voluptates
-                perferendis cupiditate placeat unde. Architecto dolorum
-                reiciendis iste quos exercitationem esse perspiciatis est dolore
-                repudiandae doloribus voluptas ipsa, earum quae, nisi asperiores
-                ipsam molestiae nam consequuntur culpa velit expedita libero
-                eius! Praesentium, esse dolor? Expedita delectus harum ad
-                dolorem eius quasi, pariatur aliquam amet perspiciatis, soluta,
-                fugit maxime unde laudantium aut eveniet saepe fuga iste
-                excepturi mollitia animi voluptatem rerum! Reiciendis assumenda
-                quaerat natus? Repellat cupiditate temporibus amet facilis
-                molestiae assumenda laborum alias, ducimus reprehenderit. Nulla
-                nam et dolore qui, ex fugiat recusandae assumenda ducimus
-                asperiores obcaecati suscipit rem eos reprehenderit temporibus,
-                vitae voluptate.
-                <span className="clearfix" />
-              </p>
-            </section>
-            <section className="mb-5">
-              <h2 className="mb-3">Буйновско ждрело</h2>
-              <figure className="figure float-right ml-5">
-                <img
-                  width={350}
-                  src="https://images.unsplash.com/photo-1528826542659-27db5adea13c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                  className="figure-img img-fluid rounded"
-                  alt="..."
-                />
-                <figcaption className="figure-caption">
-                  Страхотна гледа
-                </figcaption>
-              </figure>
-              <p className="text-muted">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Doloribus beatae cumque nobis exercitationem. Beatae quisquam
-                alias ipsum totam mollitia quas consequuntur ab eveniet
-                provident? Cum, earum placeat. Tempore, modi fuga. A labore in
-                distinctio! Beatae, debitis numquam ab nemo vero totam.
-                Adipisci, earum. Qui quas iusto pariatur ullam aliquid.
-                Consequuntur eum quia maiores repellendus, enim inventore
-                deserunt quidem repellat mollitia. Mollitia animi tempore et
-                asperiores deleniti corporis quis architecto, fugit
-                necessitatibus! Quod soluta facilis tenetur unde debitis at
-                fugit pariatur autem ut consectetur! Nam vitae necessitatibus
-                enim cum velit aut.
-                <span className="clearfix" />
-              </p>
-              <div className="alert alert-info" role="alert">
-                <h6 className="alert-heading">Съвет:</h6>
-                <p className="mb-0">Носете си топли дрехи.</p>
+            {!!selectedTab && selectedTab === 'map' && (
+              <section className="mb-5">
+                <MarkersMap markers={travelLogPlacesData.places} />
+              </section>
+            )}
+            {(!selectedTab || selectedTab === 'info') && (
+              <div>
+                <section className="mb-5">
+                  <h2 className="mb-3">{`Язовир "Въча"`}</h2>
+                  <figure className="figure float-right ml-5">
+                    <img
+                      width={350}
+                      src="https://images.unsplash.com/photo-1497668319663-af2fa49df87e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                      className="figure-img img-fluid rounded"
+                      alt="..."
+                    />
+                    <figcaption className="figure-caption">
+                      Страхотната гледа към язовира.
+                    </figcaption>
+                  </figure>
+                  <p className="text-muted">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Minima, illum impedit culpa aliquid ea ratione
+                    exercitationem consequuntur. Totam veritatis impedit ex qui
+                    voluptas sed voluptate, nobis laboriosam minima laborum
+                    sequi! Praesentium illum voluptatum ipsam aperiam, sit esse
+                    eius, ad vitae sed corrupti cum rem facere aspernatur
+                    impedit exercitationem commodi? Ullam neque soluta cum
+                    doloremque expedita voluptates perferendis cupiditate
+                    placeat unde. Architecto dolorum reiciendis iste quos
+                    exercitationem esse perspiciatis est dolore repudiandae
+                    doloribus voluptas ipsa, earum quae, nisi asperiores ipsam
+                    molestiae nam consequuntur culpa velit expedita libero eius!
+                    Praesentium, esse dolor? Expedita delectus harum ad dolorem
+                    eius quasi, pariatur aliquam amet perspiciatis, soluta,
+                    fugit maxime unde laudantium aut eveniet saepe fuga iste
+                    excepturi mollitia animi voluptatem rerum! Reiciendis
+                    assumenda quaerat natus? Repellat cupiditate temporibus amet
+                    facilis molestiae assumenda laborum alias, ducimus
+                    reprehenderit. Nulla nam et dolore qui, ex fugiat recusandae
+                    assumenda ducimus asperiores obcaecati suscipit rem eos
+                    reprehenderit temporibus, vitae voluptate.
+                    <span className="clearfix" />
+                  </p>
+                </section>
+                <section className="mb-5">
+                  <h2 className="mb-3">Буйновско ждрело</h2>
+                  <figure className="figure float-right ml-5">
+                    <img
+                      width={350}
+                      src="https://images.unsplash.com/photo-1528826542659-27db5adea13c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                      className="figure-img img-fluid rounded"
+                      alt="..."
+                    />
+                    <figcaption className="figure-caption">
+                      Страхотна гледа
+                    </figcaption>
+                  </figure>
+                  <p className="text-muted">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Doloribus beatae cumque nobis exercitationem. Beatae
+                    quisquam alias ipsum totam mollitia quas consequuntur ab
+                    eveniet provident? Cum, earum placeat. Tempore, modi fuga. A
+                    labore in distinctio! Beatae, debitis numquam ab nemo vero
+                    totam. Adipisci, earum. Qui quas iusto pariatur ullam
+                    aliquid. Consequuntur eum quia maiores repellendus, enim
+                    inventore deserunt quidem repellat mollitia. Mollitia animi
+                    tempore et asperiores deleniti corporis quis architecto,
+                    fugit necessitatibus! Quod soluta facilis tenetur unde
+                    debitis at fugit pariatur autem ut consectetur! Nam vitae
+                    necessitatibus enim cum velit aut.
+                    <span className="clearfix" />
+                  </p>
+                  <div className="alert alert-info" role="alert">
+                    <h6 className="alert-heading">Съвет:</h6>
+                    <p className="mb-0">Носете си топли дрехи.</p>
+                  </div>
+                </section>
+                <section className="mb-5">
+                  <h2 className="mb-3">Ягодинска пещера</h2>
+                  <p className="text-muted">
+                    <img
+                      className="float-left mr-5"
+                      width={350}
+                      src="https://images.unsplash.com/photo-1497668319663-af2fa49df87e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                      alt=""
+                    />
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Eveniet molestiae temporibus ducimus sunt minus? Aut
+                    provident, molestiae quidem dicta ipsa rerum aliquid ad
+                    earum, consequuntur atque dolore. Facilis, quia veritatis?
+                    Molestias possimus fugiat dolorum dicta dignissimos nobis
+                    voluptatibus ut excepturi, vitae, eos consectetur beatae?
+                    Illo voluptatem repudiandae architecto obcaecati ea
+                    exercitationem minima odio expedita, eum similique
+                    recusandae at. Similique, fugit! Expedita eligendi a
+                    mollitia. Quidem pariatur minima odio harum sapiente quis
+                    nisi sit necessitatibus optio sequi dicta placeat amet
+                    aspernatur, in quibusdam, recusandae consectetur voluptas
+                    corrupti vel beatae modi autem! Reprehenderit, beatae
+                    voluptatum nobis tempore provident esse ullam optio. Quos,
+                    voluptatem. Labore quidem maiores esse officia quas aperiam
+                    delectus nesciunt dolores magni hic, earum nihil
+                    accusantium, in cupiditate? Molestiae, necessitatibus!
+                    Voluptas nihil eaque ipsum libero ab quod et, hic adipisci
+                    commodi facilis quidem optio eveniet pariatur, maxime
+                    dignissimos molestias mollitia! Ratione, numquam nobis
+                    soluta ea quas aut ipsum dolor totam.
+                    <span className="clearfix" />
+                  </p>
+                </section>
               </div>
-            </section>
-            <section className="mb-5">
-              <h2 className="mb-3">Ягодинска пещера</h2>
-              <p className="text-muted">
-                <img
-                  className="float-left mr-5"
-                  width={350}
-                  src="https://images.unsplash.com/photo-1497668319663-af2fa49df87e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                  alt=""
-                />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-                molestiae temporibus ducimus sunt minus? Aut provident,
-                molestiae quidem dicta ipsa rerum aliquid ad earum, consequuntur
-                atque dolore. Facilis, quia veritatis? Molestias possimus fugiat
-                dolorum dicta dignissimos nobis voluptatibus ut excepturi,
-                vitae, eos consectetur beatae? Illo voluptatem repudiandae
-                architecto obcaecati ea exercitationem minima odio expedita, eum
-                similique recusandae at. Similique, fugit! Expedita eligendi a
-                mollitia. Quidem pariatur minima odio harum sapiente quis nisi
-                sit necessitatibus optio sequi dicta placeat amet aspernatur, in
-                quibusdam, recusandae consectetur voluptas corrupti vel beatae
-                modi autem! Reprehenderit, beatae voluptatum nobis tempore
-                provident esse ullam optio. Quos, voluptatem. Labore quidem
-                maiores esse officia quas aperiam delectus nesciunt dolores
-                magni hic, earum nihil accusantium, in cupiditate? Molestiae,
-                necessitatibus! Voluptas nihil eaque ipsum libero ab quod et,
-                hic adipisci commodi facilis quidem optio eveniet pariatur,
-                maxime dignissimos molestias mollitia! Ratione, numquam nobis
-                soluta ea quas aut ipsum dolor totam.
-                <span className="clearfix" />
-              </p>
-            </section>
+            )}
           </div>
           <div className="col-lg-3">
             <div className="white-card-elevated py-3 px-4 elevation-2 mb-4">
@@ -284,7 +316,10 @@ function TravelLogDetails(): ReactElement {
                 ))}
               </div>
               <div className="d-flex justify-content-center">
-                <button className="btn flex-fill text-dark btn-light mt-2 ">
+                <button
+                  onClick={(): void => setSelectedTab('map')}
+                  className="btn flex-fill text-dark btn-light mt-2 "
+                >
                   <i className="fas fa-map-marker-alt mr-2" />
                   Виж върху картата
                 </button>
