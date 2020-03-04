@@ -5,9 +5,10 @@ import Head from 'next/head';
 import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
 import Link from 'next/link';
 import travelLogPlacesData from '../../../constants/travellog';
+import TravelLogPlan from '../../../components/TravelLogs/TravelLogPlan';
 const MarkersMap = dynamic(
   () => import('../../../components/Maps/MarkersMap'),
-  { loading: () => <p>...</p>, ssr: false },
+  { loading: () => <div className="loading-map-placeholder" />, ssr: false },
 );
 
 const pageTabs = ['info', 'map', 'plan', 'comments'];
@@ -99,6 +100,11 @@ function TravelLogDetails(): ReactElement {
             {!!selectedTab && selectedTab === 'map' && (
               <section className="mb-5">
                 <MarkersMap markers={travelLogPlacesData.places} />
+              </section>
+            )}
+            {!!selectedTab && selectedTab === 'plan' && (
+              <section className="mb-5">
+                <TravelLogPlan places={travelLogPlacesData.places} />
               </section>
             )}
             {(!selectedTab || selectedTab === 'info') && (

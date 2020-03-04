@@ -8,7 +8,7 @@ import strings from '../../constants/strings';
 
 const VisitedPlacesMap = dynamic(
   () => import('../../components/Maps/VisitedPlacesMap'),
-  { loading: () => <p>...</p>, ssr: false },
+  { loading: () => <div className="loading-map-placeholder" />, ssr: false },
 );
 interface Props {
   key: string;
