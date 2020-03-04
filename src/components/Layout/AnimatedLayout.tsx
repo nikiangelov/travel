@@ -23,7 +23,7 @@ interface Props {
 const Layout: React.FunctionComponent = ({ children }: Props) => (
   <div className="asideNavWrap d-flex flex-row">
     <AsideNavigation />
-    <div className="flex-1">
+    <div className="flex-1 mr-lg-3">
       <div className="pageContent d-flex flex-column">
         <Header />
         <motion.div initial="exit" animate="enter" exit="exit">

@@ -7,7 +7,7 @@ export default {
   signIn: 'Вход',
   signUp: 'Регистрация',
   popularDestinationsAbroad: 'Популярни **Дестинации** в чужбина',
-  travelIdeasBulgaria: 'Идеи за пътешествия в **България**',
+  travelIdeasBulgaria: 'Идеи за пътешествия за **България** и **чужбина**',
   myVisitedPlaces: 'Моите **посетени** места',
   travelPhotos: '**Снимки** от пътешествия',
 };

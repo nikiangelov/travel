@@ -17,9 +17,9 @@ function PageSection({
     <section className="mb-7">
       <div className="d-flex align-items-center">
         {title && (
-          <h2 className="mb-2 flex-fill">
+          <h3 className="mb-2 flex-fill">
             <ReactMarkdown source={title} />
-          </h2>
+          </h3>
         )}
         {!!titleRightComponent && titleRightComponent()}
       </div>
