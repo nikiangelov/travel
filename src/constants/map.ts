@@ -8,8 +8,8 @@ export const bulgariaBounds = [
   [28.705649, 44.215636],
 ];
 export const europeBounds = [
-  [-39.6, 34.26],
-  [70.09, 68.25],
+  [-39.6, 30],
+  [70.09, 65.25],
 ];
 
 export const mapStyle = {

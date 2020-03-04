@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
 import Link from 'next/link';
+import travelLogPlacesData from '../../../constants/travellog';
 // import withApollo from '../../../apollo/with-apollo';
 // import { useCityQuery } from '../../../apollo/queries/cities.graphql';
 // import { useCountryQuery } from '../../../apollo/queries/countries.graphql';
@@ -242,36 +243,30 @@ function TravelLogDetails(): ReactElement {
                 <h5 className="mb-4">Включени обекти</h5>
               </div>
               <div className="aside-attraction-list">
-                <div className="aside-attraction-item mb-3">
-                  <div className="d-flex">
-                    <a href="#" className="bg-cover-img rounded image mr-3"></a>
-                    <div className="flex-fill">
-                      <h6 className="mb-1">Язовир Въча</h6>
-                      <p className="small text-muted">Пловдивско</p>
+                {travelLogPlacesData.places.map(place => (
+                  <div
+                    key={`tp${place.id}`}
+                    className="aside-attraction-item mb-4"
+                  >
+                    <div className="row no-gutters">
+                      <div className="col-3">
+                        <span
+                          className="bg-cover-img rounded image mr-3"
+                          style={{ backgroundImage: `url(${place.imageUrl})` }}
+                        />
+                      </div>
+                      <div className="col-9 d-flex">
+                        <div className="flex-fill">
+                          <h6 className="mb-1">{place.title}</h6>
+                          <p className="small text-muted mb-0">
+                            {place.location}
+                          </p>
+                        </div>
+                        <h6 className="text-primary mb-0 ml-2">{place.id}</h6>
+                      </div>
                     </div>
-                    <h6 className="text-primary">1</h6>
                   </div>
-                </div>
-                <div className="aside-attraction-item mb-3">
-                  <div className="d-flex">
-                    <a href="#" className="bg-cover-img rounded image mr-3"></a>
-                    <div className="flex-fill">
-                      <h6 className="mb-1">Язовир Въча</h6>
-                      <p className="small text-muted">Пловдивско</p>
-                    </div>
-                    <h6 className="text-primary">2</h6>
-                  </div>
-                </div>
-                <div className="aside-attraction-item mb-3">
-                  <div className="d-flex">
-                    <a href="#" className="bg-cover-img rounded image mr-3"></a>
-                    <div className="flex-fill">
-                      <h6 className="mb-1">Язовир Въча</h6>
-                      <p className="small text-muted">Пловдивско</p>
-                    </div>
-                    <h6 className="text-primary">3</h6>
-                  </div>
-                </div>
+                ))}
               </div>
               <div className="d-flex justify-content-center">
                 <button className="btn flex-fill text-dark btn-light mt-2 ">

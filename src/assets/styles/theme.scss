@@ -188,12 +188,10 @@ $spacers: (5: ($spacer * 2.5,
 }
 
 // attraction list
-.aside-attraction-item {}
-
 .aside-attraction-item .image {
   display: block;
-  width: 30%;
-  padding-bottom: 20%;
+  padding-bottom: 70%;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .1);
 }
 
 @import '~bootstrap/scss/bootstrap.scss';
