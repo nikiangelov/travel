@@ -10,7 +10,7 @@ const AsideNavigation: React.FC = () => {
   const router = useRouter();
   const topRoute = '/' + router.pathname.split('/')[1];
   return (
-    <div className="d-none d-lg-block base-placeholder mr-5">
+    <div className="d-none d-lg-block base-placeholder mr-4">
       <div className="base pt-5 pb-4 fixed-top ">
         <div className="separator my-4" />
         <Link href="/">

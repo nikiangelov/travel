@@ -182,4 +182,18 @@ $spacers: (5: ($spacer * 2.5,
   max-height: 10vh;
 }
 
+.main-page-wrap {
+  max-width: 1450px;
+  margin: 0 auto;
+}
+
+// attraction list
+.aside-attraction-item {}
+
+.aside-attraction-item .image {
+  display: block;
+  width: 30%;
+  padding-bottom: 20%;
+}
+
 @import '~bootstrap/scss/bootstrap.scss';
