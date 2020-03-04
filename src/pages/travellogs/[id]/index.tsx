@@ -1,8 +1,14 @@
 import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
 import Link from 'next/link';
 import travelLogPlacesData from '../../../constants/travellog';
+const MarkersMap = dynamic(
+  () => import('../../../components/Maps/MarkersMap'),
+  { loading: () => <p>...</p>, ssr: false },
+);
 // import withApollo from '../../../apollo/with-apollo';
 // import { useCityQuery } from '../../../apollo/queries/cities.graphql';
 // import { useCountryQuery } from '../../../apollo/queries/countries.graphql';
@@ -20,6 +26,12 @@ function TravelLogDetails(): ReactElement {
 
   return (
     <AnimatedLayout>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css"
+        />
+      </Head>
       <main className="main-layout-container">
         <div className="row justify-content-between">
           <div className="col-lg-9 pr-5">
@@ -60,6 +72,9 @@ function TravelLogDetails(): ReactElement {
                 src="https://images.unsplash.com/photo-1528826542659-27db5adea13c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
                 alt=""
               /> */}
+            </section>
+            <section className="mb-5">
+              <MarkersMap markers={travelLogPlacesData.places} />
             </section>
             <section className="mb-5">
               <h2 className="mb-3">{`Язовир "Въча"`}</h2>
