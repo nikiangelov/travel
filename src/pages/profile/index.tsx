@@ -79,6 +79,10 @@ function index({}: Props): ReactElement {
                     <i className="far fa-images mr-2"></i>
                     Добавени снимки
                   </span>
+                  <span className="link nav-link">
+                    <i className="fas fa-feather mr-2"></i>
+                    Пътеписи
+                  </span>
                 </nav>
               </div>
             </div>

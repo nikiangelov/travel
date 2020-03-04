@@ -28,5 +28,10 @@ query attraction($id: ID) {
     wikipedia_article_url
     phone
     work_time_description
+    tickets {
+      adult
+      reduced
+      currency
+    }
   }
 }

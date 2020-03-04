@@ -29,6 +29,9 @@ class IndexPage extends React.Component<NextPage> {
             >
               <PopularTravelLogsList />
             </PageSection>
+            <PageSection title="Популярни **забележителности**">
+              TODO
+            </PageSection>
           </div>
           <aside className="col-lg-3">
             <div className="d-none d-lg-block index-intro-box white-card-elevated text-muted small elevation-5 pt-3 px-4 mb-5">

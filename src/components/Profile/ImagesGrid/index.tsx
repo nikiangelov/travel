@@ -3,9 +3,10 @@ import theme from '../../../constants/theme';
 
 interface Props {
   images: string[];
+  auto?: boolean;
 }
 
-function ImagesGrid({ images }: Props): ReactElement | null {
+function ImagesGrid({ images, auto }: Props): ReactElement | null {
   if (!images || !images.length) return null;
 
   return (
@@ -26,13 +27,14 @@ function ImagesGrid({ images }: Props): ReactElement | null {
         .gridWrap {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          height: 450px;
+          height: ${!auto ? '450px' : 'auto'};
           gap: 1.5em;
         }
         .gridItem {
           background: #eee;
           border-radius: ${theme.sizes.radius}px;
           position: relative;
+          ${!auto ? '' : 'height: 200px;'}
         }
         .gridItem .imageBox {
           display: block;
@@ -44,16 +46,16 @@ function ImagesGrid({ images }: Props): ReactElement | null {
           border-radius: ${theme.sizes.radius}px;
         }
         .gridItem:first-child {
-          background: red;
-          grid-row-start: 1;
-          grid-row-end: 3;
+          ${!auto ? 'grid-row-start: 1;' : ''}
+          ${!auto ? 'grid-row-end: 3;' : ''}
         }
         .gridItem:nth-child(2) {
-          background: red;
-          grid-column-start: 3;
+          ${!auto
+            ? `grid-column-start: 3;
           grid-column-end: 5;
           grid-row-start: 2;
-          grid-row-end: 4;
+          grid-row-end: 4;`
+            : ''}
         }
       `}</style>
     </>

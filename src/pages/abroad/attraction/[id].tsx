@@ -3,8 +3,10 @@ import { useRouter } from 'next/router';
 import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
 import withApollo from '../../../apollo/with-apollo';
 import { useAttractionQuery } from '../../../apollo/queries/attractions.graphql';
+import ReadMoreReact from 'read-more-react';
 import LoadingState from '../../../components/LoadingStates/CityDetails';
 import { firebaseGetImages } from '../../../firebase/storage';
+import ImagesGrid from '../../../components/Profile/ImagesGrid';
 
 function AttractionDetail(): ReactElement {
   const router = useRouter();
@@ -27,11 +29,10 @@ function AttractionDetail(): ReactElement {
     }
   }, [attraction?.id]);
   let featuredImage = false;
-  let backdropImage = false;
   if (images && images.length) {
     featuredImage = images[0];
-    backdropImage = images[1] ? images[1] : featuredImage;
   }
+  console.log('%c images', 'background-color:orange; color: white;', images);
 
   return (
     <AnimatedLayout>
@@ -39,12 +40,6 @@ function AttractionDetail(): ReactElement {
       {!!attraction && (
         <main className="main-layout-container">
           <div className="city-details-page pb-6">
-            <div
-              className="backdrop-bg"
-              style={{
-                backgroundImage: `url('${backdropImage}')`,
-              }}
-            />
             <div className="container-fluid px-5">
               <div className="row mx-n4">
                 <div className="col-lg-4 col-md-3 pt-3 px-4">
@@ -57,36 +52,44 @@ function AttractionDetail(): ReactElement {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-8 col-md-9 px-4">
-                  <div
-                    className={`over_the_backdrop pt-5 ${
-                      false ? 'text-light' : 'text-dark'
-                    }`}
-                    style={{ height: 330 }}
-                  >
-                    <div className="d-flex justify-content-between align-items-center">
-                      <h1 className="text-body">{attraction?.name}</h1>
+                <div className="col-lg-8 col-md-9 px-4 pt-5">
+                  <div className="d-flex justify-content-between align-items-center mb-2">
+                    <h1 className="text-body">{attraction?.name}</h1>
+                  </div>
+                  {!!attraction.description_short && (
+                    <p className="pb-3 text-muted">
+                      {attraction.description_short}
+                    </p>
+                  )}
+                  {!!attraction.description && (
+                    <div className="mb-6">
+                      <h4 className="mb-3">Информация</h4>
+                      <div className="lead react-read-more-text">
+                        <ReadMoreReact
+                          text={attraction.description}
+                          min={150}
+                          ideal={200}
+                          max={250}
+                          readMoreText="Прочети повече"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  {!!attraction.work_time_description && (
+                    <div className="mb-6">
+                      <h4 className="mb-3">Работно време</h4>
+                      <div className="lead react-read-more-text">
+                        {attraction.work_time_description}
+                      </div>
+                    </div>
+                  )}
+                  <div className="mb-6">
+                    <h4 className="mb-3">Снимки</h4>
+                    <div className="lead react-read-more-text">
+                      <ImagesGrid images={images} auto />
                     </div>
                   </div>
-                  <nav className="hero-navigation mb-5">
-                    <ul className="d-flex">
-                      <li className="selected mr-3">
-                        <a className="text-dark">Инфо</a>
-                      </li>
-                      <li className=" mr-3">
-                        <a className="text-dark">Забележителности</a>
-                      </li>
-                      <li className=" mr-3">
-                        <a className="text-dark">Билети</a>
-                      </li>
-                      <li className=" mr-3">
-                        <a className="text-dark">Пътеписи</a>
-                      </li>
-                      <li className=" mr-3">
-                        <a className="text-dark">Снимки</a>
-                      </li>
-                    </ul>
-                  </nav>
+                  asd
                 </div>
               </div>
             </div>

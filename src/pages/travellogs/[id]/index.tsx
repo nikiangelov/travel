@@ -109,6 +109,19 @@ function TravelLogDetails(): ReactElement {
                 <TravelLogPlan places={travelLogPlacesData.places} />
               </section>
             )}
+            {(!selectedTab || selectedTab === 'comments') && (
+              <motion.div variants={slideUpVariants}>
+                <div className="jumbotron jumbotron-fluid rounded">
+                  <div className="container px-5">
+                    <h2 className="display-4">Очаквай скоро...</h2>
+                    <p className="lead">
+                      Тази функционалност не е налична в сегашната версия, но
+                      работим по въпроса!
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
             {(!selectedTab || selectedTab === 'info') && (
               <motion.div variants={slideUpVariants}>
                 <section className="mb-5">

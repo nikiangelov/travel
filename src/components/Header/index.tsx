@@ -31,10 +31,10 @@ export default function Header(): ReactElement {
           <SearchBar />
         </div>
         <div>
-          <Link href="/user/signin">
+          <Link href="/">
             <a className="btn btn-link">{strings.signIn}</a>
           </Link>
-          <Link href="/user/signup">
+          <Link href="/">
             <a className="btn btn-link">{strings.signUp}</a>
           </Link>
         </div>
