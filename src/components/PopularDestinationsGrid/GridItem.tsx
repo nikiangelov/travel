@@ -1,15 +1,9 @@
 import React, { ReactElement } from 'react';
 import Link from 'next/link';
 import theme from '../../constants/theme';
+import { PopularDestination } from '../../constants/dashboardData';
 
-export interface DestinationInfo {
-  cityName: string;
-  countryName: string;
-  href: string;
-  asPath: string;
-  imageUrl: string;
-}
-interface Props extends DestinationInfo {
+interface Props extends PopularDestination {
   index: number;
 }
 
@@ -66,7 +60,7 @@ export default function GridItem({
           background: linear-gradient(
             180deg,
             rgba(0, 0, 0, 0) ${!index ? '50%' : '25%'},
-            rgba(0, 0, 0, 0.8) 100%
+            rgba(0, 0, 0, 0.6) 100%
           );
         }
       `}</style>

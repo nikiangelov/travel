@@ -1,49 +1,12 @@
 import React from 'react';
-import GridItem, { DestinationInfo } from './GridItem';
+import GridItem from './GridItem';
+import { popularDestinations } from '../../constants/dashboardData';
 
-const images: DestinationInfo[] = [
-  {
-    cityName: 'Рим',
-    countryName: 'Италия',
-    href: '/abroad/city/[id]',
-    asPath: '/abroad/city/rome',
-    imageUrl: 'images/cities/rome/christopher-czermak-7ybKmhDTcz0-unsplash.jpg',
-  },
-  {
-    cityName: 'Венеция',
-    countryName: 'Италия',
-    href: '/abroad/city/[id]',
-    asPath: '/abroad/city/venice',
-    imageUrl: 'images/cities/venice/backdrop_mine_thumb.jpg',
-  },
-  {
-    cityName: 'Париж',
-    countryName: 'Франция',
-    href: '/abroad/city/[id]',
-    asPath: '/abroad/city/paris',
-    imageUrl: 'images/cities/paris/42-north-fhO8zmW5Mpk-unsplash.jpg',
-  },
-  {
-    cityName: 'Барселона',
-    countryName: 'Испания',
-    href: '/abroad/city/[id]',
-    asPath: '/abroad/city/barcelona',
-    imageUrl: 'images/cities/barcelona/david-russeler-E0xK8SrIzYA-unsplash.jpg',
-  },
-  {
-    cityName: 'Лондон',
-    countryName: 'Великобритания',
-    href: '/abroad/city/[id]',
-    asPath: '/abroad/city/london',
-    imageUrl:
-      'images/cities/london/claudio-testa-iqeG5xA96M4-unsplash-thumb.jpg',
-  },
-];
 const DestinationsGrid: React.FC = () => {
   return (
     <>
       <div className="base">
-        {images.map((destination, i) => (
+        {popularDestinations.map((destination, i) => (
           <GridItem
             key={i}
             index={i}
