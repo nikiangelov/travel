@@ -46,7 +46,7 @@ class IndexPage extends React.Component<NextPage> {
                   <Link href="/profile">
                     <a>
                       <img
-                        src="https://nikiangelov.com/imgs/profile256.jpg"
+                        src="/images/avatars/profile256.jpg"
                         alt=""
                         className="rounded-circle"
                         width="50px"

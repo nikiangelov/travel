@@ -44,8 +44,7 @@ function index({}: Props): ReactElement {
                 <div
                   className="aside-user-box-avatar mt-n6 mb-2 bg-cover-img"
                   style={{
-                    backgroundImage:
-                      'url(https://nikiangelov.com/imgs/profile256.jpg)',
+                    backgroundImage: 'url(/images/avatars/profile256.jpg)',
                   }}
                 ></div>
                 <h3 className="text-center">

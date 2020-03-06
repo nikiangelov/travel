@@ -30,6 +30,7 @@ yarn-error.log*
 __generated__
 
 # data
+/public/images/avatars/
 /src/data
 /public/images/attractions
 /public/images/cities

@@ -18,7 +18,7 @@ function TravelLogHorizontalListItem({
               className="movie-card-pic no-overlay bg-cover-img mt-n5 user-review-movie-poster"
               data-poster-path="/bm6zKJjKYKrIy3dcnOLk0kF85cl.jpg"
               style={{
-                backgroundImage: `url("${imageUrl}")`,
+                backgroundImage: `url(${imageUrl})`,
               }}
             />
           </Link>
@@ -30,8 +30,7 @@ function TravelLogHorizontalListItem({
                 <a
                   className="navbar-user-avatar rounded-circle bg-cover-img mr-2 user-review-avatar"
                   style={{
-                    backgroundImage:
-                      'url("https://nikiangelov.com/imgs/profile256.jpg");',
+                    backgroundImage: 'url(/images/avatars/profile256.jpg);',
                   }}
                 />
               </Link>

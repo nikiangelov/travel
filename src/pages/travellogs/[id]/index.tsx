@@ -125,7 +125,7 @@ function TravelLogDetails(): ReactElement {
             {(!selectedTab || selectedTab === 'info') && (
               <motion.div variants={slideUpVariants}>
                 <section className="mb-5">
-                  <h2 className="mb-3">{`Язовир "Въча"`}</h2>
+                  <h2 className="mb-3">{`Язовир "Въчас"`}</h2>
                   <figure className="figure float-right ml-5">
                     <img
                       width={350}
@@ -247,7 +247,7 @@ function TravelLogDetails(): ReactElement {
                   <Link href="/profile">
                     <a>
                       <img
-                        src="https://nikiangelov.com/imgs/profile256.jpg"
+                        src="/images/avatars/profile256.jpg"
                         alt=""
                         className="rounded-circle"
                         width="50px"
