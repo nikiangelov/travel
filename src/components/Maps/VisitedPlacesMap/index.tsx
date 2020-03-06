@@ -38,17 +38,54 @@ function index({}): ReactElement {
         {
           name: 'Spain',
           last: 2011,
-          notes: 'Hot weather',
         },
         {
           name: 'Italy',
           last: 2015,
-          notes: 'Tasty food',
         },
         {
           name: 'France',
           last: 2018,
-          notes: '',
+        },
+        {
+          name: 'United Kingdom',
+          last: 2017,
+        },
+        {
+          name: 'Romania',
+          last: 2009,
+        },
+        {
+          name: 'Serbia',
+          last: 2013,
+        },
+        {
+          name: 'Greece',
+          last: 2014,
+        },
+        {
+          name: 'Turkey',
+          last: 2019,
+        },
+        {
+          name: 'Croatia',
+          last: 2016,
+        },
+        {
+          name: 'Slovenia',
+          last: 2016,
+        },
+        {
+          name: 'Slovakia',
+          last: 2018,
+        },
+        {
+          name: 'Austria',
+          last: 2018,
+        },
+        {
+          name: 'Czechia',
+          last: 2018,
         },
       ],
       cities: [

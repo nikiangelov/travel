@@ -34,7 +34,6 @@ export default function GridItem({
                 </strong>
                 <span className="m-0 opacity-90">{countryName}</span>
               </span>
-              <span>{/* TODO */}</span>
             </span>
           </span>
         </a>

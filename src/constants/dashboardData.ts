@@ -52,7 +52,6 @@ export interface PopularTravelLog {
   imageUrl: string;
 }
 
-// TODO fix images
 export const popularTravelLogs: PopularTravelLog[] = [
   {
     title: 'Съботна разходка край Пловдив',
