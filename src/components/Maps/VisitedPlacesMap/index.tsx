@@ -167,7 +167,6 @@ function SwitcherButtons({ onChange }: SwitcherButtonsProps): ReactElement {
   const defaultClass = 'btn-light';
   const selectedClass = 'btn-primary text-white';
   function jumpToBounds(bound: string): boolean {
-    console.log('%cbound', 'background-color:orange; color: white;', bound);
     setSelectedBound(bound);
     onChange(bound);
     return true;

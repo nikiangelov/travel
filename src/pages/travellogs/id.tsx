@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { useRouter } from 'next/router';
 import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import Link from 'next/link';
 // import withApollo from '../../../apollo/with-apollo';
@@ -9,14 +8,6 @@ import Link from 'next/link';
 // import ReadMoreReact from 'read-more-react';
 
 function TravelLogDetails(): ReactElement {
-  const router = useRouter();
-  const travelLogId = router.query.id;
-  console.log(
-    '%ctravelLogId',
-    'background-color:green; color: white;',
-    travelLogId,
-  );
-
   return (
     <AnimatedLayout>
       <main className="main-layout-container">

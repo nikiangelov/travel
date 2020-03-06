@@ -290,6 +290,42 @@ function CityDetails(): ReactElement {
                       </div>
                     </div>
                   )}
+                  <div className="mb-4" />
+                  <div className="mt-6 pt-3">
+                    <hr />
+                    <p className="small text-muted text-center">
+                      В страницата е използвана информация от следните
+                      източници.
+                      <br />
+                      Информацията може да е била променена и/или преведена на
+                      български, за разлика от тази в основния източник.
+                      <br />
+                      <br />
+                      <a
+                        href={`${city.wiki_article_url}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Wikipedia
+                      </a>
+                      &nbsp; &middot; &nbsp;
+                      <a
+                        href={`${city.wiki_article_en_url}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Wikipedia
+                      </a>
+                      &nbsp; &middot; &nbsp;
+                      <a
+                        href={`${city.wiki_voyage_article_url}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Wikvoyage
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

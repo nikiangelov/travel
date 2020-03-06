@@ -13,6 +13,9 @@ query City($id: ID, $url_slug: String, $attractions_limit: Int) {
     sub_name
     utc_offset
     temperature
+    wiki_article_url
+    wiki_article_en_url
+    wiki_voyage_article_url
     climate_description
     population {
       total

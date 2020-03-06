@@ -32,7 +32,6 @@ function AttractionDetail(): ReactElement {
   if (images && images.length) {
     featuredImage = images[0];
   }
-  console.log('%c images', 'background-color:orange; color: white;', images);
 
   return (
     <AnimatedLayout>
@@ -89,7 +88,26 @@ function AttractionDetail(): ReactElement {
                       <ImagesGrid images={images} auto />
                     </div>
                   </div>
-                  asd
+                  <div className="mb-4" />
+                  <div className="mt-6 pt-3">
+                    <hr />
+                    <p className="small text-muted text-center">
+                      В страницата е използвана информация от следните
+                      източници.
+                      <br />
+                      Информацията може да е била променена и/или преведена на
+                      български, за разлика от тази в основния източник.
+                      <br />
+                      <br />
+                      <a
+                        href={`${attraction.wikipedia_article_url}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Wikipedia
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

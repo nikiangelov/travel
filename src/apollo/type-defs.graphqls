@@ -13,8 +13,8 @@ type Coordinates {
   lng: Float
 }
 type TicketsType {
-  adult: Int
-  reduced: Int
+  adult: Float
+  reduced: Float
   currency: String
 }
 type Covid {
@@ -92,6 +92,9 @@ type City {
   country_code: String
   description: String
   temperature: Int
+  wiki_article_url: String
+  wiki_article_en_url: String
+  wiki_voyage_article_url: String
   climate_description: String
 }
 type Attraction {

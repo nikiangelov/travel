@@ -31,6 +31,19 @@ const Layout: React.FunctionComponent = ({ children }: Props) => (
             <div className="container-fluid py-3">{children}</div>
           </motion.div>
         </motion.div>
+        <footer>
+          <div className="mt-5" />
+          <div className="mt-6 pt-3">
+            <hr />
+            <p className="small text-black-50 text-center py-3">
+              Моля, при използването на сайта, имайте предвид, че този сайт е с
+              учебна цел и все още е в процес на разработка.
+              <br />
+              Не гарантираме за правилната информация и безпроблемна
+              функционалност на сайта.
+            </p>
+          </div>
+        </footer>
       </div>
     </div>
   </div>

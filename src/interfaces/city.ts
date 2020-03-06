@@ -19,6 +19,8 @@ export default interface City {
   featured_image_vertical?: string;
   featured_image_thumb?: string;
   wiki_article_url?: string;
+  wiki_article_en_url?: string;
+  wiki_voyage_article_url?: string;
   population?: Population;
   coordinates?: Coordinates;
   website?: string;
