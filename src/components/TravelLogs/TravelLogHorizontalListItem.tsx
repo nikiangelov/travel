@@ -30,7 +30,7 @@ function TravelLogHorizontalListItem({
                 <a
                   className="navbar-user-avatar rounded-circle bg-cover-img mr-2 user-review-avatar"
                   style={{
-                    backgroundImage: 'url(/images/avatars/profile256.jpg);',
+                    backgroundImage: `url(/images/avatars/profile256.jpg)`,
                   }}
                 />
               </Link>
