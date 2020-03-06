@@ -125,16 +125,34 @@ function TravelLogDetails(): ReactElement {
             {(!selectedTab || selectedTab === 'info') && (
               <motion.div variants={slideUpVariants}>
                 <section className="mb-5">
-                  <h2 className="mb-3">{`Язовир "Въчас"`}</h2>
+                  <h2 className="mb-3">Начало</h2>
+                  <p className="text-muted">
+                    Нашата съботна разходка започна от град Пловдив. Беше в
+                    началото на месец май, а времето беше слънчево и топло.
+                    Основната ни цел беше да оползотворим съботния ден като
+                    просто се разходим навън. Но видяхме на картата, че не далеч
+                    от Пловдив има живописен водопад и китна екопътека водеща до
+                    него. Веднага приехме предизвикателстовото и се насочихме
+                    натам.
+                  </p>
+                  <p className="text-muted">
+                    Устинския водопад беше основната ни цел, но по пътя към село
+                    Устина първо минахме през Перущица.
+                  </p>
+                </section>
+                <section className="mb-5">
+                  <h2 className="mb-3">
+                    {`Мемориален комплекс "Трите поколения"`}
+                  </h2>
                   <figure className="figure float-right ml-5">
                     <img
                       width={350}
-                      src="https://images.unsplash.com/photo-1497668319663-af2fa49df87e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                      src="/images/travellogs/nikiangelov/logs/1/place-1.JPG"
                       className="figure-img img-fluid rounded"
                       alt="..."
                     />
                     <figcaption className="figure-caption">
-                      Страхотната гледа към язовира.
+                      Гледка към комплекса
                     </figcaption>
                   </figure>
                   <p className="text-muted">
@@ -163,16 +181,16 @@ function TravelLogDetails(): ReactElement {
                   </p>
                 </section>
                 <section className="mb-5">
-                  <h2 className="mb-3">Буйновско ждрело</h2>
+                  <h2 className="mb-3">Устенски Водопад</h2>
                   <figure className="figure float-right ml-5">
                     <img
                       width={350}
-                      src="https://images.unsplash.com/photo-1528826542659-27db5adea13c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                      src="/images/travellogs/nikiangelov/logs/1/place-2.JPG"
                       className="figure-img img-fluid rounded"
                       alt="..."
                     />
                     <figcaption className="figure-caption">
-                      Страхотна гледа
+                      Наистина прекрасно
                     </figcaption>
                   </figure>
                   <p className="text-muted">
@@ -188,22 +206,26 @@ function TravelLogDetails(): ReactElement {
                     fugit necessitatibus! Quod soluta facilis tenetur unde
                     debitis at fugit pariatur autem ut consectetur! Nam vitae
                     necessitatibus enim cum velit aut.
+                    <br />
+                    <br />
+                    Vero a nobis ipsum rerum iure eius iusto doloremque animi
+                    aliquid voluptatibus facilis pariatur dolorem nemo saepe,
+                    sint odio obcaecati explicabo, doloribus mollitia voluptate
+                    rem quos quas id distinctio. Harum?
                     <span className="clearfix" />
                   </p>
-                  <div className="alert alert-info" role="alert">
-                    <h6 className="alert-heading">Съвет:</h6>
-                    <p className="mb-0">Носете си топли дрехи.</p>
-                  </div>
                 </section>
                 <section className="mb-5">
-                  <h2 className="mb-3">Ягодинска пещера</h2>
-                  <p className="text-muted">
+                  <h2 className="mb-3">{`Параклис "Св. Георги"`}</h2>
+                  <figure className="figure float-left mr-5">
                     <img
-                      className="float-left mr-5"
                       width={350}
-                      src="https://images.unsplash.com/photo-1497668319663-af2fa49df87e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                      alt=""
+                      src="/images/travellogs/nikiangelov/logs/1/place-3.JPG"
+                      className="figure-img img-fluid rounded"
+                      alt="..."
                     />
+                  </figure>
+                  <p className="text-muted">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Eveniet molestiae temporibus ducimus sunt minus? Aut
                     provident, molestiae quidem dicta ipsa rerum aliquid ad
@@ -225,6 +247,38 @@ function TravelLogDetails(): ReactElement {
                     commodi facilis quidem optio eveniet pariatur, maxime
                     dignissimos molestias mollitia! Ratione, numquam nobis
                     soluta ea quas aut ipsum dolor totam.
+                    <span className="clearfix" />
+                  </p>
+                </section>
+                <section className="mb-5">
+                  <h2 className="mb-3">{`"Червената църква"`}</h2>
+                  <figure className="figure float-right ml-5">
+                    <img
+                      width={350}
+                      src="/images/travellogs/nikiangelov/logs/1/place-4.JPG"
+                      className="figure-img img-fluid rounded"
+                      alt="..."
+                    />
+                  </figure>
+                  <p className="text-muted">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Doloribus beatae cumque nobis exercitationem. Beatae
+                    quisquam alias ipsum totam mollitia quas consequuntur ab
+                    eveniet provident? Cum, earum placeat. Tempore, modi fuga. A
+                    labore in distinctio! Beatae, debitis numquam ab nemo vero
+                    totam. Adipisci, earum. Qui quas iusto pariatur ullam
+                    aliquid. Consequuntur eum quia maiores repellendus, enim
+                    inventore deserunt quidem repellat mollitia. Mollitia animi
+                    tempore et asperiores deleniti corporis quis architecto,
+                    fugit necessitatibus! Quod soluta facilis tenetur unde
+                    debitis at fugit pariatur autem ut consectetur! Nam vitae
+                    necessitatibus enim cum velit aut.
+                    <br />
+                    <br />
+                    Vero a nobis ipsum rerum iure eius iusto doloremque animi
+                    aliquid voluptatibus facilis pariatur dolorem nemo saepe,
+                    sint odio obcaecati explicabo, doloribus mollitia voluptate
+                    rem quos quas id distinctio. Harum?
                     <span className="clearfix" />
                   </p>
                 </section>
