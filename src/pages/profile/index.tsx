@@ -5,7 +5,7 @@ import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import PageSection from '../../components/Layout/PageSection';
 import UserPhotosGrid from '../../components/Profile/UserPhotosGrid';
 import strings from '../../constants/strings';
-import TravelLogHorizontalListItem from '../../components/TravelLogs/TravelLogHorizontalListItem';
+import TravelLogHorizontalList from '../../components/TravelLogs/TravelLogHorizontalList';
 
 const VisitedPlacesMap = dynamic(
   () => import('../../components/Maps/VisitedPlacesMap'),
@@ -160,7 +160,7 @@ function index({}: Props): ReactElement {
               </div>
               <div ref={travellogsSectionRef}>
                 <PageSection title={strings.myTravellogs}>
-                  <TravelLogHorizontalListItem />
+                  <TravelLogHorizontalList />
                 </PageSection>
               </div>
             </div>
