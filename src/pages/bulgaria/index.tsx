@@ -1,41 +1,107 @@
 import React, { ReactElement } from 'react';
-import AnimatedLayout from '../../components/Layout/AnimatedLayout';
-import withApollo from '../../apollo/with-apollo';
-import Link from 'next/link';
-import { useViewerQuery } from '../../apollo/queries/viewer.graphql';
 
-function bulgaria(): ReactElement {
-  const { data, loading } = useViewerQuery();
-  // if (!data) return <div>...</div>;
-  const { viewer } = data || {};
-  return (
-    <AnimatedLayout>
-      <div>bulgaria</div>
-      {loading && <div>Loading...</div>}
-      {!!viewer && (
-        <div>
-          You&apos;re signed in as {viewer.name} and you&apos;re {viewer.status}{' '}
-          goto{' '}
-          <Link href="/about">
-            <a>static</a>
-          </Link>{' '}
-          page.
+// import Link from 'next/link';
+import AnimatedLayout from '../../components/Layout/AnimatedLayout';
+import { NextPage } from 'next';
+
+import PageSection from '../../components/Layout/PageSection';
+import TravelLogHorizontalList from '../../components/TravelLogs/TravelLogHorizontalList';
+// import PopularTravelLogsList from '../../components/TravelLogs/PopularTravelLogsList';
+
+class BulgariaPage extends React.Component<NextPage> {
+  render(): ReactElement {
+    return (
+      <AnimatedLayout>
+        <div className="row">
+          <aside className="col-lg-3">
+            <div className="white-card-elevated py-3 px-4 elevation-5 mb-5 sticky-top">
+              <h5 className="mb-4">Филтрирай</h5>
+              <hr />
+              <div className="mb-3">
+                <h6 className="mb-2">Регион</h6>
+                <div>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    Софийско
+                  </span>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    Пловдивско
+                  </span>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    Стара Планина
+                  </span>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    Родопи
+                  </span>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    Южно черноморие
+                  </span>
+                </div>
+              </div>
+              <hr />
+              <div className="mb-3">
+                <h6 className="mb-2">Подходящо за сезон</h6>
+                <div>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    Пролет
+                  </span>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    Лято
+                  </span>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    Есен
+                  </span>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    Зима
+                  </span>
+                </div>
+              </div>
+              <hr />
+              <div className="mb-3">
+                <h6 className="mb-2">Продължителност</h6>
+                <div>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    1 ден
+                  </span>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    2 дни
+                  </span>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    3 дни
+                  </span>
+                  <span className="btn btn-sm btn-outline-primary mb-2 mr-2">
+                    Седмица
+                  </span>
+                </div>
+              </div>
+              <div className="d-flex">
+                <button className="btn flex-fill text-dark btn-light mt-2 ">
+                  <i className="fas fa-random mr-2"></i>
+                  Случаен пътепис
+                </button>
+              </div>
+            </div>
+          </aside>
+          <div className="col">
+            <PageSection
+              title="Пътеписи от **България**"
+              titleRightComponent={(): ReactElement => (
+                <div className="dropdown">
+                  <button
+                    className="btn btn-sm btn-outline-info dropdown-toggle"
+                    type="button"
+                  >
+                    Сортирай&nbsp;&nbsp;
+                  </button>
+                </div>
+              )}
+            >
+              <TravelLogHorizontalList />
+            </PageSection>
+          </div>
         </div>
-      )}
-      <img
-        src="https://images.unsplash.com/photo-1582466623797-8a7544a402d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-        alt=""
-      />
-      <img
-        src="https://images.unsplash.com/photo-1582412821971-125cc2eb8b29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-        alt=""
-      />
-      <img
-        src="https://images.unsplash.com/photo-1582429446367-24ea643ce428?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-        alt=""
-      />
-    </AnimatedLayout>
-  );
+      </AnimatedLayout>
+    );
+  }
 }
 
-export default withApollo(bulgaria);
+export default BulgariaPage;
