@@ -5,6 +5,7 @@ import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import PageSection from '../../components/Layout/PageSection';
 import UserPhotosGrid from '../../components/Profile/UserPhotosGrid';
 import strings from '../../constants/strings';
+import TravelLogHorizontalListItem from '../../components/TravelLogs/TravelLogHorizontalListItem';
 
 const VisitedPlacesMap = dynamic(
   () => import('../../components/Maps/VisitedPlacesMap'),
@@ -17,6 +18,7 @@ interface Props {
 function index({}: Props): ReactElement {
   const visitedPlacesSectionRef = React.createRef<HTMLDivElement>();
   const photosSectionRef = React.createRef<HTMLDivElement>();
+  const travellogsSectionRef = React.createRef<HTMLDivElement>();
 
   function scrollToRef(ref: any): void {
     window.scrollTo(0, ref.current.offsetTop);
@@ -79,7 +81,12 @@ function index({}: Props): ReactElement {
                     <i className="far fa-images mr-2"></i>
                     Добавени снимки
                   </span>
-                  <span className="link nav-link">
+                  <span
+                    onClick={(): void => {
+                      scrollToRef(travellogsSectionRef);
+                    }}
+                    className="link nav-link"
+                  >
                     <i className="fas fa-feather mr-2"></i>
                     Пътеписи
                   </span>
@@ -151,98 +158,10 @@ function index({}: Props): ReactElement {
                   <UserPhotosGrid path="/site/uploads/users/nikiangelov" />
                 </PageSection>
               </div>
-
-              <div className="white-card-elevated p-4 mb-5">
-                <p>
-                  <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Accusantium obcaecati porro deserunt magni deleniti mollitia
-                    nobis maiores recusandae. Accusamus facere mollitia a ipsum
-                    adipisci cumque quod rerum labore explicabo eaque.
-                  </span>
-                  <span>
-                    Nisi illo et minima, laboriosam ab quos labore, perspiciatis
-                    ipsa adipisci molestiae dolorem, soluta quae. Commodi
-                    nostrum error tenetur quo harum, eligendi culpa minima
-                    impedit temporibus provident, totam, vero ipsam?
-                  </span>
-                  <span>
-                    Laboriosam eaque aliquid sed inventore mollitia provident
-                    cum eos, maiores autem assumenda amet iure unde quae
-                    doloremque ducimus recusandae dicta fugit nostrum
-                    dignissimos placeat nam reiciendis adipisci quibusdam
-                    deleniti. Vero!
-                  </span>
-                </p>
-              </div>
-              <div className="white-card-elevated p-4 mb-5">
-                <p>
-                  <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Accusantium obcaecati porro deserunt magni deleniti mollitia
-                    nobis maiores recusandae. Accusamus facere mollitia a ipsum
-                    adipisci cumque quod rerum labore explicabo eaque.
-                  </span>
-                  <span>
-                    Nisi illo et minima, laboriosam ab quos labore, perspiciatis
-                    ipsa adipisci molestiae dolorem, soluta quae. Commodi
-                    nostrum error tenetur quo harum, eligendi culpa minima
-                    impedit temporibus provident, totam, vero ipsam?
-                  </span>
-                  <span>
-                    Laboriosam eaque aliquid sed inventore mollitia provident
-                    cum eos, maiores autem assumenda amet iure unde quae
-                    doloremque ducimus recusandae dicta fugit nostrum
-                    dignissimos placeat nam reiciendis adipisci quibusdam
-                    deleniti. Vero!
-                  </span>
-                </p>
-              </div>
-              <div id="fragment" className="white-card-elevated p-4 mb-5">
-                <p>
-                  <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Accusantium obcaecati porro deserunt magni deleniti mollitia
-                    nobis maiores recusandae. Accusamus facere mollitia a ipsum
-                    adipisci cumque quod rerum labore explicabo eaque.
-                  </span>
-                  <span>
-                    Nisi illo et minima, laboriosam ab quos labore, perspiciatis
-                    ipsa adipisci molestiae dolorem, soluta quae. Commodi
-                    nostrum error tenetur quo harum, eligendi culpa minima
-                    impedit temporibus provident, totam, vero ipsam?
-                  </span>
-                  <span>
-                    Laboriosam eaque aliquid sed inventore mollitia provident
-                    cum eos, maiores autem assumenda amet iure unde quae
-                    doloremque ducimus recusandae dicta fugit nostrum
-                    dignissimos placeat nam reiciendis adipisci quibusdam
-                    deleniti. Vero!
-                  </span>
-                </p>
-              </div>
-              <div className="white-card-elevated p-4 mb-5">
-                <p>
-                  <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Accusantium obcaecati porro deserunt magni deleniti mollitia
-                    nobis maiores recusandae. Accusamus facere mollitia a ipsum
-                    adipisci cumque quod rerum labore explicabo eaque.
-                  </span>
-                  <span>
-                    Nisi illo et minima, laboriosam ab quos labore, perspiciatis
-                    ipsa adipisci molestiae dolorem, soluta quae. Commodi
-                    nostrum error tenetur quo harum, eligendi culpa minima
-                    impedit temporibus provident, totam, vero ipsam?
-                  </span>
-                  <span>
-                    Laboriosam eaque aliquid sed inventore mollitia provident
-                    cum eos, maiores autem assumenda amet iure unde quae
-                    doloremque ducimus recusandae dicta fugit nostrum
-                    dignissimos placeat nam reiciendis adipisci quibusdam
-                    deleniti. Vero!
-                  </span>
-                </p>
+              <div ref={travellogsSectionRef}>
+                <PageSection title={strings.myTravellogs}>
+                  <TravelLogHorizontalListItem />
+                </PageSection>
               </div>
             </div>
           </div>

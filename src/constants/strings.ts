@@ -10,4 +10,5 @@ export default {
   travelIdeasBulgaria: 'Идеи за пътешествия в **България** и **чужбина**',
   myVisitedPlaces: 'Моите **посетени** места',
   travelPhotos: '**Снимки** от пътешествия',
+  myTravellogs: 'Моите **пътеписи**',
 };
