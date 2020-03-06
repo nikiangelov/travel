@@ -41,7 +41,7 @@ const travelLogData = {
         lat: 42.074094,
         lng: 24.555857,
       },
-      imageUrl: '/images/travellogs/nikiangelov/logs/1/place-4.JPG',
+      imageUrl: '/images/travellogs/nikiangelov/logs/1/place-4.jpg',
     },
   ],
 };

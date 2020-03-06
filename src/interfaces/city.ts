@@ -23,6 +23,8 @@ export default interface City {
   coordinates?: Coordinates;
   website?: string;
   time_zone?: string;
+  utc_offset?: string;
+  temperature?: number;
   metro?: Metro;
   quote?: Quote;
   description?: string;

@@ -83,6 +83,7 @@ type City {
   name: String
   sub_name: String
   population: Population!
+  utc_offset: String
   url_slug: String
   backdrop_image: String
   featured_image_vertical: String
@@ -90,6 +91,7 @@ type City {
   iata_code: String
   country_code: String
   description: String
+  temperature: Int
   climate_description: String
 }
 type Attraction {

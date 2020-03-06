@@ -8,6 +8,7 @@ import LoadingState from '../../../components/LoadingStates/CityDetails';
 import numeral from 'numeral';
 import ReadMoreReact from 'read-more-react';
 import AttractionsListItem from '../../../components/Attractions/AttractionsListItem';
+import { calculateLocalTime } from '../../../utils/dates';
 
 const scrollToRef = (ref: any): void =>
   window.scrollTo(0, ref.current.offsetTop);
@@ -208,17 +209,20 @@ function CityDetails(): ReactElement {
                       )}
                       <div className="col mb-3">
                         <h5 className="text-white-80 text-truncate">
-                          <i className="far fa-money-bill-alt mr-2" />
-                          Пътувай за около
+                          <i className="far fa-clock mr-2" />
+                          Местно време
                         </h5>
-                        <p className="h2">500лв</p>
+                        <p className="h2">
+                          {calculateLocalTime(city.utc_offset)}
+                          <small>ч.</small>
+                        </p>
                       </div>
                       <div className="col mb-3">
                         <h5 className="text-white-80 text-truncate">
-                          <i className="fas fa-dollar-sign mr-2" />
-                          Бюджет
+                          <i className="fas fa-cloud-sun mr-2" />
+                          Температура
                         </h5>
-                        <p className="h2">1278371</p>
+                        <p className="h2">{city.temperature}&deg;C</p>
                       </div>
                     </div>
                   </div>
@@ -249,12 +253,6 @@ function CityDetails(): ReactElement {
                         >
                           Забележителности
                         </a>
-                      </li>
-                      <li className=" mr-3">
-                        <a className="text-dark">Билети</a>
-                      </li>
-                      <li className=" mr-3">
-                        <a className="text-dark">Снимки</a>
                       </li>
                     </ul>
                   </nav>
