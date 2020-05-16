@@ -1,5 +1,5 @@
 query Cities {
-  citiesAll {
+  cities {
     id
     name
     description

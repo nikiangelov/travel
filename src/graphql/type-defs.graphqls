@@ -1,40 +1,71 @@
-type User {
-  id: ID!
-  name: String!
-  status: String!
-}
 type Population {
   year: Int
   total: Int
   density: Int
 }
+
 type Coordinates {
   lat: Float
   lng: Float
 }
+
+type Attraction {
+  id: ID!
+  name: String
+  description: String
+  description_short: String
+  city_code: String
+  city_url_slug: String
+  country_code: String
+  wikipedia_article_url: String
+  coordinates: Coordinates
+  phone: String
+  work_time_description: String
+  is_free: Boolean
+  tickets: TicketsType
+}
+
 type TicketsType {
   adult: Float
   reduced: Float
   currency: String
 }
-type QualityOfLife {
-  rank: Int
-  rank_max: Int
-  index: Int
-  index_min: Int
-  index_max: Int
-  safety_index: Float
-  health_care_index: Float
-  pollution_index: Float
-  climate_index: Float
+
+type Query {
+  attractions(id: ID, city_url_slug: String, limit: Int): [Attraction]
+  attraction(id: ID): Attraction
+  cities: [City]
+  city(id: ID, url_slug: String): City
+  country(code: String): Country
+  countries: [Country]
 }
-type QualityOfLifePercentage {
-  total: Int
-  safety: Int
-  healt_care: Int
-  pollution: Int
-  climate: Int
+
+type Mutation {
+  addAttraction(name: String): Attraction
+  addCity(name: String): City
+  addCountry(name: String): Country
 }
+
+type City {
+  id: ID!
+  name: String
+  sub_name: String
+  population: Population!
+  utc_offset: String
+  url_slug: String
+  backdrop_image: String
+  featured_image_vertical: String
+  featured_image_thumb: String
+  iata_code: String
+  country_code: String
+  description: String
+  temperature: Int
+  wiki_article_url: String
+  wiki_article_en_url: String
+  wiki_voyage_article_url: String
+  climate_description: String
+}
+
 type Country {
   id: Int
   name: String
@@ -65,57 +96,22 @@ type Country {
   price_level: Int
   price_level_max: Int
   price_level_min: Int
-  qal: QualityOfLife
-  qol: QualityOfLifePercentage
+  qol: QualityOfLife
   languages: [String]
   wikipedia_article: String
   music: [String]
   facts: [String]
 }
-type City {
-  id: ID!
-  name: String
-  sub_name: String
-  population: Population!
-  utc_offset: String
-  url_slug: String
-  backdrop_image: String
-  featured_image_vertical: String
-  featured_image_thumb: String
-  iata_code: String
-  country_code: String
-  description: String
-  temperature: Int
-  wiki_article_url: String
-  wiki_article_en_url: String
-  wiki_voyage_article_url: String
-  climate_description: String
+
+type QualityOfLife {
+  total: Int
+  safety: Int
+  healt_care: Int
+  pollution: Int
+  climate: Int
 }
-type Attraction {
-  id: ID!
-  name: String
-  description: String
-  description_short: String
-  city_code: String
-  city_url_slug: String
-  country_code: String
-  wikipedia_article_url: String
-  coordinates: Coordinates
-  phone: String
-  work_time_description: String
-  is_free: Boolean
-  tickets: TicketsType
-}
-type Quote {
-  quote: String
-  author: String
-}
-type Query {
-  viewer(id: ID): User!
-  citiesAll: [City]
-  city(id: ID, url_slug: String): City
-  attractions(id: ID, city_url_slug: String, limit: Int): [Attraction]
-  attraction(id: ID): Attraction
-  country(code: String): Country
-  quote: Quote
+
+schema {
+  query: Query
+  mutation: Mutation
 }

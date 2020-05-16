@@ -1,16 +1,58 @@
-import CityInterface from '../../interfaces/city';
-import cities from '../../data/cities/index';
+import mongoose from 'mongoose';
+import { PopulationSchema } from './GlobalTypes';
+const Schema = mongoose.Schema;
 
-class City {
-  static all(): CityInterface[] {
-    return cities;
-  }
-  static getById(id: number): CityInterface | null {
-    return cities.find(x => x.id == id) || null;
-  }
-  static getByUrlSlug(slug: string): CityInterface | null {
-    return cities.find(x => x.url_slug === slug) || null;
-  }
-}
+const CitySchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  sub_name: {
+    type: String,
+  },
+  population: {
+    type: PopulationSchema,
+  },
+  utc_offset: {
+    type: String,
+  },
+  url_slug: {
+    type: String,
+  },
+  backdrop_image: {
+    type: String,
+  },
+  featured_image_vertical: {
+    type: String,
+  },
+  featured_image_thumb: {
+    type: String,
+  },
+  iata_code: {
+    type: String,
+  },
+  country_code: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
+  temperature: {
+    type: Number,
+  },
+  wiki_article_url: {
+    type: String,
+  },
+  wiki_article_en_url: {
+    type: String,
+  },
+  wiki_voyage_article_url: {
+    type: String,
+  },
+  climate_description: {
+    type: String,
+  },
+});
 
+const City = mongoose.models.City || mongoose.model('City', CitySchema);
 export default City;

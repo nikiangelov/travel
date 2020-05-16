@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "scripts": {
     "codegen": "graphql-let",
-    "dev": "npm run codegen && next",
+    "dev": "next",
     "build": "npm run codegen && next build",
     "start": "next start",
+    "merge-type-defs": "node src/graphql/merge-schemas.js",
     "type-check": "tsc"
   },
   "dependencies": {
@@ -14,6 +15,7 @@
     "@apollo/react-hooks": "^3.1.5",
     "@apollo/react-ssr": "^3.1.5",
     "@types/mapbox-gl": "^1.10.1",
+    "@types/mongoose": "^5.7.20",
     "@types/numeral": "0.0.26",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",

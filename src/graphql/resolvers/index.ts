@@ -1,14 +1,8 @@
-import { IResolvers } from 'apollo-server-micro';
-import citiesResolvers from './cities';
-import attractionsResolvers from './attractions';
-import contriesResolvers from './countries';
+import { mergeResolvers } from 'merge-graphql-schemas';
+import Country from './Country';
+import City from './City';
+import Attraction from './Attraction';
 
-const resolvers: IResolvers = {
-  Query: {
-    ...citiesResolvers.query,
-    ...attractionsResolvers.query,
-    ...contriesResolvers.query,
-  },
-};
+const resolvers = [Country, City, Attraction];
 
-export default resolvers;
+export default mergeResolvers(resolvers);

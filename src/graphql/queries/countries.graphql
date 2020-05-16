@@ -2,12 +2,5 @@ query Country($code: String) {
   country(code: $code) {
     id
     name
-    qol {
-      total
-      safety
-      healt_care
-      pollution
-      climate
-    }
   }
 }

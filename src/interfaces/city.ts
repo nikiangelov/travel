@@ -1,6 +1,5 @@
 import Coordinates from './coordinates';
 import Metro from './metro';
-import Quote from './quote';
 import Transport from './transport';
 
 export type Population = {
@@ -28,7 +27,6 @@ export default interface City {
   utc_offset?: string;
   temperature?: number;
   metro?: Metro;
-  quote?: Quote;
   description?: string;
   history?: string;
   history_en?: string;

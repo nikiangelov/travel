@@ -1,16 +1,5 @@
 import Coordinates from './coordinates';
 export interface QualityOfLife {
-  rank: number;
-  rank_max: number;
-  index: number;
-  index_min: number;
-  index_max: number;
-  safety_index: number;
-  health_care_index: number;
-  pollution_index: number;
-  climate_index: number;
-}
-export interface QualityOfLifePercentage {
   total: number;
   safety: number;
   healt_care: number;
@@ -47,8 +36,7 @@ export default interface CountryInterface {
   price_level: number;
   price_level_max: number;
   price_level_min: number;
-  qal: QualityOfLife;
-  qol: QualityOfLifePercentage;
+  qol: QualityOfLife;
   languages: string[];
   wikipedia_article: string;
   music: string[];

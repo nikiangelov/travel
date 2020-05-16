@@ -1,7 +1,0 @@
-query Viewer {
-  viewer(id: 5) {
-    id
-    name
-    status
-  }
-}
