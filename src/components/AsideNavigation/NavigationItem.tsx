@@ -28,12 +28,7 @@ function NavigationItem({
           {icon === 'cog' ? (
             <i className="far icon-fa fa-user-circle mb-2" />
           ) : (
-            <img
-              src={require(`../../assets/icons/${icon}${
-                isSelected ? '-selected' : ''
-              }.svg`)}
-              className="icon mb-2"
-            />
+            <span>x</span>
           )}
           <small>{title}</small>
           {isSelected && <span className="indicator" />}
