@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import Link from 'next/link';
 // import withApollo from '../../../apollo/with-apollo';
-// import { useCityQuery } from '../../../apollo/queries/cities.graphql';
-// import { useCountryQuery } from '../../../apollo/queries/countries.graphql';
+// import { useCityQuery } from '../../../graphql/queries/cities.graphql';
+// import { useCountryQuery } from '../../../graphql/queries/countries.graphql';
 // import numeral from 'numeral';
 // import ReadMoreReact from 'read-more-react';
 

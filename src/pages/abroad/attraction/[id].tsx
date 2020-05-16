@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
 import withApollo from '../../../apollo/with-apollo';
-import { useAttractionQuery } from '../../../apollo/queries/attractions.graphql';
+import { useAttractionQuery } from '../../../graphql/queries/attractions.graphql';
 import ReadMoreReact from 'read-more-react';
 import LoadingState from '../../../components/LoadingStates/CityDetails';
 import { firebaseGetImages } from '../../../firebase/storage';

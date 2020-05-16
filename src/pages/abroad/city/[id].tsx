@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import AnimatedLayout from '../../../components/Layout/AnimatedLayout';
 import withApollo from '../../../apollo/with-apollo';
-import { useCityQuery } from '../../../apollo/queries/cities.graphql';
-import { useCountryQuery } from '../../../apollo/queries/countries.graphql';
+import { useCityQuery } from '../../../graphql/queries/cities.graphql';
+import { useCountryQuery } from '../../../graphql/queries/countries.graphql';
 import LoadingState from '../../../components/LoadingStates/CityDetails';
 import numeral from 'numeral';
 import ReadMoreReact from 'read-more-react';
@@ -157,24 +157,6 @@ function CityDetails(): ReactElement {
                               {`${countryData?.country?.qol?.climate}% / 100%`}
                             </small>
                           </div>
-                        </div>
-                      </div>
-                      <div className="list-group-item px-2  pr-3">
-                        <div className="d-flex w-100 justify-content-between">
-                          <h6 className="mb-2">
-                            Случаи на корона вирус (covid-19)
-                          </h6>
-                        </div>
-                        <div className="d-flex">
-                          <p>
-                            {countryData?.country?.covid?.cases} бр. &middot;
-                            нови {countryData?.country?.covid?.cases_new} бр.
-                          </p>
-                          <p className="ml-auto">
-                            <small className="rating-text text-black-50">
-                              {countryData?.country?.covid?.last_update}
-                            </small>
-                          </p>
                         </div>
                       </div>
                     </div>

@@ -152,7 +152,7 @@ function createApolloClient(initialState = {}) {
 function createIsomorphLink() {
   if (typeof window === 'undefined') {
     const { SchemaLink } = require('apollo-link-schema');
-    const schema = require('./schema').default;
+    const schema = require('../graphql/schema').default;
     return new SchemaLink({ schema });
   } else {
     const { HttpLink } = require('apollo-link-http');

@@ -17,11 +17,6 @@ type TicketsType {
   reduced: Float
   currency: String
 }
-type Covid {
-  cases: Int
-  cases_new: Int
-  last_update: String
-}
 type QualityOfLife {
   rank: Int
   rank_max: Int
@@ -72,7 +67,6 @@ type Country {
   price_level_min: Int
   qal: QualityOfLife
   qol: QualityOfLifePercentage
-  covid: Covid
   languages: [String]
   wikipedia_article: String
   music: [String]

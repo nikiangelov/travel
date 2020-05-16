@@ -9,10 +9,5 @@ query Country($code: String) {
       pollution
       climate
     }
-    covid {
-      cases
-      cases_new
-      last_update
-    }
   }
 }
