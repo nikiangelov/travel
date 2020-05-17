@@ -1,5 +1,9 @@
 import mongoose from 'mongoose';
-import { CoordinatesSchema, QualityOfLifeSchema } from './GlobalTypes';
+import {
+  CoordinatesSchema,
+  QualityOfLifeSchema,
+  PhraseSchema,
+} from './GlobalTypes';
 const Schema = mongoose.Schema;
 
 const CountrySchema = new Schema({
@@ -7,8 +11,12 @@ const CountrySchema = new Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+  },
   code: {
     type: String,
+    required: true,
   },
   capital: {
     type: String,
@@ -16,6 +24,7 @@ const CountrySchema = new Schema({
   },
   capital_iata_code: {
     type: String,
+    required: true,
   },
   population: {
     type: Number,
@@ -34,6 +43,7 @@ const CountrySchema = new Schema({
   },
   coordinates: {
     type: CoordinatesSchema,
+    required: true,
   },
   area: {
     type: Number,
@@ -103,6 +113,9 @@ const CountrySchema = new Schema({
   },
   facts: {
     type: [String],
+  },
+  phrases: {
+    type: [PhraseSchema],
   },
 });
 

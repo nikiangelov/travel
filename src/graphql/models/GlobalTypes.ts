@@ -17,6 +17,17 @@ export const PopulationSchema = new Schema({
     type: Number,
   },
 });
+export const PhraseSchema = new Schema({
+  origin: {
+    type: String,
+  },
+  transcript: {
+    type: String,
+  },
+  bg: {
+    type: String,
+  },
+});
 export const QualityOfLifeSchema = new Schema({
   total: {
     type: Number,
@@ -42,6 +53,14 @@ export const TicketsTypeSchema = new Schema({
     type: Number,
   },
   currency: {
+    type: String,
+  },
+});
+export const QuoteSchema = new Schema({
+  quote: {
+    type: String,
+  },
+  author: {
     type: String,
   },
 });

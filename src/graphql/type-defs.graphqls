@@ -4,9 +4,80 @@ type Population {
   density: Int
 }
 
+input PopulationInput {
+  year: Int
+  total: Int
+  density: Int
+}
+
 type Coordinates {
   lat: Float
   lng: Float
+}
+
+input CoordinatesInput {
+  lat: Float!
+  lng: Float!
+}
+
+
+# Quote Types
+type Quote {
+  quote: String
+  author: String
+}
+
+input QuoteInput {
+  quote: String
+  author: String
+}
+
+
+# Transport Types
+type Transport {
+  options: [TransportOption]
+}
+
+type TransportOption {
+  type: String
+  description: String
+  price: [TransportPrice]
+  price_range: TransportPriceRange
+}
+
+type TransportPrice {
+  title: String
+  value: Float
+  currency: String
+}
+
+type TransportPriceRange {
+  min: Float
+  max: Float
+  currency: String
+}
+
+input TransportInput {
+  options: [TransportOptionInput]
+}
+
+input TransportOptionInput {
+  type: String
+  description: String
+  price: [TransportPriceInput]
+  price_range: TransportPriceRangeInput
+}
+
+input TransportPriceInput {
+  title: String
+  value: Float
+  currency: String
+}
+
+input TransportPriceRangeInput {
+  min: Float
+  max: Float
+  currency: String
 }
 
 type Attraction {
@@ -42,44 +113,126 @@ type Query {
 
 type Mutation {
   addAttraction(name: String): Attraction
-  addCity(name: String): City
-  addCountry(name: String): Country
+  addCity(city: CityInput): City
+  addCountry(country: CountryInput!): Country
 }
 
 type City {
-  id: ID!
-  name: String
-  sub_name: String
-  population: Population!
-  utc_offset: String
-  url_slug: String
-  backdrop_image: String
-  featured_image_vertical: String
-  featured_image_thumb: String
-  iata_code: String
-  country_code: String
+  _id: String!
+  name: String!
   description: String
-  temperature: Int
+  history: String
+  history_en: String
+  sub_name: String
+  url_slug: String
+  iata_code: String!
+  country_code: String!
   wiki_article_url: String
   wiki_article_en_url: String
   wiki_voyage_article_url: String
+  backdrop_image: String
+  featured_image_vertical: String
+  featured_image_thumb: String
+  population: Population
+  coordinates: Coordinates!
+  website: String
+  timezone: String
+  utc_offset: String
+  metro: Metro
+  quote: Quote
+  temperature: Float
   climate_description: String
+  climate_description_en: String
+  transport: Transport
+  transport_description: String
+  transport_description_en: String
+  parking: String
+  parking_en: String
+  vlogs: [String]
+  description_wiki_short: String
+  description_wiki_short_html: String
+  description_wiki: String
+}
+
+input CityInput {
+  name: String!
+  description: String
+  history: String
+  history_en: String
+  sub_name: String
+  url_slug: String
+  iata_code: String!
+  country_code: String!
+  wiki_article_url: String
+  wiki_article_en_url: String
+  wiki_voyage_article_url: String
+  backdrop_image: String
+  featured_image_vertical: String
+  featured_image_thumb: String
+  population: PopulationInput
+  coordinates: CoordinatesInput!
+  website: String
+  timezone: String
+  utc_offset: String
+  metro: MetroInput
+  quote: QuoteInput
+  temperature: Float
+  climate_description: String
+  climate_description_en: String
+  transport: TransportInput
+  transport_description: String
+  transport_description_en: String
+  parking: String
+  parking_en: String
+  vlogs: [String]
+  description_wiki_short: String
+  description_wiki_short_html: String
+  description_wiki: String
+}
+
+type WorkHour {
+  start: String
+  end: String
+}
+
+input WorkHourInput {
+  start: String
+  end: String
+}
+
+type Metro {
+  map_image_url: String
+  map_image_page_url: String
+  map_attribution: String
+  map_attribution_html: String
+  attribution_required: Boolean
+  working_hours: WorkHour
+}
+
+input MetroInput {
+  map_image_url: String
+  map_image_page_url: String
+  map_attribution: String
+  map_attribution_html: String
+  attribution_required: Boolean
+  working_hours: WorkHourInput
 }
 
 type Country {
-  id: Int
-  name: String
-  code: String
-  capital: String
-  capital_iata_code: String
+  _id: String!
+  name: String!
+  description: String
+  code: String!
+  capital: String!
+  capital_iata_code: String!
   population: Int
   region: String
   region_en: String
   subregion: String
   subregion_en: String
-  coordinates: Coordinates
+  coordinates: Coordinates!
   area: Int
-  gini: Int
+  gini: Float
   timezones: String
   timezone_simple: String
   timezone_code: String
@@ -90,9 +243,9 @@ type Country {
   schengen: Boolean
   gpi_rank: Int
   gpi_rank_max: Int
-  gpi_score: Int
-  gpi_score_min: Int
-  gpi_score_max: Int
+  gpi_score: Float
+  gpi_score_min: Float
+  gpi_score_max: Float
   price_level: Int
   price_level_max: Int
   price_level_min: Int
@@ -101,6 +254,45 @@ type Country {
   wikipedia_article: String
   music: [String]
   facts: [String]
+  phrases: [Phrase]
+}
+
+input CountryInput {
+  name: String!
+  description: String
+  code: String!
+  capital: String!
+  capital_iata_code: String!
+  population: Int
+  region: String
+  region_en: String
+  subregion: String
+  subregion_en: String
+  coordinates: CoordinatesInput!
+  area: Int
+  gini: Float
+  timezones: String
+  timezone_simple: String
+  timezone_code: String
+  borders: [String]
+  currencies: [String]
+  flag: String
+  eu: Boolean
+  schengen: Boolean
+  gpi_rank: Int
+  gpi_rank_max: Int
+  gpi_score: Float
+  gpi_score_min: Float
+  gpi_score_max: Float
+  price_level: Int
+  price_level_max: Int
+  price_level_min: Int
+  qol: QualityOfLifeInput
+  languages: [String]
+  wikipedia_article: String
+  music: [String]
+  facts: [String]
+  phrases: [PhraseInput]
 }
 
 type QualityOfLife {
@@ -109,6 +301,26 @@ type QualityOfLife {
   healt_care: Int
   pollution: Int
   climate: Int
+}
+
+type Phrase {
+  origin: String
+  transcript: String
+  bg: String
+}
+
+input QualityOfLifeInput {
+  total: Int
+  safety: Int
+  healt_care: Int
+  pollution: Int
+  climate: Int
+}
+
+input PhraseInput {
+  origin: String
+  transcript: String
+  bg: String
 }
 
 schema {

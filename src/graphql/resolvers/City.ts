@@ -13,11 +13,8 @@ export default {
     },
   },
   Mutation: {
-    addCity: (_: any, { name }: any): any => {
-      const newCity = new City({
-        name,
-        sub_name: 'alabala',
-      });
+    addCity: (_: any, { city }: any): any => {
+      const newCity = new City(city);
       return new Promise((resolver, reject) => {
         newCity.save((error: any, response: any) => {
           error ? reject(error) : resolver(response);

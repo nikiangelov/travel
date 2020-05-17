@@ -13,23 +13,11 @@ export default {
     },
   },
   Mutation: {
-    addCountry: (_: any, { name }: any): any => {
-      const newCountry = new Country({
-        name,
-        capital: 'test',
-        coordinates: {
-          lat: 24.533,
-          lng: 42.4533,
-        },
-        qal: {
-          index_min: 2,
-          index_max: 5,
-          safety_index: 2.3,
-        },
-      });
-      return new Promise((resolver, reject) => {
+    addCountry: (_: any, { country }: any): any => {
+      const newCountry = new Country(country);
+      return new Promise((resolve, reject) => {
         newCountry.save((error: any, response: any) => {
-          error ? reject(error) : resolver(response);
+          error ? reject(error) : resolve(response);
         });
       });
     },
