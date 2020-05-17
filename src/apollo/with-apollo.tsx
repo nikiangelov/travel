@@ -4,6 +4,9 @@ import Head from 'next/head';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
+import { persistCache } from 'apollo-cache-persist';
+import { typeDefs } from './state/types';
+import { resolvers } from './state/resolvers';
 
 type TApolloClient = ApolloClient<NormalizedCacheObject>;
 
@@ -32,7 +35,7 @@ export default function withApollo(
     apolloState,
     ...pageProps
   }: InitialProps) => {
-    const client = apolloClient || initApolloClient(apolloState);
+    const client = apolloClient || initApolloClient(undefined, apolloState);
     return (
       <ApolloProvider client={client}>
         <PageComponent {...pageProps} />
@@ -58,7 +61,10 @@ export default function withApollo(
 
       // Initialize ApolloClient, add it to the ctx object so
       // we can use it in `PageComponent.getInitialProp`.
-      const apolloClient = (ctx.apolloClient = initApolloClient());
+      const apolloClient = (ctx.apolloClient = initApolloClient({
+        res: ctx.res,
+        req: ctx.req,
+      }));
 
       // Run wrapped getInitialProps methods
       let pageProps = {};
@@ -118,18 +124,17 @@ export default function withApollo(
  * Creates or reuses apollo client in the browser.
  * @param  {Object} initialState
  */
-function initApolloClient(initialState?: any) {
+function initApolloClient(ctx, initialState?: any) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (typeof window === 'undefined') {
-    return createApolloClient(initialState);
+    return createApolloClient(ctx, initialState);
   }
 
   // Reuse client on the client-side
   if (!globalApolloClient) {
-    globalApolloClient = createApolloClient(initialState);
+    globalApolloClient = createApolloClient(ctx, initialState);
   }
-
   return globalApolloClient;
 }
 
@@ -137,23 +142,36 @@ function initApolloClient(initialState?: any) {
  * Creates and configures the ApolloClient
  * @param  {Object} [initialState={}]
  */
-function createApolloClient(initialState = {}) {
+function createApolloClient(ctx = {}, initialState = {}) {
   const ssrMode = typeof window === 'undefined';
   const cache = new InMemoryCache().restore(initialState);
+  // await before instantiating ApolloClient, else queries might run before the cache is persisted
 
+  if (!ssrMode) {
+    persistCache({
+      cache,
+      storage: window.localStorage as PersistentStorage<
+        PersistedData<NormalizedCacheObject>
+      >,
+      debug: true,
+    });
+  }
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
-  return new ApolloClient({
+  const client = new ApolloClient({
     ssrMode,
-    link: createIsomorphLink(),
+    link: createIsomorphLink(ctx),
     cache,
+    typeDefs,
+    resolvers,
   });
+  return client;
 }
 
-function createIsomorphLink() {
+function createIsomorphLink(ctx) {
   if (typeof window === 'undefined') {
     const { SchemaLink } = require('apollo-link-schema');
     const schema = require('../graphql/schema').default;
-    return new SchemaLink({ schema });
+    return new SchemaLink({ schema, context: ctx });
   } else {
     const { HttpLink } = require('apollo-link-http');
     return new HttpLink({

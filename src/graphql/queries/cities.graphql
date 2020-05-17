@@ -1,13 +1,13 @@
 query Cities {
   cities {
-    id
+    _id
     name
     description
   }
 }
 query City($id: ID, $url_slug: String, $attractions_limit: Int) {
-  city(id: $id, url_slug: $url_slug) {
-    id
+  city(_id: $id, url_slug: $url_slug) {
+    _id
     name
     country_code
     sub_name

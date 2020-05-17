@@ -97,7 +97,7 @@ export default `
     }
     type Query {
         cities: [City]
-        city(id: ID, url_slug: String): City
+        city(_id: ID, url_slug: String): City
     }
     type Mutation {
         addCity(city: CityInput): City

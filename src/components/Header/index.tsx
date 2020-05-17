@@ -3,8 +3,15 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import strings from '../../constants/strings';
 import SearchBar from './SearchBar';
-
-export default function Header(): ReactElement {
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import withApollo from '../../apollo/with-apollo';
+function Header(): ReactElement {
+  const { data } = useQuery(gql`
+    query UserCount {
+      userCount @client
+    }
+  `);
   const router = useRouter();
   return (
     <header className="pt-5 mb-4">
@@ -32,7 +39,9 @@ export default function Header(): ReactElement {
         </div>
         <div>
           <Link href="/">
-            <a className="btn btn-link">{strings.signIn}</a>
+            <a className="btn btn-link">
+              {strings.signIn} {data?.userCount || '-'}
+            </a>
           </Link>
           <Link href="/">
             <a className="btn btn-link">{strings.signUp}</a>
@@ -42,3 +51,5 @@ export default function Header(): ReactElement {
     </header>
   );
 }
+
+export default withApollo(Header);

@@ -1,3 +1,9 @@
+extend type Query {
+  userCount: Int
+}
+extend type Mutation {
+  setUserCount(count: Int!): Int
+}
 type Population {
   year: Int
   total: Int
@@ -20,7 +26,6 @@ input CoordinatesInput {
   lng: Float!
 }
 
-
 # Quote Types
 type Quote {
   quote: String
@@ -31,7 +36,6 @@ input QuoteInput {
   quote: String
   author: String
 }
-
 
 # Transport Types
 type Transport {
@@ -106,7 +110,7 @@ type Query {
   attractions(id: ID, city_url_slug: String, limit: Int): [Attraction]
   attraction(id: ID): Attraction
   cities: [City]
-  city(id: ID, url_slug: String): City
+  city(_id: ID, url_slug: String): City
   country(code: String): Country
   countries: [Country]
 }

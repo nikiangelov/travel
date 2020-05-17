@@ -19,9 +19,15 @@ mongoose
   .catch(error => {
     console.log(error);
   });
+// mongoose.connection.once('open', () => console.log(`Connected to mongo`));
 
 // createa apollo server
-const apolloServer = new ApolloServer({ schema });
+const apolloServer = new ApolloServer({
+  schema,
+  context(ctx): any {
+    return ctx;
+  },
+});
 
 export const config = {
   api: {

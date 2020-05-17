@@ -9,7 +9,7 @@ const typeDefs = [Global, Attraction, City, Country];
 
 const mergedTypes = mergeTypes(typeDefs, { all: true });
 
-writeFileSync('./src/graphql/type-defs.graphqls', mergedTypes);
-console.log('WRITE TO FILE', mergedTypes);
+// writeFileSync('./src/graphql/type-defs.graphqls', mergedTypes);
+// console.log('WRITE TO FILE', mergedTypes);
 
 export default mergedTypes;

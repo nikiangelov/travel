@@ -1,4 +1,5 @@
 export default `
+    # City
     type Population {
         year: Int
         total: Int
