@@ -21,6 +21,7 @@
     "@types/mongoose": "^5.7.20",
     "@types/numeral": "0.0.26",
     "@types/uuid": "^7.0.3",
+    "@types/validator": "^13.0.0",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-cache-persist": "^0.1.1",
     "apollo-client": "^2.6.10",
@@ -52,7 +53,8 @@
     "react-svg": "^11.0.21",
     "reactstrap": "^8.4.1",
     "read-more-react": "^1.0.10",
-    "uuid": "^8.0.0"
+    "uuid": "^8.0.0",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.13.5",

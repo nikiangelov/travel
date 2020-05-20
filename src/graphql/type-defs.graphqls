@@ -1,9 +1,4 @@
-extend type Query {
-  userCount: Int
-}
-extend type Mutation {
-  setUserCount(count: Int!): Int
-}
+# City
 type Population {
   year: Int
   total: Int
@@ -113,12 +108,19 @@ type Query {
   city(_id: ID, url_slug: String): City
   country(code: String): Country
   countries: [Country]
+  user(_id: String!): User
+  users: [User]
+  currentUser: User
 }
 
 type Mutation {
   addAttraction(name: String): Attraction
   addCity(city: CityInput): City
   addCountry(country: CountryInput!): Country
+  registerUser(user: UserInput!): String
+  loginUser(email: String!, password: String!): String
+  deleteUser(_id: String!): User
+  editUser(_id: String!, user: UserEditInput!): User
 }
 
 type City {
@@ -158,6 +160,12 @@ type City {
   description_wiki: String
 }
 
+extend type Query {
+  userCount: Int
+}
+extend type Mutation {
+  setUserCount(count: Int!): Int
+}
 input CityInput {
   name: String!
   description: String
@@ -325,6 +333,29 @@ input PhraseInput {
   origin: String
   transcript: String
   bg: String
+}
+
+type User {
+  _id: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  userType: String!
+}
+
+input UserInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+}
+
+input UserEditInput {
+  firstName: String
+  lastName: String
+  password: String
+  userType: String
 }
 
 schema {

@@ -1,11 +1,12 @@
 import { mergeTypes } from 'merge-graphql-schemas';
-import { writeFileSync } from 'fs';
+// import { writeFileSync } from 'fs';
 import Global from './Global';
 import Attraction from './Attraction';
 import City from './City';
 import Country from './Country';
+import User from './User';
 
-const typeDefs = [Global, Attraction, City, Country];
+const typeDefs = [Global, Attraction, City, Country, User];
 
 const mergedTypes = mergeTypes(typeDefs, { all: true });
 
