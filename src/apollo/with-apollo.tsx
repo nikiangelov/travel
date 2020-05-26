@@ -11,6 +11,8 @@ import { typeDefs } from './state/types';
 import { resolvers } from './state/resolvers';
 import { PersistentStorage, PersistedData } from 'apollo-cache-persist/types';
 import { resolveUser } from '../graphql/lib/Auth';
+import cookie from 'cookie';
+
 import {
   getAccessToken,
   setAccessToken,
@@ -34,6 +36,7 @@ export type ResolverContext = {
   res: ServerResponse;
   // TODO: change type
   authenticatedUser: any;
+  serverAccessToken?: string | undefined;
 };
 
 let globalApolloClient: TApolloClient;
@@ -42,10 +45,28 @@ export const createResolverContext: ContextFunction<
   { req: IncomingMessage; res: ServerResponse },
   ResolverContext
 > = async ({ req, res }) => {
-  const headerAuthorization = req.headers.authorization || '';
+  // todo needs refactor
+  let headerAuthorization = req.headers.authorization || '';
+  let serverAccessToken = '';
+  if (typeof window === 'undefined') {
+    if (req && req.headers && req.headers.cookie) {
+      const cookies = cookie.parse(req.headers.cookie);
+      if (cookies.jid) {
+        const response = await fetchNewAccessToken({
+          headers: {
+            cookie: 'jid=' + cookies.jid,
+          },
+        });
+        const data = await response.json();
+        serverAccessToken = data.accessToken;
+        headerAuthorization = `Bearer ${serverAccessToken}`;
+      }
+    }
+  }
+
   const authenticatedUser = resolveUser(headerAuthorization);
 
-  return { req, res, authenticatedUser };
+  return { req, res, authenticatedUser, serverAccessToken };
 };
 
 /**
@@ -62,8 +83,16 @@ export default function withApollo(
   const WithApollo = ({
     apolloClient,
     apolloState,
+    serverAccessToken,
     ...pageProps
   }: InitialProps): any => {
+    if (
+      typeof window !== 'undefined' &&
+      serverAccessToken &&
+      !getAccessToken()
+    ) {
+      setAccessToken(serverAccessToken);
+    }
     const client = apolloClient || initApolloClient(apolloState);
     return (
       <ApolloProvider client={client}>
@@ -89,6 +118,7 @@ export default function withApollo(
       // Resolver context here is only set on server. For client-side,
       // "/api/graphql" route creates and pass it to resolver functions.
       let resolverContext: ResolverContext | undefined;
+      let serverAccessToken: string | undefined;
       // Keep the "isServer" check inline, so webpack removes the block
       // for client-side bundle.
       if (typeof window === 'undefined') {
@@ -96,6 +126,9 @@ export default function withApollo(
           req: ctx.req!,
           res: ctx.res!,
         });
+        if (resolverContext.serverAccessToken) {
+          serverAccessToken = resolverContext.serverAccessToken;
+        }
       }
 
       // Initialize ApolloClient, add it to the ctx object so
@@ -152,6 +185,7 @@ export default function withApollo(
       return {
         ...pageProps,
         apolloState,
+        serverAccessToken,
       };
     };
   }
@@ -257,7 +291,6 @@ function createIsomorphLink(resolverContext?: ResolverContext): any {
     const tokenRefreshHandler = new TokenRefreshLink({
       accessTokenField: 'accessToken',
       isTokenValidOrUndefined: () => {
-        console.log('- check -');
         return isTokenValid();
       },
       fetchAccessToken: () => {

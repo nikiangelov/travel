@@ -24,15 +24,17 @@ export const isTokenValid = (): boolean => {
     return false;
   }
 };
-export const fetchNewAccessToken = () => {
-  return fetch('/api/refresh_token', {
+export const fetchNewAccessToken = (options: any = {}) => {
+  const fetchOptions = {
     method: 'POST',
-    // credentials: 'include',
+    credentials: 'include',
+    ...options,
     // headers: {
     //   Accept: 'application/json',
     //   'Content-Type': 'application/json',
     // },
-  });
+  };
+  return fetch('http://localhost:3000/api/refresh_token', fetchOptions);
 };
 export const fetchAndSetNewAccessToken = async (): Promise<boolean> => {
   return new Promise<boolean>((resolve, reject) => {

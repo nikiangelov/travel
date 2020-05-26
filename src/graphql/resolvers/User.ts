@@ -19,9 +19,9 @@ const Query: QueryResolvers<ResolverContext> = {
       });
     });
   },
-  users: (_parent, _args, { authenticatedUser }, _info) => {
-    console.log('- all users resolver -');
-    console.log(authenticatedUser);
+  users: (_parent, _args, _context, _info) => {
+    const { authenticatedUser } = _context;
+    console.log('users query', authenticatedUser);
     return new Promise<any>((resolve, reject) => {
       if (!authenticatedUser) {
         resolve(null);

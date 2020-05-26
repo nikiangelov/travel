@@ -7,9 +7,7 @@ import { useUserCountQuery } from '../apollo/state/queries/user.graphql';
 import { useUsersQuery } from '../graphql/queries/user.graphql';
 
 const AboutPage: React.FunctionComponent = () => {
-  const { data: usersData } = useUsersQuery({
-    fetchPolicy: 'network-only',
-  });
+  const { data: usersData } = useUsersQuery();
 
   const { data } = useUserCountQuery();
   const [setUserCount] = useMutation(gql`
@@ -18,22 +16,10 @@ const AboutPage: React.FunctionComponent = () => {
     }
   `);
   const client = useApolloClient();
-  const handlePostReq = () => {
-    fetch('/api/refresh_token', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        firstParam: 'yourValue',
-        secondParam: 'yourOtherValue',
-      }),
-    });
-  };
   return (
     <AnimatedLayout>
       <h1>About</h1>
+      {/* {!!loading && <div>loading...</div>} */}
       <h2>All users:</h2>
       {usersData &&
         usersData.users &&
@@ -65,9 +51,6 @@ const AboutPage: React.FunctionComponent = () => {
         </button>
       </p>
       <hr />
-      <button onClick={handlePostReq} className="btn btn-success">
-        POST
-      </button>
     </AnimatedLayout>
   );
 };
