@@ -17,10 +17,6 @@ type Data = {
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   if (req.method === 'POST') {
-    // Process a POST request
-    console.log(req.headers);
-    res.status(200).json({ ok: false, accessToken: '' });
-  } else {
     // is there a cookie?
     const { jid } = cookie.parse(req.headers.cookie ?? '');
     if (!jid) {
@@ -58,5 +54,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         email: user.email,
       }),
     });
+  } else {
+    res.status(200).json({ ok: false, accessToken: '' });
   }
 };

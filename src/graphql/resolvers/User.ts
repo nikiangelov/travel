@@ -23,6 +23,9 @@ const Query: QueryResolvers<ResolverContext> = {
     console.log('- all users resolver -');
     console.log(authenticatedUser);
     return new Promise<any>((resolve, reject) => {
+      if (!authenticatedUser) {
+        resolve(null);
+      }
       User.find()
         //   .populate()
         .exec((error, response) => {
