@@ -1,10 +1,10 @@
 import { ApolloServer } from 'apollo-server-micro';
 import mongoose from 'mongoose';
 import schema from '../../graphql/schema';
+import { createResolverContext } from '../../apollo/with-apollo';
 
 // connect to mongodb
 const DB = process.env.MONGODB_URL || '';
-const JWT_SECRET = process.env.JWT_SECRET || '';
 
 mongoose
   .connect(DB, {
@@ -25,9 +25,7 @@ mongoose
 // createa apollo server
 const apolloServer = new ApolloServer({
   schema,
-  context: ({ req }) => {
-    return { JWT_SECRET };
-  },
+  context: createResolverContext,
 });
 
 export const config = {

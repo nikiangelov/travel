@@ -13,6 +13,19 @@ const AboutPage: React.FunctionComponent = () => {
     }
   `);
   const client = useApolloClient();
+  const handlePostReq = () => {
+    fetch('/api/refresh_token', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstParam: 'yourValue',
+        secondParam: 'yourOtherValue',
+      }),
+    });
+  };
   return (
     <AnimatedLayout>
       <h1>About</h1>
@@ -42,6 +55,10 @@ const AboutPage: React.FunctionComponent = () => {
           setcount
         </button>
       </p>
+      <hr />
+      <button onClick={handlePostReq} className="btn btn-success">
+        POST
+      </button>
     </AnimatedLayout>
   );
 };

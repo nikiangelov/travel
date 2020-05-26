@@ -38,14 +38,13 @@ function Header(): ReactElement {
           <SearchBar />
         </div>
         <div>
-          <Link href="/">
-            <a className="btn btn-link">
-              {strings.signIn} {data?.userCount || '-'}
-            </a>
+          <Link href="/members/login">
+            <a className="btn btn-link">{strings.signIn}</a>
           </Link>
-          <Link href="/">
+          <Link href="/members/register">
             <a className="btn btn-link">{strings.signUp}</a>
           </Link>
+          {data?.userCount || '-'}
         </div>
       </nav>
     </header>

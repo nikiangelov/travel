@@ -1,13 +1,15 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import ValidationError from '../lib/ValidationError';
 import User, { UserType } from '../models/User';
 import { QueryResolvers, MutationResolvers } from '../type-defs.graphqls';
 import { IResolvers } from 'graphql-tools';
 import { ResolverContext } from '../../apollo/with-apollo';
-
-const JWT_EXPIRATION = '5min';
+import {
+  createRefreshToken,
+  sendRefreshToken,
+  createAccessToken,
+} from '../lib/Auth';
 
 const Query: QueryResolvers<ResolverContext> = {
   user(_parent, _args, _context, _info) {
@@ -44,7 +46,7 @@ const Query: QueryResolvers<ResolverContext> = {
   },
 };
 const Mutation: MutationResolvers<ResolverContext> = {
-  registerUser: async (_, { user }, { JWT_SECRET }): Promise<any> => {
+  registerUser: async (_, { user }): Promise<any> => {
     const { firstName, lastName, email, password } = user;
     let errors = [];
     if (!validator.isEmail(email)) {
@@ -99,22 +101,16 @@ const Mutation: MutationResolvers<ResolverContext> = {
           `Не можем да регистрираме потребител с email:  ${email}`,
         );
       }
-      loginToken = jwt.sign(
-        {
-          _id: savedUser._id,
-          email: savedUser.email,
-        },
-        JWT_SECRET,
-        {
-          expiresIn: JWT_EXPIRATION,
-        },
-      );
+      loginToken = createAccessToken({
+        _id: savedUser._id,
+        email: savedUser.email,
+      });
     } catch (error) {
       console.log(`Възникна проблем: ${error}`);
     }
     return loginToken;
   },
-  loginUser: async (_, { email, password }, { JWT_SECRET }) => {
+  loginUser: async (_, { email, password }, { res }) => {
     const user = await User.findOne({
       email,
     });
@@ -125,16 +121,21 @@ const Mutation: MutationResolvers<ResolverContext> = {
     if (!validPassword) {
       throw new Error(`Грешна парола.`);
     }
-    const token = jwt.sign(
-      {
+
+    // Refresh token
+    sendRefreshToken(
+      res,
+      createRefreshToken({
         _id: user._id,
         email: user.email,
-      },
-      JWT_SECRET,
-      {
-        expiresIn: JWT_EXPIRATION,
-      },
+      }),
     );
+
+    // Access token
+    const token = createAccessToken({
+      _id: user._id,
+      email: user.email,
+    });
 
     return token;
   },

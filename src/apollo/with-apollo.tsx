@@ -10,6 +10,7 @@ import { persistCache } from 'apollo-cache-persist';
 import { typeDefs } from './state/types';
 import { resolvers } from './state/resolvers';
 import { PersistentStorage, PersistedData } from 'apollo-cache-persist/types';
+import { resolveUser } from '../graphql/lib/Auth';
 
 type TApolloClient = ApolloClient<NormalizedCacheObject>;
 
@@ -23,13 +24,10 @@ type WithApolloPageContext = {
 } & NextPageContext;
 
 export type ResolverContext = {
-  // req: IncomingMessage;
-  // res: ServerResponse;
+  req: IncomingMessage;
+  res: ServerResponse;
   // TODO: change type
-  authenticatedUser: {
-    _id: string;
-  } | null;
-  JWT_SECRET: string;
+  authenticatedUser: any;
 };
 
 let globalApolloClient: TApolloClient;
@@ -37,15 +35,11 @@ let globalApolloClient: TApolloClient;
 export const createResolverContext: ContextFunction<
   { req: IncomingMessage; res: ServerResponse },
   ResolverContext
-> = async ({ req }: any) => {
-  // If you want to pass additional data to resolvers as context
-  // such as session data, you can do it here. For example:
-  //
-  //    const user = await resolveUser(req.header.cookie)
-  //    return { req, res, user }
-  //
-  // TODO refactor
-  return { authenticatedUser: null, JWT_SECRET: req.JWT_SECRET };
+> = async ({ req, res }) => {
+  const headerAuthorization = req.headers.authorization || '';
+  const authenticatedUser = resolveUser(headerAuthorization);
+
+  return { req, res, authenticatedUser };
 };
 
 /**
@@ -92,13 +86,13 @@ export default function withApollo(
       // Keep the "isServer" check inline, so webpack removes the block
       // for client-side bundle.
       if (typeof window === 'undefined') {
+        // TODO: posible bugs
+        /*
         resolverContext = await createResolverContext({
           req: ctx.req!,
           res: ctx.res!,
         });
-
-        console.log('PageComponent.getInitialProps');
-        // console.log(resolverContext);
+        */
       }
 
       // Initialize ApolloClient, add it to the ctx object so
