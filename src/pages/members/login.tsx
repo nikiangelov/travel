@@ -2,6 +2,7 @@ import * as React from 'react';
 import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import withApollo from '../../apollo/with-apollo';
 import { useLoginUserMutation } from '../../graphql/mutations/user.graphql';
+import { setAccessToken } from '../../utils/auth';
 
 const LoginPage: React.FunctionComponent = () => {
   const [userEmail, setUserEmail] = React.useState('');
@@ -21,12 +22,10 @@ const LoginPage: React.FunctionComponent = () => {
         password: `${userPassword}`,
       },
     })
-      .then(response => {
-        console.log(
-          '%cresponse',
-          'background-color:green; color: white;',
-          response,
-        );
+      .then(({ data }) => {
+        if (data && data.loginUser) {
+          setAccessToken(data.loginUser);
+        }
       })
       .catch(error => {
         console.log(error);

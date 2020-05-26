@@ -11,6 +11,7 @@ import { typeDefs } from './state/types';
 import { resolvers } from './state/resolvers';
 import { PersistentStorage, PersistedData } from 'apollo-cache-persist/types';
 import { resolveUser } from '../graphql/lib/Auth';
+import { getAccessToken } from '../utils/auth';
 
 type TApolloClient = ApolloClient<NormalizedCacheObject>;
 
@@ -86,21 +87,18 @@ export default function withApollo(
       // Keep the "isServer" check inline, so webpack removes the block
       // for client-side bundle.
       if (typeof window === 'undefined') {
-        // TODO: posible bugs
-        /*
         resolverContext = await createResolverContext({
           req: ctx.req!,
           res: ctx.res!,
         });
-        */
       }
 
       // Initialize ApolloClient, add it to the ctx object so
       // we can use it in `PageComponent.getInitialProp`.
-      const apolloClient = (ctx.apolloClient = initApolloClient({
+      const apolloClient = (ctx.apolloClient = initApolloClient(
         undefined,
         resolverContext,
-      }));
+      ));
 
       // Run wrapped getInitialProps methods
       let pageProps = {};
@@ -219,10 +217,24 @@ function createIsomorphLink(resolverContext?: ResolverContext): any {
     // "resolverContext" is passed only before calling "getDataFromTree".
     return new SchemaLink({ schema, context: resolverContext });
   } else {
-    const { HttpLink } = require('apollo-link-http');
-    return new HttpLink({
+    const { createHttpLink } = require('apollo-link-http');
+    const { setContext } = require('apollo-link-context');
+    const httpLink = createHttpLink({
       uri: '/api/graphql',
       credentials: 'same-origin',
     });
+
+    const authLink = setContext((_: any, { headers }: any) => {
+      // get the access token from local variable
+      const token = getAccessToken();
+      // return the headers to the context so httpLink can read them
+      return {
+        headers: {
+          ...headers,
+          authorization: token ? `Bearer ${token}` : '',
+        },
+      };
+    });
+    return authLink.concat(httpLink);
   }
 }

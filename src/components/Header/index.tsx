@@ -38,6 +38,9 @@ function Header(): ReactElement {
           <SearchBar />
         </div>
         <div>
+          <Link href="/about">
+            <a className="btn btn-link">About</a>
+          </Link>
           <Link href="/members/login">
             <a className="btn btn-link">{strings.signIn}</a>
           </Link>
