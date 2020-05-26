@@ -4,13 +4,13 @@ import Head from 'next/head';
 import { AppProps } from 'next/app';
 import '../assets/styles/theme.scss';
 import constants from '../constants';
-import { fetchNewAccessToken } from '../utils/auth';
+import { fetchAndSetNewAccessToken } from '../utils/auth';
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    fetchNewAccessToken().finally(() => {
+    fetchAndSetNewAccessToken().finally(() => {
       setLoading(false);
     });
   }, []);

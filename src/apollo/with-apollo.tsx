@@ -11,7 +11,12 @@ import { typeDefs } from './state/types';
 import { resolvers } from './state/resolvers';
 import { PersistentStorage, PersistedData } from 'apollo-cache-persist/types';
 import { resolveUser } from '../graphql/lib/Auth';
-import { getAccessToken } from '../utils/auth';
+import {
+  getAccessToken,
+  setAccessToken,
+  isTokenValid,
+  fetchNewAccessToken,
+} from '../utils/auth';
 
 type TApolloClient = ApolloClient<NormalizedCacheObject>;
 
@@ -219,6 +224,10 @@ function createIsomorphLink(resolverContext?: ResolverContext): any {
   } else {
     const { createHttpLink } = require('apollo-link-http');
     const { setContext } = require('apollo-link-context');
+    const { ApolloLink } = require('apollo-link');
+    const { onError } = require('apollo-link-error');
+    const { TokenRefreshLink } = require('apollo-link-token-refresh');
+
     const httpLink = createHttpLink({
       uri: '/api/graphql',
       credentials: 'same-origin',
@@ -235,6 +244,40 @@ function createIsomorphLink(resolverContext?: ResolverContext): any {
         },
       };
     });
-    return authLink.concat(httpLink);
+
+    const apolloLinkError = onError(({ graphQLErrors, networkError }: any) => {
+      if (graphQLErrors) {
+        console.log('graphQLErrors', graphQLErrors);
+      }
+      if (networkError) {
+        console.log('networkError', networkError);
+      }
+    });
+
+    const tokenRefreshHandler = new TokenRefreshLink({
+      accessTokenField: 'accessToken',
+      isTokenValidOrUndefined: () => {
+        console.log('- check -');
+        return isTokenValid();
+      },
+      fetchAccessToken: () => {
+        return fetchNewAccessToken();
+      },
+      handleFetch: (accessToken: any) => {
+        setAccessToken(accessToken);
+      },
+      handleError: (err: any) => {
+        // full control over handling token fetch Error
+        console.warn('Your refresh token is invalid. Try to relogin');
+        console.log(err);
+      },
+    });
+
+    return ApolloLink.from([
+      tokenRefreshHandler,
+      apolloLinkError,
+      authLink,
+      httpLink,
+    ]);
   }
 }

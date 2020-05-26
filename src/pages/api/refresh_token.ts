@@ -25,14 +25,14 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     // validate the access token cookie
     let payload: any;
+    let user: any;
     try {
       payload = jwt.verify(jid, JWT_REFRESH_TOKEN_SECRET!);
+      user = await User.findById(payload._id).exec();
     } catch {
       return res.status(200).json({ ok: false, accessToken: '' });
     }
 
-    // get the user from the token
-    const user = await User.findById(payload._id);
     if (!user) {
       return res.status(200).json({ ok: false, accessToken: '' });
     }
