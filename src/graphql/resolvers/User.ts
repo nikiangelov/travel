@@ -21,7 +21,6 @@ const Query: QueryResolvers<ResolverContext> = {
   },
   users: (_parent, _args, _context, _info) => {
     const { authenticatedUser } = _context;
-    console.log('users query', authenticatedUser);
     return new Promise<any>((resolve, reject) => {
       if (!authenticatedUser) {
         resolve(null);
@@ -33,19 +32,10 @@ const Query: QueryResolvers<ResolverContext> = {
         });
     });
   },
-  currentUser: async (
-    _parent,
-    _args,
-    { authenticatedUser },
-    _info,
-  ): Promise<any> => {
+  currentUser: async (_parent, _args, _context, _info): Promise<any> => {
+    const { authenticatedUser } = _context || {};
     if (!authenticatedUser) {
-      throw new ValidationError([
-        {
-          key: 'user',
-          message: 'user_not_authenticated',
-        },
-      ]);
+      return null;
     }
     return await User.findById(authenticatedUser._id);
   },
@@ -112,8 +102,9 @@ const Mutation: MutationResolvers<ResolverContext> = {
       userType: 'regular',
     });
     let loginToken = null;
+    let savedUser = null;
     try {
-      const savedUser = await newUser.save();
+      savedUser = await newUser.save();
       if (!savedUser) {
         throw new Error(
           `Не можем да регистрираме потребител с email:  ${email}`,
@@ -137,7 +128,11 @@ const Mutation: MutationResolvers<ResolverContext> = {
     } catch (error) {
       console.log(`Възникна проблем: ${error}`);
     }
-    return loginToken;
+
+    return {
+      accessToken: loginToken,
+      user: savedUser,
+    };
   },
   loginUser: async (_, { email, password }, { res }) => {
     let hasError = false;
@@ -177,7 +172,14 @@ const Mutation: MutationResolvers<ResolverContext> = {
       email: user.email,
     });
 
-    return token;
+    return {
+      accessToken: token,
+      user,
+    };
+  },
+  logoutUser: async (_, _args, { res }): Promise<any> => {
+    sendRefreshToken(res, '');
+    return true;
   },
   deleteUser: (_, { _id }) => {
     return new Promise<any>((resolve, reject) => {

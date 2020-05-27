@@ -55,8 +55,9 @@ export const sendRefreshToken = (res: ServerResponse, token: string) => {
     'Set-Cookie',
     cookie.serialize('jid', token, {
       httpOnly: true,
-      // maxAge: 6 * 60 * 60,
       path: '/',
+      // maxAge: 6 * 60 * 60,
+      // path: '/api/refresh_token',
       // sameSite: 'lax',
       // secure: process.env.NODE_ENV === 'production',
     }),

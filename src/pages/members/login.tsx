@@ -5,6 +5,10 @@ import { useLoginUserMutation } from '../../graphql/mutations/user.graphql';
 import { setAccessToken } from '../../utils/auth';
 import useI18n from '../../hooks/use-i18n';
 import { useRouter } from 'next/router';
+import {
+  CurrentUserDocument,
+  CurrentUserQuery,
+} from '../../graphql/queries/user.graphql';
 
 const LoginPage: React.FunctionComponent = () => {
   const i18n = useI18n();
@@ -24,10 +28,22 @@ const LoginPage: React.FunctionComponent = () => {
         email: `${userEmail}`,
         password: `${userPassword}`,
       },
+      update: (store, { data }) => {
+        if (!data || !data.loginUser) {
+          return null;
+        }
+        store.writeQuery<CurrentUserQuery>({
+          query: CurrentUserDocument,
+          data: {
+            __typename: 'Query',
+            currentUser: data.loginUser.user,
+          },
+        });
+      },
     })
       .then(({ data }) => {
-        if (data && data.loginUser) {
-          setAccessToken(data.loginUser);
+        if (data && data.loginUser && data.loginUser.accessToken) {
+          setAccessToken(data.loginUser.accessToken);
           router.push('/');
         }
       })

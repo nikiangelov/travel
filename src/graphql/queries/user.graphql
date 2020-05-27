@@ -6,3 +6,11 @@ query Users {
     lastName
   }
 }
+query CurrentUser {
+  currentUser {
+    _id
+    email
+    firstName
+    lastName
+  }
+}

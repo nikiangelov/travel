@@ -117,8 +117,9 @@ type Mutation {
   addAttraction(name: String): Attraction
   addCity(city: CityInput): City
   addCountry(country: CountryInput!): Country
-  registerUser(user: UserInput!): String
-  loginUser(email: String!, password: String!): String
+  registerUser(user: UserInput!): LoginResponse
+  logoutUser: Boolean
+  loginUser(email: String!, password: String!): LoginResponse
   deleteUser(_id: String!): User
   editUser(_id: String!, user: UserEditInput!): User
 }
@@ -357,6 +358,11 @@ input UserEditInput {
   lastName: String
   password: String
   userType: String
+}
+
+type LoginResponse {
+  accessToken: String
+  user: User
 }
 
 schema {

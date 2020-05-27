@@ -1,5 +1,4 @@
 import { mergeTypes } from 'merge-graphql-schemas';
-// import { writeFileSync } from 'fs';
 import Global from './Global';
 import Attraction from './Attraction';
 import City from './City';
@@ -10,6 +9,7 @@ const typeDefs = [Global, Attraction, City, Country, User];
 
 const mergedTypes = mergeTypes(typeDefs, { all: true });
 
+// import { writeFileSync } from 'fs';
 // writeFileSync('./src/graphql/type-defs.graphqls', mergedTypes);
 // console.log('WRITE TO FILE', mergedTypes);
 

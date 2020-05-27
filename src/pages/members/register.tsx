@@ -5,6 +5,10 @@ import withApollo from '../../apollo/with-apollo';
 import { setAccessToken } from '../../utils/auth';
 import useI18n from '../../hooks/use-i18n';
 import { useRegisterUserMutation } from '../../graphql/mutations/user.graphql';
+import {
+  CurrentUserQuery,
+  CurrentUserDocument,
+} from '../../graphql/queries/user.graphql';
 
 type InputField = {
   value: string;
@@ -72,17 +76,28 @@ const RegisterPage: React.FunctionComponent = () => {
           passwordConfirm: passwordConfirm.value,
         },
       },
+      update: (store, { data }) => {
+        if (!data || !data.registerUser) {
+          return null;
+        }
+        store.writeQuery<CurrentUserQuery>({
+          query: CurrentUserDocument,
+          data: {
+            __typename: 'Query',
+            currentUser: data.registerUser.user,
+          },
+        });
+      },
     })
       .then(({ data }) => {
-        if (data && data.registerUser) {
-          setAccessToken(data.registerUser);
+        if (data && data.registerUser && data.registerUser.accessToken) {
+          setAccessToken(data.registerUser.accessToken);
           router.push('/');
         }
       })
       .catch(({ graphQLErrors }) => {
         const { validationErrors } = graphQLErrors[0];
         if (validationErrors) {
-          console.log(validationErrors);
           const errorKeys = Object.keys(validationErrors);
           const errorValues: Array<string[]> = Object.values(validationErrors);
           const newFormData = { ...formData };

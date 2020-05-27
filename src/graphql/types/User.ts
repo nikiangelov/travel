@@ -22,15 +22,21 @@ export default `
         userType: String
     }
 
+    type LoginResponse {
+        accessToken: String
+        user: User
+    }
+
     type Query {
         user(_id: String!): User
         users: [User]
         currentUser: User
     }
 
-    type Mutation { 
-        registerUser(user: UserInput!): String
-        loginUser(email: String!, password: String!): String
+    type Mutation {
+        registerUser(user: UserInput!): LoginResponse
+        loginUser(email: String!, password: String!): LoginResponse
+        logoutUser: Boolean
         deleteUser(_id: String!): User
         editUser(_id: String!, user: UserEditInput! ): User
     }

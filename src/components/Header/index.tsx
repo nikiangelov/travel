@@ -8,14 +8,28 @@ import gql from 'graphql-tag';
 import withApollo from '../../apollo/with-apollo';
 import ChangeLanguageDropdown from '../ChangeLanguageDropdown';
 import buildLink from '../../utils/link-handler';
+import { useCurrentUserQuery } from '../../graphql/queries/user.graphql';
+import { useLogoutUserMutation } from '../../graphql/mutations/user.graphql';
+import { setAccessToken } from '../../utils/auth';
 
 function Header(): ReactElement {
+  const { data: currentUserData } = useCurrentUserQuery();
+  const [logoutUserMutation, { client }] = useLogoutUserMutation();
+  const { currentUser } = currentUserData || {};
+
   const { data } = useQuery(gql`
     query UserCount {
       userCount @client
     }
   `);
   const router = useRouter();
+  const handleUserLogout = async () => {
+    await logoutUserMutation();
+    setAccessToken('');
+    if (client) {
+      await client.resetStore();
+    }
+  };
   return (
     <header className="pt-5 mb-4">
       <nav className="d-flex main-header justify-content-between container-fluid">
@@ -45,13 +59,25 @@ function Header(): ReactElement {
           <Link href="/about">
             <a className="btn btn-link">About</a>
           </Link>
-          <Link href={buildLink('/members/login')}>
-            <a className="btn btn-link">{strings.signIn}</a>
-          </Link>
-          <Link href="/members/register">
-            <a className="btn btn-link">{strings.signUp}</a>
-          </Link>
-          {data?.userCount || '-'}
+          {!!currentUser && currentUser._id && (
+            <>
+              <div>{currentUser.firstName}</div>
+              <button onClick={handleUserLogout} className="btn btn-link">
+                Logout
+              </button>
+            </>
+          )}
+          {!currentUser && (
+            <>
+              <Link href={buildLink('/members/login')}>
+                <a className="btn btn-link">{strings.signIn}</a>
+              </Link>
+              <Link href="/members/register">
+                <a className="btn btn-link">{strings.signUp}</a>
+              </Link>
+            </>
+          )}
+          <div className="ml-3">({data?.userCount || '-'})</div>
         </div>
       </nav>
     </header>

@@ -1,7 +1,27 @@
 mutation LoginUser($email: String!, $password: String!) {
-  loginUser(email: $email, password: $password)
+  loginUser(email: $email, password: $password) {
+    accessToken
+    user {
+      _id
+      email
+      firstName
+      lastName
+    }
+  }
+}
+
+mutation LogoutUser {
+  logoutUser
 }
 
 mutation RegisterUser($user: UserInput!) {
-  registerUser(user: $user)
+  registerUser(user: $user) {
+    accessToken
+    user {
+      _id
+      email
+      firstName
+      lastName
+    }
+  }
 }
