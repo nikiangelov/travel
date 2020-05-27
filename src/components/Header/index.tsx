@@ -6,6 +6,9 @@ import SearchBar from './SearchBar';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import withApollo from '../../apollo/with-apollo';
+import ChangeLanguageDropdown from '../ChangeLanguageDropdown';
+import buildLink from '../../utils/link-handler';
+
 function Header(): ReactElement {
   const { data } = useQuery(gql`
     query UserCount {
@@ -37,11 +40,12 @@ function Header(): ReactElement {
         <div className="d-none d-lg-block">
           <SearchBar />
         </div>
-        <div>
+        <div className="d-flex align-items-center">
+          <ChangeLanguageDropdown />
           <Link href="/about">
             <a className="btn btn-link">About</a>
           </Link>
-          <Link href="/members/login">
+          <Link href={buildLink('/members/login')}>
             <a className="btn btn-link">{strings.signIn}</a>
           </Link>
           <Link href="/members/register">

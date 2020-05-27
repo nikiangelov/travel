@@ -294,15 +294,6 @@ function createIsomorphLink(resolverContext?: ResolverContext): any {
       };
     });
 
-    const apolloLinkError = onError(({ graphQLErrors, networkError }: any) => {
-      if (graphQLErrors) {
-        console.log('graphQLErrors', graphQLErrors);
-      }
-      if (networkError) {
-        console.log('networkError', networkError);
-      }
-    });
-
     const tokenRefreshHandler = new TokenRefreshLink({
       accessTokenField: 'accessToken',
       isTokenValidOrUndefined: () => {
@@ -321,11 +312,6 @@ function createIsomorphLink(resolverContext?: ResolverContext): any {
       },
     });
 
-    return ApolloLink.from([
-      tokenRefreshHandler,
-      apolloLinkError,
-      authLink,
-      httpLink,
-    ]);
+    return ApolloLink.from([tokenRefreshHandler, authLink, httpLink]);
   }
 }

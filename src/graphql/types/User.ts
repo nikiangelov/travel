@@ -13,6 +13,7 @@ export default `
         lastName: String!
         email: String!
         password: String!
+        passwordConfirm: String!
     }
     input UserEditInput {
         firstName: String

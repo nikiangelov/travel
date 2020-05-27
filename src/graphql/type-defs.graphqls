@@ -160,12 +160,6 @@ type City {
   description_wiki: String
 }
 
-extend type Query {
-  userCount: Int
-}
-extend type Mutation {
-  setUserCount(count: Int!): Int
-}
 input CityInput {
   name: String!
   description: String
@@ -335,6 +329,12 @@ input PhraseInput {
   bg: String
 }
 
+extend type Query {
+  userCount: Int
+}
+extend type Mutation {
+  setUserCount(count: Int!): Int
+}
 type User {
   _id: String!
   firstName: String!
@@ -349,6 +349,7 @@ input UserInput {
   lastName: String!
   email: String!
   password: String!
+  passwordConfirm: String!
 }
 
 input UserEditInput {

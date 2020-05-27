@@ -9,6 +9,7 @@ import strings from '../constants/strings';
 import PageSection from '../components/Layout/PageSection';
 import PopularDestinationsGrid from '../components/PopularDestinationsGrid';
 import PopularTravelLogsList from '../components/TravelLogs/PopularTravelLogsList';
+import withApollo from '../apollo/with-apollo';
 
 class IndexPage extends React.Component<NextPage> {
   render(): ReactElement {
@@ -130,4 +131,4 @@ class IndexPage extends React.Component<NextPage> {
   }
 }
 
-export default IndexPage;
+export default withApollo(IndexPage);

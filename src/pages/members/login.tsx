@@ -3,18 +3,21 @@ import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import withApollo from '../../apollo/with-apollo';
 import { useLoginUserMutation } from '../../graphql/mutations/user.graphql';
 import { setAccessToken } from '../../utils/auth';
+import useI18n from '../../hooks/use-i18n';
+import { useRouter } from 'next/router';
 
 const LoginPage: React.FunctionComponent = () => {
+  const i18n = useI18n();
+  const router = useRouter();
+
+  const [loginErrors, setLoginErrors] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState('');
   const [userPassword, setUserPassword] = React.useState('');
   const [loginUserMutation] = useLoginUserMutation();
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({
-      userEmail,
-      userPassword,
-    });
+    setLoginErrors(false);
 
     loginUserMutation({
       variables: {
@@ -25,56 +28,50 @@ const LoginPage: React.FunctionComponent = () => {
       .then(({ data }) => {
         if (data && data.loginUser) {
           setAccessToken(data.loginUser);
+          router.push('/');
         }
       })
-      .catch(error => {
-        console.log(error);
+      .catch(({ graphQLErrors }) => {
+        const { validationErrors } = graphQLErrors[0];
+        if (validationErrors) {
+          setLoginErrors(true);
+        }
       });
   };
   return (
     <AnimatedLayout>
-      <h1>Login Page</h1>
-      <p>Enter your details here</p>
-      <hr />
       <div className="row">
-        <div className="col-md-5">
+        <div className="col-md-5 mx-auto">
+          <h2>{i18n.t('pages.login.title')}</h2>
+          <p className="text-muted">{i18n.t('pages.login.description')}</p>
+          {!!loginErrors && (
+            <div className="alert alert-danger" role="alert">
+              {i18n.t('errors.forms.wrong_email_and_password')}
+            </div>
+          )}
           <form onSubmit={handleFormSubmit}>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Email address</label>
+              <label htmlFor="emailInput">{i18n.t('common.email')}</label>
               <input
                 type="email"
                 value={userEmail}
                 onChange={e => setUserEmail(e.target.value)}
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                className={`form-control ${loginErrors && 'is-invalid'}`}
+                id="emailInput"
               />
-              <small id="emailHelp" className="form-text text-muted">
-                We'll never share your email with anyone else.
-              </small>
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Password</label>
+              <label htmlFor="passwordInput">{i18n.t('common.password')}</label>
               <input
                 type="password"
                 value={userPassword}
                 onChange={e => setUserPassword(e.target.value)}
-                className="form-control"
-                id="exampleInputPassword1"
+                className={`form-control ${loginErrors && 'is-invalid'}`}
+                id="passwordInput"
               />
             </div>
-            <div className="form-group form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
-              />
-              <label className="form-check-label" htmlFor="exampleCheck1">
-                Check me out
-              </label>
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Submit
+            <button type="submit" className="btn btn-primary text-white">
+              {i18n.t('pages.login.login-button')}
             </button>
           </form>
         </div>

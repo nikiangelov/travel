@@ -1,5 +1,36 @@
 {
   "intro": {
     "welcome": "Здравей, {{username}}!"
+  },
+  "common": {
+    "email": "Email адрес",
+    "password": "Парола",
+    "passwordConfirm": "Потвърди паролата",
+    "firstName": "Име",
+    "lastName": "Фамилия"
+  },
+  "errors": {
+    "forms": {
+      "empty_first_name": "Моля, попълнете вашето име",
+      "empty_last_name": "Моля, попълнете вашата фамилия",
+      "email_exists": "Вече има регистриран потребител с този email адрес",
+      "email_not_valid": "Email адресът не е валиден",
+      "password_missing": "Не сте въвели парола",
+      "password_not_match": "Паролите не съвпадат",
+      "password_length": "Паролите е прекалено къса",
+      "wrong_email_and_password": "Невалидни email и парола. "
+    }
+  },
+  "pages": {
+    "login": {
+      "title": "Влез в профила си",
+      "description": "Възползвайте се от пълната функционалност на приложението, като влезнете в профила си",
+      "login-button": "Вход в профила"
+    },
+    "register": {
+      "title": "Създай профил",
+      "description": "Възползвайте се от пълната функционалност на приложението, като създадеш безплатен профил",
+      "register-button": "Създай профил"
+    }
   }
 }

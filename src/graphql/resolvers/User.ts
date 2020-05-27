@@ -51,8 +51,8 @@ const Query: QueryResolvers<ResolverContext> = {
   },
 };
 const Mutation: MutationResolvers<ResolverContext> = {
-  registerUser: async (_, { user }): Promise<any> => {
-    const { firstName, lastName, email, password } = user;
+  registerUser: async (_, { user }, { res }): Promise<any> => {
+    const { firstName, lastName, email, password, passwordConfirm } = user;
     let errors = [];
     if (!validator.isEmail(email)) {
       errors.push({
@@ -71,20 +71,33 @@ const Mutation: MutationResolvers<ResolverContext> = {
     if (validator.isEmpty(firstName)) {
       errors.push({
         key: 'firstName',
-        message: 'is_empty',
+        message: 'empty_first_name',
       });
     }
     if (validator.isEmpty(lastName)) {
       errors.push({
         key: 'lastName',
-        message: 'is_empty',
+        message: 'empty_last_name',
       });
     }
-    if (!validator.isLength(password, { min: 6, max: 20 })) {
+    if (!password || !passwordConfirm) {
       errors.push({
         key: 'password',
-        message: 'password_length',
+        message: 'password_missing',
       });
+    } else {
+      if (password !== passwordConfirm) {
+        errors.push({
+          key: 'passwordConfirm',
+          message: 'password_not_match',
+        });
+      }
+      if (!validator.isLength(password, { min: 6, max: 50 })) {
+        errors.push({
+          key: 'password',
+          message: 'password_length',
+        });
+      }
     }
     if (errors.length) {
       throw new ValidationError(errors);
@@ -106,6 +119,17 @@ const Mutation: MutationResolvers<ResolverContext> = {
           `Не можем да регистрираме потребител с email:  ${email}`,
         );
       }
+
+      // Refresh token
+      sendRefreshToken(
+        res,
+        createRefreshToken({
+          _id: savedUser._id,
+          email: savedUser.email,
+        }),
+      );
+
+      // Access token
       loginToken = createAccessToken({
         _id: savedUser._id,
         email: savedUser.email,
@@ -116,15 +140,26 @@ const Mutation: MutationResolvers<ResolverContext> = {
     return loginToken;
   },
   loginUser: async (_, { email, password }, { res }) => {
+    let hasError = false;
     const user = await User.findOne({
       email,
     });
-    if (!user) {
-      throw new Error(`Този потребител не съществува.`);
+    if (user) {
+      const validPassword = await bcrypt.compare(password, user.password);
+      if (!validPassword) {
+        hasError = true;
+      }
+    } else {
+      hasError = true;
     }
-    const validPassword = await bcrypt.compare(password, user.password);
-    if (!validPassword) {
-      throw new Error(`Грешна парола.`);
+
+    if (hasError) {
+      throw new ValidationError([
+        {
+          key: 'email_and_password',
+          message: 'wrong_email_and_password',
+        },
+      ]);
     }
 
     // Refresh token
