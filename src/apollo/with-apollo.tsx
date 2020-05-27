@@ -19,6 +19,7 @@ import {
   isTokenValid,
   fetchNewAccessToken,
 } from '../utils/auth';
+import constants from '../constants';
 
 type TApolloClient = ApolloClient<NormalizedCacheObject>;
 
@@ -182,10 +183,24 @@ export default function withApollo(
       // Extract query data from the Apollo store
       const apolloState = apolloClient.cache.extract();
 
+      // handle i18n
+      let { lang } = ctx.query;
+      if (lang) {
+        lang = Array.isArray(lang) ? lang[0] : lang;
+        if (constants.availableLanguages.indexOf(lang) < 0) {
+          lang = constants.defaultLanguage;
+        }
+      } else {
+        lang = constants.defaultLanguage;
+      }
+      const { default: lngDict = {} } = await import(`../locales/${lang}.json`);
+
       return {
         ...pageProps,
         apolloState,
         serverAccessToken,
+        lng: lang,
+        lngDict,
       };
     };
   }

@@ -1,0 +1,5 @@
+{
+  "intro": {
+    "welcome": "Welcome, {{username}}!"
+  }
+}

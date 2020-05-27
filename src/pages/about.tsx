@@ -7,7 +7,9 @@ import { useUserCountQuery } from '../apollo/state/queries/user.graphql';
 import { useUsersQuery } from '../graphql/queries/user.graphql';
 
 const AboutPage: React.FunctionComponent = () => {
-  const { data: usersData } = useUsersQuery();
+  const { data: usersData } = useUsersQuery({
+    fetchPolicy: 'cache-and-network',
+  });
 
   const { data } = useUserCountQuery();
   const [setUserCount] = useMutation(gql`

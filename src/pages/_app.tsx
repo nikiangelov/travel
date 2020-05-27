@@ -2,6 +2,7 @@ import * as React from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
+import I18n from '../lib/i18n';
 import '../assets/styles/theme.scss';
 import constants from '../constants';
 
@@ -11,9 +12,11 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
       <Head>
         <title>{constants.siteTitle}</title>
       </Head>
-      <AnimatePresence exitBeforeEnter>
-        <Component {...pageProps} key={'app-' + router.route} />
-      </AnimatePresence>
+      <I18n lngDict={pageProps.lngDict} locale={pageProps.lng}>
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} key={'app-' + router.route} />
+        </AnimatePresence>
+      </I18n>
     </>
   );
 }
