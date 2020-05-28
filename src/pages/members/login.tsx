@@ -5,6 +5,7 @@ import { useLoginUserMutation } from '../../graphql/mutations/user.graphql';
 import { setAccessToken } from '../../utils/auth';
 import useI18n from '../../hooks/useI18n';
 import { useRouter } from 'next/router';
+import NProgress from 'nprogress';
 import {
   CurrentUserDocument,
   CurrentUserQuery,
@@ -24,7 +25,7 @@ const LoginPage: React.FunctionComponent = () => {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoginErrors(false);
-
+    NProgress.start();
     loginUserMutation({
       variables: {
         email: `${userEmail}`,
@@ -58,6 +59,9 @@ const LoginPage: React.FunctionComponent = () => {
         if (validationErrors) {
           setLoginErrors(true);
         }
+      })
+      .finally(() => {
+        NProgress.done();
       });
   };
   return (

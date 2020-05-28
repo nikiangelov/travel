@@ -46,6 +46,7 @@ const AsideNavigation: React.FC = () => {
       <style jsx>{`
         .base {
           display: flex;
+          background: white;
           flex-direction: column;
           align-items: center;
           width: ${theme.sizes.asideNavigationWidth}px;

@@ -15,7 +15,7 @@ import useI18n from '../../hooks/useI18n';
 
 function Header(): ReactElement {
   const i18n = useI18n();
-  const { data: currentUserData } = useCurrentUserQuery();
+  const { data: currentUserData, loading } = useCurrentUserQuery();
   const [logoutUserMutation, { client }] = useLogoutUserMutation();
   const { currentUser } = currentUserData || {};
 
@@ -59,32 +59,39 @@ function Header(): ReactElement {
         <div className="d-none d-lg-block">
           <SearchBar />
         </div>
-        <div className="d-flex align-items-center">
-          <Link href="/about">
-            <a className="btn btn-link">About</a>
-          </Link>
-          <Link href={linkBuilder('/members/settings', i18n.activeLocale)}>
-            <a className="btn btn-link">{i18n.t('common.settings')}</a>
-          </Link>
-          {!!currentUser && currentUser._id && (
+        <div className="d-flex align-items-start">
+          {!!loading && <span className="btn btn-light text-primary">...</span>}
+          {!loading && !!currentUser && currentUser._id && (
             <>
-              <div>{currentUser.firstName}</div>
-              <button onClick={handleUserLogout} className="btn btn-link">
-                Logout
+              <Link href={linkBuilder('/profile', i18n.activeLocale)}>
+                <a className="btn btn-light text-primary">
+                  <i className="fas fa-user-circle mr-2" />
+                  {currentUser.firstName}
+                </a>
+              </Link>
+              <Link href={linkBuilder('/members/settings', i18n.activeLocale)}>
+                <a className="btn btn-light ml-2 text-black-50">
+                  <i className="fas fa-cog" />
+                </a>
+              </Link>
+              <button onClick={handleUserLogout} className="btn btn-light ml-2">
+                <i className="fas fa-sign-out-alt text-black-50" />
               </button>
             </>
           )}
-          {!currentUser && (
+          {!loading && !currentUser && (
             <>
               <Link href={linkBuilder('/members/login', i18n.activeLocale)}>
-                <a className="btn btn-link">{i18n.t('common.login-button')}</a>
+                <a className="btn btn-light mr-2">
+                  {i18n.t('common.login-button')}
+                </a>
               </Link>
               <Link href="/members/register">
-                <a className="btn btn-link">{strings.signUp}</a>
+                <a className="btn btn-light mr-2">{strings.signUp}</a>
               </Link>
             </>
           )}
-          <div className="ml-3">({data?.userCount || '-'})</div>
+          {/* <div className="ml-3">({data?.userCount || '-'})</div> */}
         </div>
       </nav>
     </header>

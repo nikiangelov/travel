@@ -3,7 +3,8 @@ import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import { useRouter } from 'next/router';
 import withApollo from '../../apollo/with-apollo';
 import { setAccessToken } from '../../utils/auth';
-import useI18n from '../../hooks/use-i18n';
+import useI18n from '../../hooks/useI18n';
+import NProgress from 'nprogress';
 import { useRegisterUserMutation } from '../../graphql/mutations/user.graphql';
 import {
   CurrentUserQuery,
@@ -66,6 +67,7 @@ const RegisterPage: React.FunctionComponent = () => {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     clearErrors();
+    NProgress.start();
     registerUserMutation({
       variables: {
         user: {
@@ -106,6 +108,9 @@ const RegisterPage: React.FunctionComponent = () => {
           });
           setFormData(newFormData);
         }
+      })
+      .finally(() => {
+        NProgress.done();
       });
   };
   return (
