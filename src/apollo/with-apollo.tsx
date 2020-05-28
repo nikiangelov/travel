@@ -20,6 +20,7 @@ import {
   fetchNewAccessToken,
 } from '../utils/auth';
 import constants from '../constants';
+import { redirectToLogin } from '../services/redirect_service';
 
 type TApolloClient = ApolloClient<NormalizedCacheObject>;
 
@@ -47,7 +48,7 @@ export const createResolverContext: ContextFunction<
   ResolverContext
 > = async ({ req, res }) => {
   // todo needs refactor
-  let headerAuthorization = req.headers.authorization || '';
+  let headerAuthorization = req?.headers.authorization || '';
   let serverAccessToken = '';
   if (typeof window === 'undefined') {
     if (req && req.headers && req.headers.cookie) {
@@ -79,7 +80,7 @@ export const createResolverContext: ContextFunction<
  */
 export default function withApollo(
   PageComponent: NextPage,
-  { ssr = true } = {},
+  { ssr = true, protectedRoute = false } = {},
 ): any {
   const WithApollo = ({
     apolloClient,
@@ -120,6 +121,7 @@ export default function withApollo(
       // "/api/graphql" route creates and pass it to resolver functions.
       let resolverContext: ResolverContext | undefined;
       let serverAccessToken: string | undefined;
+      let clientAccessToken = getAccessToken();
       // Keep the "isServer" check inline, so webpack removes the block
       // for client-side bundle.
       if (typeof window === 'undefined') {
@@ -129,6 +131,20 @@ export default function withApollo(
         });
         if (resolverContext.serverAccessToken) {
           serverAccessToken = resolverContext.serverAccessToken;
+        }
+      }
+
+      // check for protected routes
+      const { redirected } = ctx.query || {};
+      if (protectedRoute && !redirected) {
+        if (typeof window === 'undefined') {
+          if (!serverAccessToken) {
+            redirectToLogin(ctx.res);
+          }
+        } else {
+          if (!clientAccessToken) {
+            redirectToLogin(ctx.res);
+          }
         }
       }
 
@@ -184,7 +200,7 @@ export default function withApollo(
       const apolloState = apolloClient.cache.extract();
 
       // handle i18n
-      let { lang } = ctx.query;
+      let { lang } = ctx.query || {};
       if (lang) {
         lang = Array.isArray(lang) ? lang[0] : lang;
         if (constants.availableLanguages.indexOf(lang) < 0) {

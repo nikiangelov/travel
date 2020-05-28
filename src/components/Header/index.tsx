@@ -7,12 +7,15 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import withApollo from '../../apollo/with-apollo';
 import ChangeLanguageDropdown from '../ChangeLanguageDropdown';
-import buildLink from '../../utils/link-handler';
+import linkBuilder from '../../utils/link-builder';
 import { useCurrentUserQuery } from '../../graphql/queries/user.graphql';
 import { useLogoutUserMutation } from '../../graphql/mutations/user.graphql';
 import { setAccessToken } from '../../utils/auth';
+import useI18n from '../../hooks/use-i18n';
 
-function Header(): ReactElement {
+function Header(props: any): ReactElement {
+  const { lng } = props;
+  const i18n = useI18n();
   const { data: currentUserData } = useCurrentUserQuery();
   const [logoutUserMutation, { client }] = useLogoutUserMutation();
   const { currentUser } = currentUserData || {};
@@ -59,6 +62,9 @@ function Header(): ReactElement {
           <Link href="/about">
             <a className="btn btn-link">About</a>
           </Link>
+          <Link href={linkBuilder('/members/settings', lng)}>
+            <a className="btn btn-link">{i18n.t('common.settings')}</a>
+          </Link>
           {!!currentUser && currentUser._id && (
             <>
               <div>{currentUser.firstName}</div>
@@ -69,8 +75,8 @@ function Header(): ReactElement {
           )}
           {!currentUser && (
             <>
-              <Link href={buildLink('/members/login')}>
-                <a className="btn btn-link">{strings.signIn}</a>
+              <Link href={linkBuilder('/members/login', lng)}>
+                <a className="btn btn-link">{i18n.t('common.login-button')}</a>
               </Link>
               <Link href="/members/register">
                 <a className="btn btn-link">{strings.signUp}</a>

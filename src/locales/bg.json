@@ -3,11 +3,13 @@
     "welcome": "Здравей, {{username}}!"
   },
   "common": {
+    "login-button": "Вход",
     "email": "Email адрес",
     "password": "Парола",
     "passwordConfirm": "Потвърди паролата",
     "firstName": "Име",
-    "lastName": "Фамилия"
+    "lastName": "Фамилия",
+    "settings": "Настройки"
   },
   "errors": {
     "forms": {
