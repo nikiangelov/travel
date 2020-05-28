@@ -3,15 +3,17 @@ import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import withApollo from '../../apollo/with-apollo';
 import { useLoginUserMutation } from '../../graphql/mutations/user.graphql';
 import { setAccessToken } from '../../utils/auth';
-import useI18n from '../../hooks/use-i18n';
+import useI18n from '../../hooks/useI18n';
 import { useRouter } from 'next/router';
 import {
   CurrentUserDocument,
   CurrentUserQuery,
 } from '../../graphql/queries/user.graphql';
+import constants from '../../constants';
 
 const LoginPage: React.FunctionComponent = () => {
   const i18n = useI18n();
+  const { activeLocale } = i18n;
   const router = useRouter();
 
   const [loginErrors, setLoginErrors] = React.useState(false);
@@ -44,7 +46,11 @@ const LoginPage: React.FunctionComponent = () => {
       .then(({ data }) => {
         if (data && data.loginUser && data.loginUser.accessToken) {
           setAccessToken(data.loginUser.accessToken);
-          router.push('/');
+          if (activeLocale && activeLocale !== constants.defaultLanguage) {
+            router.push(`/index?lang=${activeLocale}`);
+          } else {
+            router.push('/');
+          }
         }
       })
       .catch(({ graphQLErrors }) => {

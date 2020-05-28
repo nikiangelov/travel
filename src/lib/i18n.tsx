@@ -9,12 +9,26 @@ export const defaultLanguage = constants.defaultLanguage;
 export const languages = constants.availableLanguages;
 export const contentLanguageMap = constants.contentLanguageMap;
 
-export const I18nContext = createContext();
+type I18nProviderProps = {
+  children: any;
+  locale: string | undefined;
+  lngDict: any;
+};
+export type I18nContextType = {
+  t(key: any): string;
+  activeLocale: string;
+  locale(l: string, dict?: any): void;
+};
+export const I18nContext = createContext<I18nContextType>({
+  t: (_: any[]): any => {},
+  activeLocale: constants.defaultLanguage,
+  locale: (_: string) => {},
+});
 
 // default language
 i18n.locale(defaultLanguage);
 
-export default function I18n({ children, locale, lngDict }) {
+export default function I18n({ children, locale, lngDict }: I18nProviderProps) {
   const [activeDict, setActiveDict] = useState(() => lngDict);
   const activeLocaleRef = useRef(locale || defaultLanguage);
   const [, setTick] = useState(0);
@@ -39,10 +53,17 @@ export default function I18n({ children, locale, lngDict }) {
 
   const i18nWrapper = {
     activeLocale: activeLocaleRef.current,
-    t: (...args) => i18n.t(...args),
-    locale: (l, dict) => {
+    t: (args: any): any => i18n.t(args),
+    locale: async (l: string, dict: any) => {
       i18n.locale(l);
       activeLocaleRef.current = l;
+      if (!dict) {
+        // try to load it
+        const { default: lngDict = {} } = await import(`../locales/${l}.json`);
+        if (lngDict) {
+          dict = lngDict;
+        }
+      }
       if (dict) {
         i18n.set(l, dict);
         setActiveDict(dict);

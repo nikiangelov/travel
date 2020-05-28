@@ -3,6 +3,8 @@
     "welcome": "Здравей, {{username}}!"
   },
   "common": {
+    "select-language": "Избери език",
+    "bulgarian": "Български",
     "login-button": "Вход",
     "email": "Email адрес",
     "password": "Парола",

@@ -244,7 +244,7 @@ footer#mainFooter:before {
   border-color: #fafafa;
 }
 
-.avatar-selector-radio:checked+.avatar-selector-item {
+.avatar-selector-radio:checked + .avatar-selector-item {
   border-color: #2d9cdb;
 }
 
@@ -316,7 +316,7 @@ footer#mainFooter:before {
   min-height: 55px;
 }
 
-.hero-search-dropdown>span>i {
+.hero-search-dropdown > span > i {
   width: 25px;
   text-align: center;
 }
@@ -393,8 +393,8 @@ select.custom-select {
   padding: 45px 15px 12px 15px;
 }
 
-.user-list-card>strong,
-.categories-card>strong {
+.user-list-card > strong,
+.categories-card > strong {
   display: block;
   font-size: 1.25em;
   white-space: nowrap;
@@ -402,8 +402,8 @@ select.custom-select {
   text-overflow: ellipsis;
 }
 
-.user-list-card>small,
-.categories-card>small {
+.user-list-card > small,
+.categories-card > small {
   display: block;
   font-size: 0.875em;
   white-space: nowrap;
@@ -412,8 +412,8 @@ select.custom-select {
   text-overflow: ellipsis;
 }
 
-.user-list-card>i,
-.categories-card>i {
+.user-list-card > i,
+.categories-card > i {
   position: absolute;
   top: 10px;
   right: 15px;
@@ -580,26 +580,26 @@ select.custom-select {
   display: block;
 }
 
-.row.row-list-type>div,
+.row.row-list-type > div,
 .row.row-list-type .col {
   width: auto;
   max-width: none;
   flex: none;
 }
 
-.row.row-list-type>div .movie-card,
+.row.row-list-type > div .movie-card,
 .row.row-list-type .col .movie-card {
   padding-left: 175px;
   margin-bottom: 30px;
   min-height: 210px;
 }
 
-.row.row-list-type>div .movie-card:hover,
+.row.row-list-type > div .movie-card:hover,
 .row.row-list-type .col .movie-card:hover {
   transform: none;
 }
 
-.row.row-list-type>div .movie-card-float-box,
+.row.row-list-type > div .movie-card-float-box,
 .row.row-list-type .col .movie-card-float-box {
   display: flex;
   flex-direction: column;
@@ -613,12 +613,12 @@ select.custom-select {
   right: auto;
 }
 
-.row.row-list-type>div .movie-card:hover .movie-card-float-box,
+.row.row-list-type > div .movie-card:hover .movie-card-float-box,
 .row.row-list-type .col .movie-card:hover .movie-card-float-box {
   transform: none;
 }
 
-.row.row-list-type>div .movie-card-pic,
+.row.row-list-type > div .movie-card-pic,
 .row.row-list-type .col .movie-card-pic {
   position: absolute;
   top: -10px;
@@ -628,40 +628,40 @@ select.custom-select {
   z-index: 1;
 }
 
-.row.row-list-type>div .movie-card-pic:after,
+.row.row-list-type > div .movie-card-pic:after,
 .row.row-list-type .col .movie-card-pic:after {
   display: none;
 }
 
-.row.row-list-type>div .movie-card .description,
+.row.row-list-type > div .movie-card .description,
 .row.row-list-type .col .movie-card .description {
   display: block;
   order: 1;
 }
 
-.row.row-list-type>div .movie-card .genres,
+.row.row-list-type > div .movie-card .genres,
 .row.row-list-type .col .movie-card .genres {
   order: 2;
   color: #d39e00 !important;
 }
 
-.row.row-list-type>div .movie-card .hot-meter-wrap,
+.row.row-list-type > div .movie-card .hot-meter-wrap,
 .row.row-list-type .col .movie-card .hot-meter-wrap {
   max-width: 200px;
   margin-bottom: 0.875em;
 }
 
-.row.row-list-type>div .movie-card .release_date,
+.row.row-list-type > div .movie-card .release_date,
 .row.row-list-type .col .movie-card .release_date {
   order: 3;
 }
 
-.row.row-list-type>div .movie-card .movie-card-controls-wide,
+.row.row-list-type > div .movie-card .movie-card-controls-wide,
 .row.row-list-type .col .movie-card .movie-card-controls-wide {
   display: flex !important;
 }
 
-.row.row-list-type>div .movie-card .movie-card-controls,
+.row.row-list-type > div .movie-card .movie-card-controls,
 .row.row-list-type .col .movie-card .movie-card-controls {
   display: none !important;
   order: 1;
@@ -757,65 +757,65 @@ select.custom-select {
   border-right: 0;
 }
 
-.hot-slider input[type='hidden'][value='1']~a[data-value='1'],
-.hot-slider input[type='hidden'][value='2']~a[data-value='1'],
-.hot-slider input[type='hidden'][value='2']~a[data-value='2'],
-.hot-slider input[type='hidden'][value='3']~a[data-value='1'],
-.hot-slider input[type='hidden'][value='3']~a[data-value='2'],
-.hot-slider input[type='hidden'][value='3']~a[data-value='3'],
-.hot-slider input[type='hidden'][value='4']~a[data-value='1'],
-.hot-slider input[type='hidden'][value='4']~a[data-value='2'],
-.hot-slider input[type='hidden'][value='4']~a[data-value='3'],
-.hot-slider input[type='hidden'][value='4']~a[data-value='4'],
-.hot-slider input[type='hidden'][value='5']~a[data-value='1'],
-.hot-slider input[type='hidden'][value='5']~a[data-value='2'],
-.hot-slider input[type='hidden'][value='5']~a[data-value='3'],
-.hot-slider input[type='hidden'][value='5']~a[data-value='4'],
-.hot-slider input[type='hidden'][value='5']~a[data-value='5'],
-.hot-slider input[type='hidden'][value='6']~a[data-value='1'],
-.hot-slider input[type='hidden'][value='6']~a[data-value='2'],
-.hot-slider input[type='hidden'][value='6']~a[data-value='3'],
-.hot-slider input[type='hidden'][value='6']~a[data-value='4'],
-.hot-slider input[type='hidden'][value='6']~a[data-value='5'],
-.hot-slider input[type='hidden'][value='6']~a[data-value='6'],
-.hot-slider input[type='hidden'][value='7']~a[data-value='1'],
-.hot-slider input[type='hidden'][value='7']~a[data-value='2'],
-.hot-slider input[type='hidden'][value='7']~a[data-value='3'],
-.hot-slider input[type='hidden'][value='7']~a[data-value='4'],
-.hot-slider input[type='hidden'][value='7']~a[data-value='5'],
-.hot-slider input[type='hidden'][value='7']~a[data-value='6'],
-.hot-slider input[type='hidden'][value='7']~a[data-value='7'],
-.hot-slider input[type='hidden'][value='8']~a[data-value='1'],
-.hot-slider input[type='hidden'][value='8']~a[data-value='2'],
-.hot-slider input[type='hidden'][value='8']~a[data-value='3'],
-.hot-slider input[type='hidden'][value='8']~a[data-value='4'],
-.hot-slider input[type='hidden'][value='8']~a[data-value='5'],
-.hot-slider input[type='hidden'][value='8']~a[data-value='6'],
-.hot-slider input[type='hidden'][value='8']~a[data-value='7'],
-.hot-slider input[type='hidden'][value='8']~a[data-value='8'],
-.hot-slider input[type='hidden'][value='9']~a[data-value='1'],
-.hot-slider input[type='hidden'][value='9']~a[data-value='2'],
-.hot-slider input[type='hidden'][value='9']~a[data-value='3'],
-.hot-slider input[type='hidden'][value='9']~a[data-value='4'],
-.hot-slider input[type='hidden'][value='9']~a[data-value='5'],
-.hot-slider input[type='hidden'][value='9']~a[data-value='6'],
-.hot-slider input[type='hidden'][value='9']~a[data-value='7'],
-.hot-slider input[type='hidden'][value='9']~a[data-value='8'],
-.hot-slider input[type='hidden'][value='9']~a[data-value='9'],
-.hot-slider input[type='hidden'][value='10']~a {
+.hot-slider input[type='hidden'][value='1'] ~ a[data-value='1'],
+.hot-slider input[type='hidden'][value='2'] ~ a[data-value='1'],
+.hot-slider input[type='hidden'][value='2'] ~ a[data-value='2'],
+.hot-slider input[type='hidden'][value='3'] ~ a[data-value='1'],
+.hot-slider input[type='hidden'][value='3'] ~ a[data-value='2'],
+.hot-slider input[type='hidden'][value='3'] ~ a[data-value='3'],
+.hot-slider input[type='hidden'][value='4'] ~ a[data-value='1'],
+.hot-slider input[type='hidden'][value='4'] ~ a[data-value='2'],
+.hot-slider input[type='hidden'][value='4'] ~ a[data-value='3'],
+.hot-slider input[type='hidden'][value='4'] ~ a[data-value='4'],
+.hot-slider input[type='hidden'][value='5'] ~ a[data-value='1'],
+.hot-slider input[type='hidden'][value='5'] ~ a[data-value='2'],
+.hot-slider input[type='hidden'][value='5'] ~ a[data-value='3'],
+.hot-slider input[type='hidden'][value='5'] ~ a[data-value='4'],
+.hot-slider input[type='hidden'][value='5'] ~ a[data-value='5'],
+.hot-slider input[type='hidden'][value='6'] ~ a[data-value='1'],
+.hot-slider input[type='hidden'][value='6'] ~ a[data-value='2'],
+.hot-slider input[type='hidden'][value='6'] ~ a[data-value='3'],
+.hot-slider input[type='hidden'][value='6'] ~ a[data-value='4'],
+.hot-slider input[type='hidden'][value='6'] ~ a[data-value='5'],
+.hot-slider input[type='hidden'][value='6'] ~ a[data-value='6'],
+.hot-slider input[type='hidden'][value='7'] ~ a[data-value='1'],
+.hot-slider input[type='hidden'][value='7'] ~ a[data-value='2'],
+.hot-slider input[type='hidden'][value='7'] ~ a[data-value='3'],
+.hot-slider input[type='hidden'][value='7'] ~ a[data-value='4'],
+.hot-slider input[type='hidden'][value='7'] ~ a[data-value='5'],
+.hot-slider input[type='hidden'][value='7'] ~ a[data-value='6'],
+.hot-slider input[type='hidden'][value='7'] ~ a[data-value='7'],
+.hot-slider input[type='hidden'][value='8'] ~ a[data-value='1'],
+.hot-slider input[type='hidden'][value='8'] ~ a[data-value='2'],
+.hot-slider input[type='hidden'][value='8'] ~ a[data-value='3'],
+.hot-slider input[type='hidden'][value='8'] ~ a[data-value='4'],
+.hot-slider input[type='hidden'][value='8'] ~ a[data-value='5'],
+.hot-slider input[type='hidden'][value='8'] ~ a[data-value='6'],
+.hot-slider input[type='hidden'][value='8'] ~ a[data-value='7'],
+.hot-slider input[type='hidden'][value='8'] ~ a[data-value='8'],
+.hot-slider input[type='hidden'][value='9'] ~ a[data-value='1'],
+.hot-slider input[type='hidden'][value='9'] ~ a[data-value='2'],
+.hot-slider input[type='hidden'][value='9'] ~ a[data-value='3'],
+.hot-slider input[type='hidden'][value='9'] ~ a[data-value='4'],
+.hot-slider input[type='hidden'][value='9'] ~ a[data-value='5'],
+.hot-slider input[type='hidden'][value='9'] ~ a[data-value='6'],
+.hot-slider input[type='hidden'][value='9'] ~ a[data-value='7'],
+.hot-slider input[type='hidden'][value='9'] ~ a[data-value='8'],
+.hot-slider input[type='hidden'][value='9'] ~ a[data-value='9'],
+.hot-slider input[type='hidden'][value='10'] ~ a {
   background: rgba(0, 0, 0, 0);
   color: #444444;
 }
 
-.hot-slider input[type='hidden'][value='1']~a,
-.hot-slider input[type='hidden'][value='2']~a,
-.hot-slider input[type='hidden'][value='3']~a,
-.hot-slider input[type='hidden'][value='4']~a,
-.hot-slider input[type='hidden'][value='5']~a,
-.hot-slider input[type='hidden'][value='6']~a,
-.hot-slider input[type='hidden'][value='7']~a,
-.hot-slider input[type='hidden'][value='8']~a,
-.hot-slider input[type='hidden'][value='9']~a {
+.hot-slider input[type='hidden'][value='1'] ~ a,
+.hot-slider input[type='hidden'][value='2'] ~ a,
+.hot-slider input[type='hidden'][value='3'] ~ a,
+.hot-slider input[type='hidden'][value='4'] ~ a,
+.hot-slider input[type='hidden'][value='5'] ~ a,
+.hot-slider input[type='hidden'][value='6'] ~ a,
+.hot-slider input[type='hidden'][value='7'] ~ a,
+.hot-slider input[type='hidden'][value='8'] ~ a,
+.hot-slider input[type='hidden'][value='9'] ~ a {
   background: #eee;
   color: #a1a1a1;
 }
@@ -825,7 +825,7 @@ select.custom-select {
   color: #444444 !important;
 }
 
-.hot-slider a:hover~a {
+.hot-slider a:hover ~ a {
   background: #eee !important;
   color: #a1a1a1 !important;
 }
@@ -857,7 +857,6 @@ select.custom-select {
   box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
-
 
 // Travellog steps
 .travellog_plan_step {
@@ -905,8 +904,8 @@ select.custom-select {
   background: white;
   border: 2px solid #333333;
   z-index: 1;
-  transition: all .2s ease-out;
-  transition-delay: .2s;
+  transition: all 0.2s ease-out;
+  transition-delay: 0.2s;
 }
 
 .travellog_plan_step:last-child .travellog_plan_step_el {
@@ -917,6 +916,29 @@ select.custom-select {
 .travellog_plan_step:last-child .travellog_plan_step_el em {
   top: auto;
   bottom: 0;
+}
+
+/* Country flags just for test */
+/* TODO: remove */
+.flag-icon {
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+
+  position: relative;
+  display: inline-block;
+  width: (4 / 3) * 1em;
+  line-height: 1em;
+  &:before {
+    content: '\00a0';
+  }
+  &.flag-icon-bg {
+    background-image: url('../icons/flags/bg.svg');
+  }
+  &.flag-icon-us {
+    background-image: url('../icons/flags/us.svg');
+  }
 }
 
 /* Media Queries */

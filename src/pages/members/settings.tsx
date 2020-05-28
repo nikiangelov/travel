@@ -3,19 +3,23 @@ import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import withApollo from '../../apollo/with-apollo';
 import linkBuilder from '../../utils/link-builder';
 import { useRouter } from 'next/router';
+import { I18nContext } from '../../lib/i18n';
 // import { privateRoute } from '../../hocs/privateRoute';
 
-const SettingsPage: React.FunctionComponent = (props: any) => {
-  const { lng } = props;
+const SettingsPage: React.FunctionComponent = () => {
+  const { activeLocale, locale: setLocale } = React.useContext(I18nContext);
   const router = useRouter();
 
   return (
     <AnimatedLayout>
       <h2>Hello somebody</h2>
-      <h3>url: {linkBuilder('/members/login', lng)}</h3>
-      {/* <p>{getUrl('/members/settings')}</p> */}
+      <h3>
+        url: {linkBuilder('/members/profile?lang=de&user=2', activeLocale)}
+      </h3>
+      <h4>lang: {activeLocale}</h4>
       <button
         onClick={() => {
+          setLocale('bg');
           router.replace('/');
         }}
         className="btn btn-success mr-3"
@@ -24,7 +28,8 @@ const SettingsPage: React.FunctionComponent = (props: any) => {
       </button>
       <button
         onClick={() => {
-          window.location.replace('/index?lang=en');
+          setLocale('en');
+          router.replace('/index?lang=en');
         }}
         className="btn btn-success mr-3"
       >

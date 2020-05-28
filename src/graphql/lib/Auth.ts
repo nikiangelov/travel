@@ -34,6 +34,7 @@ export const createAccessToken = (user: AuthenticatedUserType) => {
     },
     JWT_ACCESS_TOKEN_SECRET!,
     {
+      // TODO: change it to 15m
       expiresIn: '15s',
     },
   );

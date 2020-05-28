@@ -11,10 +11,9 @@ import linkBuilder from '../../utils/link-builder';
 import { useCurrentUserQuery } from '../../graphql/queries/user.graphql';
 import { useLogoutUserMutation } from '../../graphql/mutations/user.graphql';
 import { setAccessToken } from '../../utils/auth';
-import useI18n from '../../hooks/use-i18n';
+import useI18n from '../../hooks/useI18n';
 
-function Header(props: any): ReactElement {
-  const { lng } = props;
+function Header(): ReactElement {
   const i18n = useI18n();
   const { data: currentUserData } = useCurrentUserQuery();
   const [logoutUserMutation, { client }] = useLogoutUserMutation();
@@ -53,16 +52,18 @@ function Header(props: any): ReactElement {
               <img src={require('../../assets/images/logo.svg')} />
             </a>
           </Link>
+          <div className="mt-2 ml-3">
+            <ChangeLanguageDropdown />
+          </div>
         </div>
         <div className="d-none d-lg-block">
           <SearchBar />
         </div>
         <div className="d-flex align-items-center">
-          <ChangeLanguageDropdown />
           <Link href="/about">
             <a className="btn btn-link">About</a>
           </Link>
-          <Link href={linkBuilder('/members/settings', lng)}>
+          <Link href={linkBuilder('/members/settings', i18n.activeLocale)}>
             <a className="btn btn-link">{i18n.t('common.settings')}</a>
           </Link>
           {!!currentUser && currentUser._id && (
@@ -75,7 +76,7 @@ function Header(props: any): ReactElement {
           )}
           {!currentUser && (
             <>
-              <Link href={linkBuilder('/members/login', lng)}>
+              <Link href={linkBuilder('/members/login', i18n.activeLocale)}>
                 <a className="btn btn-link">{i18n.t('common.login-button')}</a>
               </Link>
               <Link href="/members/register">
