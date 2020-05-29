@@ -1,42 +1,42 @@
 export interface PopularDestination {
-  cityName: string;
-  countryName: string;
+  cityNameKey?: string;
+  countryNameKey?: string;
   href: string;
   asPath: string;
   imageUrl: string;
 }
 export const popularDestinations: PopularDestination[] = [
   {
-    cityName: 'Рим',
-    countryName: 'Италия',
+    cityNameKey: 'rome',
+    countryNameKey: 'italy',
     href: '/abroad/city/[id]',
     asPath: '/abroad/city/rome',
     imageUrl: 'images/cities/rome/christopher-czermak-7ybKmhDTcz0-unsplash.jpg',
   },
   {
-    cityName: 'Венеция',
-    countryName: 'Италия',
+    cityNameKey: 'venice',
+    countryNameKey: 'italy',
     href: '/abroad/city/[id]',
     asPath: '/abroad/city/venice',
     imageUrl: 'images/cities/venice/backdrop_mine_thumb.jpg',
   },
   {
-    cityName: 'Париж',
-    countryName: 'Франция',
+    cityNameKey: 'paris',
+    countryNameKey: 'france',
     href: '/abroad/city/[id]',
     asPath: '/abroad/city/paris',
     imageUrl: 'images/cities/paris/42-north-fhO8zmW5Mpk-unsplash.jpg',
   },
   {
-    cityName: 'Барселона',
-    countryName: 'Испания',
+    cityNameKey: 'barcelona',
+    countryNameKey: 'spain',
     href: '/abroad/city/[id]',
     asPath: '/abroad/city/barcelona',
     imageUrl: 'images/cities/barcelona/david-russeler-E0xK8SrIzYA-unsplash.jpg',
   },
   {
-    cityName: 'Лондон',
-    countryName: 'Великобритания',
+    cityNameKey: 'london',
+    countryNameKey: 'gb',
     href: '/abroad/city/[id]',
     asPath: '/abroad/city/london',
     imageUrl:

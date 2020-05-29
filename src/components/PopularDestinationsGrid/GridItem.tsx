@@ -5,6 +5,8 @@ import { PopularDestination } from '../../constants/dashboardData';
 
 interface Props extends PopularDestination {
   index: number;
+  cityName: string;
+  countryName: string;
 }
 
 export default function GridItem({

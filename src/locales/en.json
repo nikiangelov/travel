@@ -52,5 +52,18 @@
       "travel-photos": "Travel **Photos**",
       "my-travel-logs": "My **Travel logs**"
     }
+  },
+  "countries": {
+    "italy": "Italy",
+    "france": "France",
+    "spain": "Spain",
+    "gb": "United Kingdom"
+  },
+  "cities": {
+    "rome": "Rome",
+    "venice": "Venice",
+    "paris": "Paris",
+    "barcelona": "Barcelona",
+    "london": "London"
   }
 }

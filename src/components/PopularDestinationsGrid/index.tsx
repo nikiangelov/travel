@@ -1,8 +1,10 @@
 import React from 'react';
 import GridItem from './GridItem';
 import { popularDestinations } from '../../constants/dashboardData';
+import useI18n from '../../hooks/useI18n';
 
 const DestinationsGrid: React.FC = () => {
+  const i18n = useI18n();
   return (
     <>
       <div className="base">
@@ -12,8 +14,8 @@ const DestinationsGrid: React.FC = () => {
             index={i}
             href={destination.href}
             asPath={destination.asPath}
-            cityName={destination.cityName}
-            countryName={destination.countryName}
+            cityName={i18n.t(`cities.${destination.cityNameKey}`)}
+            countryName={i18n.t(`countries.${destination.countryNameKey}`)}
             imageUrl={destination.imageUrl}
           />
         ))}
