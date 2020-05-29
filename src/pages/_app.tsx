@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { AppProps } from 'next/app';
 import I18n from '../lib/i18n';
 import '../assets/styles/theme.scss';
+import 'react-quill/dist/quill.bubble.css';
 import '../assets/styles/nprogress.scss';
 import constants from '../constants';
 import '../utils/app-progress-bar';

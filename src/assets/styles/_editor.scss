@@ -1,0 +1,84 @@
+.assistant-slider-card-wrap {
+  position: relative;
+  height: 50vh;
+  .assistant-slider-card {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-out;
+    transform: scale(0);
+    z-index: 500;
+
+    .card {
+      flex: 1;
+      border-radius: 16px;
+      text-align: center;
+      justify-content: center;
+      //   align-items: center;
+
+      .card-illustration {
+        max-width: 25%;
+        margin-top: -10%;
+        margin: -12% auto 0;
+      }
+    }
+
+    .contentBlock {
+      display: none;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+    }
+
+    &.current {
+      visibility: visible;
+      transform: translateX(0) translateY(0);
+      opacity: 1;
+      z-index: 600;
+    }
+    &.prev {
+      visibility: visible;
+      transform: scale(0.9) translateX(-115%) translateY(0);
+      opacity: 0.3;
+      z-index: 530;
+
+      .contentBlock {
+        display: block;
+      }
+    }
+    &.next {
+      visibility: visible;
+      transform: scale(0.9) translateX(115%) translateY(0);
+      opacity: 0.3;
+      z-index: 550;
+      .contentBlock {
+        display: block;
+      }
+    }
+  }
+}
+.assistant-slider-pager {
+  display: flex;
+  justify-content: center;
+  em {
+    flex: 1;
+    height: 4px;
+    background: #eee;
+    margin: 0 5px;
+    max-width: 30px;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+    &.active {
+      background: $primary;
+    }
+  }
+}

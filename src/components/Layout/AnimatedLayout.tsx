@@ -21,7 +21,7 @@ interface Props {
 }
 
 const Layout: React.FunctionComponent = ({ children }: Props) => (
-  <div className="asideNavWrap d-flex flex-row">
+  <div className="asideNavWrap overflow-hidden d-flex flex-row">
     <AsideNavigation />
     <div className="flex-1 mx-lg-3">
       <div className=" main-page-wrap d-flex flex-column">
