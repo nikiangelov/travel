@@ -25,6 +25,7 @@ function CityDetails(): ReactElement {
     },
   });
   const { city, attractions } = data || {};
+  // TODO: maybe refactor this
   const { data: countryData } = useCountryQuery({
     variables: {
       code: city?.country_code,

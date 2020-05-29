@@ -10,10 +10,13 @@ export const CoordinatesSchema = new Schema({
   },
 });
 export const PopulationSchema = new Schema({
-  lat: {
+  year: {
     type: Number,
   },
-  lng: {
+  total: {
+    type: Number,
+  },
+  density: {
     type: Number,
   },
 });
