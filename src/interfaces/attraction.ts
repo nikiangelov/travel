@@ -21,4 +21,5 @@ export default interface Attraction {
   work_time_description?: string | boolean;
   is_free?: boolean;
   tickets: TicketsType;
+  firebase_storage_path?: string;
 }

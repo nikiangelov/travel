@@ -20,7 +20,7 @@ function AttractionDetail(): ReactElement {
   });
   const { attraction } = data || {};
   const bucketPath = attraction
-    ? `site/attractions/600/${attraction.city_url_slug}/${attraction._id}`
+    ? `site/attractions/600/${attraction.city_url_slug}/${attraction.firebase_storage_path}`
     : false;
   useEffect(() => {
     if (bucketPath) {

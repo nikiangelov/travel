@@ -12,14 +12,11 @@ function AttractionsListItem(props: Props): ReactElement {
   const [images, setImages] = useState();
   const voteCount = 0;
   const voteAverage = 0;
-  const bucketPath = `site/attractions/600/${data.city_url_slug}/${data._id}`;
+  const bucketPath = `site/attractions/600/${data.city_url_slug}/${data.firebase_storage_path}`;
   useEffect(() => {
-    // TODO: fix firebase
-    /*
     firebaseGetImages(bucketPath).then(imgs => {
       setImages(imgs);
     });
-    */
   }, [data._id]);
 
   return (

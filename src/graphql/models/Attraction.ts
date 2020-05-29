@@ -43,6 +43,9 @@ const AttractionSchema = new Schema({
   tickets: {
     type: TicketsTypeSchema,
   },
+  firebase_storage_path: {
+    type: String,
+  },
 });
 
 const Attraction =

@@ -35,6 +35,19 @@ const Mutation: MutationResolvers<ResolverContext> = {
         });
     });
   },
+  // TODO: to add auth
+  editAttraction: async (_, { _id, attraction }, _context): Promise<any> => {
+    let newSet = { ...attraction };
+    const response = await Attraction.findByIdAndUpdate(
+      { _id },
+      { $set: newSet },
+      { new: true },
+    ).exec();
+    if (!response) {
+      throw new Error(`Проблем при редакцията`);
+    }
+    return response;
+  },
 };
 
 export default {

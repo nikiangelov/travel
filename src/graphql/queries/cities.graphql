@@ -38,5 +38,6 @@ query City($id: ID, $url_slug: String, $attractions_limit: Int) {
     wikipedia_article_url
     phone
     work_time_description
+    firebase_storage_path
   }
 }

@@ -14,6 +14,7 @@ export default `
         work_time_description: String
         is_free: Boolean
         tickets: TicketsType
+        firebase_storage_path: String
     }
     type TicketsType {
         adult: Float
@@ -26,7 +27,7 @@ export default `
         currency: String
     }
     input AttractionInput {
-        name: String!
+        name: String
         description: String
         description_short: String
         is_translated: Boolean
@@ -34,11 +35,12 @@ export default `
         city_url_slug: String
         country_code: String
         wikipedia_article_url: String
-        coordinates: CoordinatesInput!
+        coordinates: CoordinatesInput
         phone: String
         work_time_description: String
         is_free: Boolean
         tickets: TicketsTypeInput
+        firebase_storage_path: String
     }
     type Query {
         attractions(_id: ID, city_url_slug: String, limit: Int): [Attraction]
@@ -47,5 +49,6 @@ export default `
     type Mutation {
         addAttraction(attraction: AttractionInput!): Attraction
         addAttractions(attractions: [AttractionInput] ): [Attraction]
+        editAttraction(_id: String!, attraction: AttractionInput!): Attraction
     }
 `;

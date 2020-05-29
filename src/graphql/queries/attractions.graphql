@@ -12,6 +12,7 @@ query Attractions($id: ID, $url_slug: String) {
     wikipedia_article_url
     phone
     work_time_description
+    firebase_storage_path
   }
 }
 query attraction($id: ID) {
@@ -28,6 +29,7 @@ query attraction($id: ID) {
     wikipedia_article_url
     phone
     work_time_description
+    firebase_storage_path
     tickets {
       adult
       reduced
