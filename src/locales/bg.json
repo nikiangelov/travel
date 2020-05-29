@@ -2,16 +2,24 @@
   "intro": {
     "welcome": "Здравей, {{username}}!"
   },
+  "navigation": {
+    "index": "Начало",
+    "bulgaria": "България",
+    "abroad": "Чужбина",
+    "profile": "Профил"
+  },
   "common": {
     "select-language": "Избери език",
     "bulgarian": "Български",
     "login-button": "Вход",
+    "register-button": "Регистрация",
     "email": "Email адрес",
     "password": "Парола",
     "passwordConfirm": "Потвърди паролата",
     "firstName": "Име",
     "lastName": "Фамилия",
-    "settings": "Настройки"
+    "settings": "Настройки",
+    "my-visited-places": "Моите **посетени** места"
   },
   "errors": {
     "forms": {
@@ -26,6 +34,10 @@
     }
   },
   "pages": {
+    "index": {
+      "popular-destinations-abroad": "Популярни **Дестинации** в чужбина",
+      "travel-ideas-bulgaria-abroad": "Идеи за пътешествия в **България** и **чужбина**"
+    },
     "login": {
       "title": "Влез в профила си",
       "description": "Възползвайте се от пълната функционалност на приложението, като влезнете в профила си",
@@ -35,6 +47,10 @@
       "title": "Създай профил",
       "description": "Възползвайте се от пълната функционалност на приложението, като създадеш безплатен профил",
       "register-button": "Създай профил"
+    },
+    "profile": {
+      "travel-photos": "**Снимки** от пътешествия",
+      "my-travel-logs": "Моите **пътеписи**"
     }
   }
 }

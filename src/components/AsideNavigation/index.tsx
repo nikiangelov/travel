@@ -3,10 +3,11 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import theme from '../../constants/theme';
 import routes from '../../constants/routes';
-import strings from '../../constants/strings';
 import NavigationItem from './NavigationItem';
+import useI18n from '../../hooks/useI18n';
 
 const AsideNavigation: React.FC = () => {
+  const i18n = useI18n();
   const router = useRouter();
   const topRoute = '/' + router.pathname.split('/')[1];
   return (
@@ -27,7 +28,7 @@ const AsideNavigation: React.FC = () => {
             <NavigationItem
               key={route.index}
               icon={route.icon}
-              title={route.title}
+              title={i18n.t(route.titleKey)}
               path={route.path}
               isSelected={topRoute === route.path}
             />
@@ -36,7 +37,7 @@ const AsideNavigation: React.FC = () => {
         <div className="mt-auto w-100">
           <NavigationItem
             icon="cog"
-            title={strings.profile}
+            title={i18n.t('navigation.profile')}
             path="/profile"
             noMargin={true}
             isSelected={topRoute === '/profile'}

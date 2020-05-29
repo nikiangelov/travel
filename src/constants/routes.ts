@@ -1,27 +1,26 @@
-import strings from './strings';
 type Route = {
   index: string;
   path: string;
-  title: string;
+  titleKey: string;
   icon: string;
 };
 const routes: Route[] = [
   {
     index: 'home',
     path: '/',
-    title: strings.index,
+    titleKey: 'navigation.index',
     icon: 'aside-nav-home',
   },
   {
     index: 'bg',
     path: '/bulgaria',
-    title: strings.bg,
+    titleKey: 'navigation.bulgaria',
     icon: 'aside-nav-bg',
   },
   {
     index: 'abroad',
     path: '/abroad',
-    title: strings.abroad,
+    titleKey: 'navigation.abroad',
     icon: 'aside-nav-abroad',
   },
 ];

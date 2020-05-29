@@ -4,18 +4,17 @@ import dynamic from 'next/dynamic';
 import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import PageSection from '../../components/Layout/PageSection';
 import UserPhotosGrid from '../../components/Profile/UserPhotosGrid';
-import strings from '../../constants/strings';
 import TravelLogHorizontalList from '../../components/TravelLogs/TravelLogHorizontalList';
+import useI18n from '../../hooks/useI18n';
+import withApollo from '../../apollo/with-apollo';
 
 const VisitedPlacesMap = dynamic(
   () => import('../../components/Maps/VisitedPlacesMap'),
   { loading: () => <div className="loading-map-placeholder" />, ssr: false },
 );
-interface Props {
-  key: string;
-}
 
-function index({}: Props): ReactElement {
+const ProfilePage: React.FunctionComponent = () => {
+  const i18n = useI18n();
   const visitedPlacesSectionRef = React.createRef<HTMLDivElement>();
   const photosSectionRef = React.createRef<HTMLDivElement>();
   const travellogsSectionRef = React.createRef<HTMLDivElement>();
@@ -147,7 +146,7 @@ function index({}: Props): ReactElement {
               </div>
               <div ref={photosSectionRef}>
                 <PageSection
-                  title={strings.travelPhotos}
+                  title={i18n.t('pages.profile.travel-photos')}
                   titleRightComponent={(): ReactElement => (
                     <button className="btn btn-sm btn-light">
                       Разгледай всички
@@ -158,7 +157,7 @@ function index({}: Props): ReactElement {
                 </PageSection>
               </div>
               <div ref={travellogsSectionRef}>
-                <PageSection title={strings.myTravellogs}>
+                <PageSection title={i18n.t('pages.profile.my-travel-logs')}>
                   <TravelLogHorizontalList />
                 </PageSection>
               </div>
@@ -168,6 +167,6 @@ function index({}: Props): ReactElement {
       </main>
     </AnimatedLayout>
   );
-}
+};
 
-export default index;
+export default withApollo(ProfilePage);

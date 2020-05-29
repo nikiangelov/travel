@@ -26,7 +26,7 @@ const ChangeLanguageDropdown = () => {
           <span className="flag-icon flag-icon-us" />
         )}
       </DropdownToggle>
-      <DropdownMenu>
+      <DropdownMenu style={{ zIndex: 1030 }}>
         <DropdownItem header>{i18n.t('common.select-language')}</DropdownItem>
         <DropdownItem
           onClick={() => {

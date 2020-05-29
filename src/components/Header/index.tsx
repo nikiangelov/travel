@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import strings from '../../constants/strings';
 import SearchBar from './SearchBar';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -87,7 +86,9 @@ function Header(): ReactElement {
                 </a>
               </Link>
               <Link href="/members/register">
-                <a className="btn btn-light mr-2">{strings.signUp}</a>
+                <a className="btn btn-light mr-2">
+                  {i18n.t('common.register-button')}
+                </a>
               </Link>
             </>
           )}

@@ -9,11 +9,12 @@ import {
 import mapboxgl from 'mapbox-gl';
 import theme from '../../../constants/theme';
 import PageSection from '../../Layout/PageSection';
-import strings from '../../../constants/strings';
+import useI18n from '../../../hooks/useI18n';
 mapboxgl.accessToken = process.env.MAP_BOX_API_KEY || '';
 
 // interface Props {}
-function index({}): ReactElement {
+const VisitedPlacesMap: React.FunctionComponent = () => {
+  const i18n = useI18n();
   let map: any;
   let mapRef: string | HTMLDivElement = '';
 
@@ -175,7 +176,7 @@ function index({}): ReactElement {
   });
   return (
     <PageSection
-      title={strings.myVisitedPlaces}
+      title={i18n.t('common.my-visited-places')}
       titleRightComponent={(): ReactElement => (
         <SwitcherButtons onChange={jumpToBounds} />
       )}
@@ -194,7 +195,7 @@ function index({}): ReactElement {
       `}</style>
     </PageSection>
   );
-}
+};
 
 type SwitcherButtonsProps = {
   onChange: Function;
@@ -243,4 +244,4 @@ function SwitcherButtons({ onChange }: SwitcherButtonsProps): ReactElement {
   );
 }
 
-export default index;
+export default VisitedPlacesMap;
