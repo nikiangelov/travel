@@ -12,16 +12,22 @@ function AttractionsListItem(props: Props): ReactElement {
   const [images, setImages] = useState();
   const voteCount = 0;
   const voteAverage = 0;
-  const bucketPath = `site/attractions/600/${data.city_url_slug}/${data.id}`;
+  const bucketPath = `site/attractions/600/${data.city_url_slug}/${data._id}`;
   useEffect(() => {
+    // TODO: fix firebase
+    /*
     firebaseGetImages(bucketPath).then(imgs => {
       setImages(imgs);
     });
-  }, [data.id]);
+    */
+  }, [data._id]);
 
   return (
     <div className="movie-card white-card-elevated">
-      <Link href="/abroad/attraction/[id]" as={`/abroad/attraction/${data.id}`}>
+      <Link
+        href="/abroad/attraction/[id]"
+        as={`/abroad/attraction/${data._id}`}
+      >
         <a
           className="movie-card-pic bg-cover-img"
           style={{

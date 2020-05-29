@@ -1,8 +1,9 @@
 export default `
     type Attraction {
-        id: ID!
+        _id: ID!
         name: String
         description: String
+        is_translated: Boolean
         description_short: String
         city_code: String
         city_url_slug: String
@@ -19,11 +20,32 @@ export default `
         reduced: Float
         currency: String
     }
+    input TicketsTypeInput {
+        adult: Float
+        reduced: Float
+        currency: String
+    }
+    input AttractionInput {
+        name: String!
+        description: String
+        description_short: String
+        is_translated: Boolean
+        city_code: String
+        city_url_slug: String
+        country_code: String
+        wikipedia_article_url: String
+        coordinates: CoordinatesInput!
+        phone: String
+        work_time_description: String
+        is_free: Boolean
+        tickets: TicketsTypeInput
+    }
     type Query {
-        attractions(id: ID, city_url_slug: String, limit: Int): [Attraction]
-        attraction(id: ID): Attraction
+        attractions(_id: ID, city_url_slug: String, limit: Int): [Attraction]
+        attraction(_id: ID): Attraction
     }
     type Mutation {
-        addAttraction(name: String): Attraction
+        addAttraction(attraction: AttractionInput!): Attraction
+        addAttractions(attractions: [AttractionInput] ): [Attraction]
     }
 `;

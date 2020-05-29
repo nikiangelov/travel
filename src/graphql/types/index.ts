@@ -12,5 +12,6 @@ const mergedTypes = mergeTypes(typeDefs, { all: true });
 // import { writeFileSync } from 'fs';
 // writeFileSync('./src/graphql/type-defs.graphqls', mergedTypes);
 // console.log('WRITE TO FILE', mergedTypes);
+// console.log('--- WRITEN TO FILE ---');
 
 export default mergedTypes;

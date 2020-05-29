@@ -27,7 +27,7 @@ query City($id: ID, $url_slug: String, $attractions_limit: Int) {
     description
   }
   attractions(city_url_slug: $url_slug, limit: $attractions_limit) {
-    id
+    _id
     name
     city_url_slug
     coordinates {

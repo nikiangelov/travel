@@ -8,7 +8,7 @@ export type TicketsType = {
 };
 
 export default interface Attraction {
-  id: number;
+  _id: string;
   name: string;
   city_code: string;
   city_url_slug: string;

@@ -257,11 +257,16 @@ function CityDetails(): ReactElement {
                     <div ref={attrationsRef} className="mb-5">
                       <h4 className="mb-4">Топ забележителности</h4>
                       <div className="row">
-                        {attractions.map((item: any) => (
-                          <div key={item.id} className="col-lg-4 col-md-6 mb-5">
-                            <AttractionsListItem data={item} />
-                          </div>
-                        ))}
+                        {attractions.map((item: any) => {
+                          return (
+                            <div
+                              key={item._id}
+                              className="col-lg-4 col-md-6 mb-5"
+                            >
+                              <AttractionsListItem data={item} />
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   )}

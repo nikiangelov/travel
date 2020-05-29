@@ -16,10 +16,11 @@ function AttractionDetail(): ReactElement {
     variables: {
       id: `${attractionId}`,
     },
+    fetchPolicy: 'network-only',
   });
   const { attraction } = data || {};
   const bucketPath = attraction
-    ? `site/attractions/600/${attraction.city_url_slug}/${attraction.id}`
+    ? `site/attractions/600/${attraction.city_url_slug}/${attraction._id}`
     : false;
   useEffect(() => {
     if (bucketPath) {
@@ -27,7 +28,7 @@ function AttractionDetail(): ReactElement {
         setImages(imgs);
       });
     }
-  }, [attraction?.id]);
+  }, [attraction?._id]);
   let featuredImage = false;
   if (images && images.length) {
     featuredImage = images[0];

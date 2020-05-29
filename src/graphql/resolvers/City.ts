@@ -14,7 +14,6 @@ const Query: QueryResolvers<ResolverContext> = {
     });
   },
   city: async (_parent, _args, _context, _info): Promise<any> => {
-    console.log({ _args });
     const findCity = await City.findOne(_args).exec();
     return findCity;
   },

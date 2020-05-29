@@ -10,6 +10,9 @@ const AttractionSchema = new Schema({
   description: {
     type: String,
   },
+  is_translated: {
+    type: Boolean,
+  },
   description_short: {
     type: String,
   },

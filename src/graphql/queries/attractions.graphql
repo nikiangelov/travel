@@ -1,6 +1,6 @@
 query Attractions($id: ID, $url_slug: String) {
-  attractions(id: $id, city_url_slug: $url_slug) {
-    id
+  attractions(_id: $id, city_url_slug: $url_slug) {
+    _id
     name
     city_url_slug
     coordinates {
@@ -15,8 +15,8 @@ query Attractions($id: ID, $url_slug: String) {
   }
 }
 query attraction($id: ID) {
-  attraction(id: $id) {
-    id
+  attraction(_id: $id) {
+    _id
     name
     city_url_slug
     coordinates {

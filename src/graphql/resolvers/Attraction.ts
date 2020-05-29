@@ -1,28 +1,43 @@
 import Attraction from '../models/Attraction';
+import { QueryResolvers, MutationResolvers } from '../type-defs.graphqls';
+import { ResolverContext } from '../../apollo/with-apollo';
+import { IResolvers } from 'graphql-tools';
 
-export default {
-  Query: {
-    attractions: (_: any): any => {
-      return new Promise((resolver, reject) => {
-        Attraction.find()
-          // .populate()
-          .exec((error, response) => {
-            error ? reject(error) : resolver(response);
-          });
-      });
-    },
+const Query: QueryResolvers<ResolverContext> = {
+  attraction: async (_parent, _args, _context, _info): Promise<any> => {
+    return await Attraction.findOne(_args).exec();
   },
-  Mutation: {
-    addAttraction: (_: any, { name }: any): any => {
-      const newAttraction = new Attraction({
-        name,
-        description: 'description test',
-      });
-      return new Promise((resolver, reject) => {
-        newAttraction.save((error: any, response: any) => {
-          error ? reject(error) : resolver(response);
+  attractions: (
+    _parent,
+    { city_url_slug, limit },
+    _context,
+    _info,
+  ): Promise<any> => {
+    const limitAttractions = limit ? limit : 10;
+    return new Promise((resolve, reject) => {
+      Attraction.find({ city_url_slug })
+        .limit(limitAttractions)
+        .exec((error, response) => {
+          error ? reject(error) : resolve(response);
         });
-      });
-    },
+    });
   },
 };
+const Mutation: MutationResolvers<ResolverContext> = {
+  addAttractions: (_: any, { attractions }: any): Promise<any> => {
+    return new Promise((resolve, reject) => {
+      Attraction.insertMany(attractions)
+        .then(function(docs) {
+          resolve(docs);
+        })
+        .catch(function(err) {
+          reject(err);
+        });
+    });
+  },
+};
+
+export default {
+  Query,
+  Mutation,
+} as IResolvers;
