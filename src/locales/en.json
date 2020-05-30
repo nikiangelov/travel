@@ -33,6 +33,41 @@
       "wrong_email_and_password": "Невалидни email и парола. "
     }
   },
+  "travellogs": {
+    "time": {
+      "couple-of-hours": "Few hours",
+      "one-day": "1 day",
+      "two-days": "2 days",
+      "three-days": "3 days",
+      "a-week": "A week",
+      "more-than-week": "More than a week"
+    },
+    "price": {
+      "free": "Free",
+      "about-20": "Around $20",
+      "20-50": "$20 - $50",
+      "50-100": "$50 - $100",
+      "100-200": "$100 - $200",
+      "300-500": "$300 - $500",
+      "500-1000": "$500 - $1000"
+    },
+    "categories": {
+      "mountain": "Mountain",
+      "sea": "Sea",
+      "urban": "Urban",
+      "eco-trail": "Eco-trail",
+      "caves": "Caves",
+      "waterfalls": "Waterfalls",
+      "photo": "Photography",
+      "misc": "Other"
+    },
+    "seasons": {
+      "spring": "Spring",
+      "summer": "Summer",
+      "autumn": "Autumn",
+      "winter": "Winter"
+    }
+  },
   "pages": {
     "index": {
       "popular-destinations-abroad": "Popular **Destinations** abroad",

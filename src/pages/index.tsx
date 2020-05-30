@@ -30,6 +30,11 @@ function IndexPage() {
           </PageSection>
         </div>
         <aside className="col-lg-3">
+          <div className="d-none d-lg-block white-card-elevated text-muted small elevation-5 py-3 px-4 mb-5">
+            <Link href="/travellogs/add">
+              <a className="btn btn-primary">Добави пътешествие</a>
+            </Link>
+          </div>
           <div className="d-none d-lg-block index-intro-box white-card-elevated text-muted small elevation-5 pt-3 px-4 mb-5">
             <h6>Добре дошъл!</h6>
             <p>
