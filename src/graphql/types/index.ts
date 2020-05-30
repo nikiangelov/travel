@@ -4,8 +4,9 @@ import Attraction from './Attraction';
 import City from './City';
 import Country from './Country';
 import User from './User';
+import Travellog from './Travellog';
 
-const typeDefs = [Global, Attraction, City, Country, User];
+const typeDefs = [Global, Attraction, City, Country, User, Travellog];
 
 const mergedTypes = mergeTypes(typeDefs, { all: true });
 

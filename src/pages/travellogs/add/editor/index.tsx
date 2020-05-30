@@ -134,4 +134,6 @@ function MainEditor() {
     </div>
   );
 }
-export default withApollo(EditorPage);
+export default withApollo(EditorPage, {
+  protectedRoute: true,
+});

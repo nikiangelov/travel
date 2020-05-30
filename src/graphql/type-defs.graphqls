@@ -126,12 +126,6 @@ input AttractionInput {
   firebase_storage_path: String
 }
 
-extend type Query {
-  userCount: Int
-}
-extend type Mutation {
-  setUserCount(count: Int!): Int
-}
 type Query {
   attractions(_id: ID, city_url_slug: String, limit: Int): [Attraction]
   attraction(_id: ID): Attraction
@@ -142,6 +136,9 @@ type Query {
   user(_id: String!): User
   users: [User]
   currentUser: User
+  travellogs: [Travellog]
+  travellog(_id: ID): Travellog
+  userCount: Int
 }
 
 type Mutation {
@@ -155,6 +152,9 @@ type Mutation {
   logoutUser: Boolean
   deleteUser(_id: String!): User
   editUser(_id: String!, user: UserEditInput!): User
+  newTravellog: Travellog
+  editTravellog(_id: ID, travellog: TravellogInput): Travellog
+  setUserCount(count: Int!): Int
 }
 
 type City {
@@ -390,6 +390,53 @@ input UserEditInput {
 type LoginResponse {
   accessToken: String
   user: User
+}
+
+type Travellog {
+  _id: String!
+  title: String
+  author: Author
+  short_description: String
+  html_content: String
+  plain_text_content: String
+  where: String
+  duration: String
+  price: String
+  category: String
+  season: String
+  is_draft: Boolean
+  created_at: String
+  updated_at: String
+}
+
+type Author {
+  _id: String!
+  firstName: String
+  lastName: String
+  avatar: String
+  email: String!
+}
+
+input AuthorInput {
+  _id: String!
+  firstName: String
+  lastName: String
+  avatar: String
+  email: String!
+}
+
+input TravellogInput {
+  title: String
+  author: AuthorInput
+  short_description: String
+  html_content: String
+  plain_text_content: String
+  where: String
+  duration: String
+  price: String
+  category: String
+  season: String
+  is_draft: Boolean
 }
 
 schema {
