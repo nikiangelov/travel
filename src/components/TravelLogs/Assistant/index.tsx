@@ -97,6 +97,15 @@ function TravelLogAssistant(props: TravelLogAssistantType) {
       nextCard();
     }
   };
+  const handleCardChange = (k: string, v: any) => {
+    const newData = {
+      ...assistantData,
+      [k]: v,
+    };
+    setAssistantData(newData);
+    onChange(newData);
+    nextCard();
+  };
   const renderDots = () => {
     let dotsArr = [];
     for (let i = 1; i <= sliderState.maxIndex; i++) {
@@ -137,69 +146,39 @@ function TravelLogAssistant(props: TravelLogAssistantType) {
               />
               <CardTitle
                 state={getStateName(3)}
-                onChange={title => {
-                  const newData = {
-                    ...assistantData,
-                    title,
-                  };
-                  setAssistantData(newData);
-                  onChange(newData);
-                  nextCard();
+                onChange={newValue => {
+                  handleCardChange('title', newValue);
                 }}
                 onBlockPress={handleBlockPress}
               />
               <CardTime
                 state={getStateName(4)}
-                onChange={timeKey => {
-                  const newData = {
-                    ...assistantData,
-                    timeKey,
-                  };
-                  setAssistantData(newData);
-                  onChange(newData);
-                  nextCard();
+                onChange={newValue => {
+                  handleCardChange('timeKey', newValue);
                 }}
                 onSkip={nextCard}
                 onBlockPress={handleBlockPress}
               />
               <CardPrice
                 state={getStateName(5)}
-                onChange={priceKey => {
-                  const newData = {
-                    ...assistantData,
-                    priceKey,
-                  };
-                  setAssistantData(newData);
-                  onChange(newData);
-                  nextCard();
+                onChange={newValue => {
+                  handleCardChange('priceKey', newValue);
                 }}
                 onSkip={nextCard}
                 onBlockPress={handleBlockPress}
               />
               <CardCategories
                 state={getStateName(6)}
-                onChange={categoryKey => {
-                  const newData = {
-                    ...assistantData,
-                    categoryKey,
-                  };
-                  setAssistantData(newData);
-                  onChange(newData);
-                  nextCard();
+                onChange={newValue => {
+                  handleCardChange('categoryKey', newValue);
                 }}
                 onSkip={nextCard}
                 onBlockPress={handleBlockPress}
               />
               <CardSeason
                 state={getStateName(7)}
-                onChange={seasonKey => {
-                  const newData = {
-                    ...assistantData,
-                    seasonKey,
-                  };
-                  setAssistantData(newData);
-                  onChange(newData);
-                  nextCard();
+                onChange={newValue => {
+                  handleCardChange('seasonKey', newValue);
                 }}
                 onSkip={nextCard}
                 onBlockPress={handleBlockPress}
