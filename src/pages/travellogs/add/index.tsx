@@ -12,7 +12,8 @@ const AssistantPage: React.FunctionComponent = () => {
     // TODO: create travel log
   };
   const handleAssistantOnSkip = () => {
-    // router.push('/travellogs/add/editor');
+    // todo
+    router.push('/travellogs/add/editor');
   };
   const handleAssistantOnStart = () => {
     console.log('start');
@@ -21,7 +22,9 @@ const AssistantPage: React.FunctionComponent = () => {
     console.log('change', data);
   };
   const handleAssistantOnComplete = () => {
+    // todo
     console.log('- handleAssistantOnComplete -');
+    router.push('/travellogs/add/editor');
   };
   return (
     <AnimatedLayout>

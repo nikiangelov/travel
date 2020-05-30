@@ -82,3 +82,30 @@
     }
   }
 }
+
+// text editor
+.ql-editor {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #212529 !important;
+}
+.ql-toolbar.ql-snow {
+  border-radius: 6px 6px 0 0;
+}
+.ql-container.ql-snow {
+  border-radius: 0 0 6px 6px;
+}
+.ql-editor {
+  min-height: 250px;
+}
+.ql-editor h2 {
+  margin: 0 0 2rem !important;
+}
+.ql-editor p {
+  margin: 0 0 1rem !important;
+  color: #6c757d !important;
+}

@@ -11,6 +11,7 @@ const modules = {
     [{ header: '1' }, { header: '2' }],
     ['bold', 'italic', 'underline', 'strike', 'blockquote'],
     [{ list: 'ordered' }, { list: 'bullet' }],
+    [{ align: [] }],
     ['link', 'image', 'video'],
     ['clean'],
   ],
@@ -41,19 +42,21 @@ const formats = [
 
 export default function Editor() {
   const [value, setValue] = useState('');
+  const [editorHTML, setEditorHTML] = useState('');
   const [quillEditor, setQuillEditor] = useState<any>(false);
   return (
     <>
-      <div className="text-muted">
+      <div className="mb-5">
         <QuillNoSSRWrapper
           modules={modules}
           formats={formats}
-          theme="bubble"
+          theme="snow"
           value={value}
+          placeholder="Въведете текста на вашия пътепис тук..."
           onChange={(content, delta, source, editor) => {
-            // if (!quillEditor) {
-            //   setQuillEditor(editor);
-            // }
+            if (editor) {
+              // setEditorHTML(editor.getHTML());
+            }
             setValue(content);
           }}
         />
@@ -61,17 +64,11 @@ export default function Editor() {
       <button
         className="btn btn-success"
         onClick={() => {
-          const html = quillEditor.getHTML();
-          console.log(html);
+          console.log(document.querySelector('.ql-editor')?.innerHTML);
         }}
       >
         Save
       </button>
-      <style global jsx>{`
-        p {
-          color: green;
-        }
-      `}</style>
     </>
   );
 }
