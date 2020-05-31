@@ -192,19 +192,25 @@ const Mutation: MutationResolvers<ResolverContext> = {
     if (!authenticatedUser) {
       throw new Error('Не сте влезли в профила си');
     }
-    const { firstName, lastName, password, userType } = user;
+    const thisUser = await User.findOne({
+      _id: authenticatedUser._id,
+    });
+    if (!thisUser) {
+      throw new Error('Проблем с профила');
+    }
+    if (!thisUser._id.equals(_id)) {
+      throw new Error('Не може да редактирате други потребители');
+    }
     let newSet = {} as UserType;
-    if (firstName) {
-      newSet.firstName = firstName;
+    if (user.firstName) {
+      newSet.firstName = user.firstName;
     }
-    if (lastName) {
-      newSet.lastName = lastName;
+    if (user.lastName) {
+      newSet.lastName = user.lastName;
     }
-    if (password) {
-      newSet.password = await bcrypt.hash(password, 12);
-    }
-    if (userType) {
-      newSet.userType = userType;
+    if (user.password) {
+      const cryptedPassword = await bcrypt.hash(user.password, 12);
+      newSet.password = cryptedPassword;
     }
     const response = await User.findByIdAndUpdate(
       { _id },

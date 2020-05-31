@@ -25,11 +25,7 @@ function NavigationItem({
             noMargin ? 'py-1' : 'mb-4 py-2'
           } `}
         >
-          {icon === 'cog' ? (
-            <i className="far icon-fa fa-user-circle mb-2" />
-          ) : (
-            <span>x</span>
-          )}
+          {!!icon && <i className={`fas ${icon} icon-fa mb-2`} />}
           <small>{title}</small>
           {isSelected && <span className="indicator" />}
         </a>
@@ -42,7 +38,7 @@ function NavigationItem({
           position: relative;
         }
         .icon-fa {
-          font-size: 26px;
+          font-size: 20px;
         }
         .icon {
           opacity: ${isSelected ? 0.7 : 0.5};

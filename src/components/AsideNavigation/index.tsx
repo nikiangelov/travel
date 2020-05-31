@@ -36,7 +36,7 @@ const AsideNavigation: React.FC = () => {
         </div>
         <div className="mt-auto w-100">
           <NavigationItem
-            icon="cog"
+            icon="fa-user-circle"
             title={i18n.t('navigation.profile')}
             path="/profile"
             noMargin={true}

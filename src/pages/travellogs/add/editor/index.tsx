@@ -118,29 +118,25 @@ const EditorPage: React.FunctionComponent = () => {
         <div className="row justify-content-between">
           <div className="col-lg-9 pr-5">
             {/* Title */}
-            <section className="mb-5">
-              <div className="">
-                <div className="d-flex justify-content-between">
-                  <h1
-                    className="mb-3"
-                    id="travellog-editable-title"
-                    contentEditable={true}
-                    suppressContentEditableWarning={true}
-                    data-placeholder="Въведете заглавие тук..."
-                  >
-                    {!!title && title}
-                  </h1>
-                </div>
-                <p
-                  className="text-muted mb-3"
-                  contentEditable={true}
-                  id="travellog-editable-description"
-                  suppressContentEditableWarning={true}
-                  data-placeholder="Добави кратко описание на пътеписа тук..."
-                >
-                  {!!short_description && short_description}
-                </p>
-              </div>
+            <section className="mb-3">
+              <h1
+                className="mb-3"
+                id="travellog-editable-title"
+                contentEditable={true}
+                suppressContentEditableWarning={true}
+                data-placeholder="Въведете заглавие тук..."
+              >
+                {!!title && title}
+              </h1>
+              <p
+                className="text-muted mb-3"
+                contentEditable={true}
+                id="travellog-editable-description"
+                suppressContentEditableWarning={true}
+                data-placeholder="Добави кратко описание на пътеписа тук..."
+              >
+                {!!short_description && short_description}
+              </p>
             </section>
             {/* Main content */}
             <div style={{ zIndex: 1100, position: 'relative' }}>

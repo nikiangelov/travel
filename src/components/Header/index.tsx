@@ -30,6 +30,7 @@ function Header(): ReactElement {
     if (client) {
       await client.resetStore();
     }
+    router.push('/');
   };
   return (
     <header className="pt-5 mb-4">
