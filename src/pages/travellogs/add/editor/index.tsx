@@ -10,7 +10,10 @@ import { slideUpVariants } from '../../../../constants/animations';
 import { useRouter } from 'next/router';
 import { useTravellogQuery } from '../../../../graphql/queries/travellog.graphql';
 import useI18n from '../../../../hooks/useI18n';
-import { useEditTravellogMutation } from '../../../../graphql/mutations/travellog.graphql';
+import {
+  useEditTravellogMutation,
+  EditTravellogMutationVariables,
+} from '../../../../graphql/mutations/travellog.graphql';
 
 const EditorPage: React.FunctionComponent = () => {
   const router = useRouter();
@@ -54,7 +57,8 @@ const EditorPage: React.FunctionComponent = () => {
       editorContent: editorEl?.innerHTML,
     };
   };
-  const saveTravellog = async () => {
+  const saveTravellog = async (options?: any) => {
+    const { isDraft } = options || {};
     if (
       !travellogData ||
       !travellogData.travellog ||
@@ -62,19 +66,32 @@ const EditorPage: React.FunctionComponent = () => {
     )
       return;
     const editedData = collectData();
-    await editTravellogMutation({
-      variables: {
-        id: travellogData.travellog._id,
-        travellog: {
-          title: editedData.title,
-          short_description: editedData.description,
-          html_content: editedData.editorContent,
-        },
+    let variables: EditTravellogMutationVariables = {
+      id: travellogData.travellog._id,
+      travellog: {
+        title: editedData.title,
+        short_description: editedData.description,
+        html_content: editedData.editorContent,
       },
+    };
+    if (isDraft !== undefined) {
+      if (variables.travellog) {
+        variables.travellog.is_draft = isDraft;
+      }
+    }
+    return await editTravellogMutation({
+      variables,
+    });
+  };
+  const publishTravellog = () => {
+    saveTravellog({
+      isDraft: false,
     }).then(() => {
       setSuccessMessage(true);
     });
-    console.log({ editedData });
+  };
+  const updateTravellog = () => {
+    saveTravellog();
   };
 
   const {
@@ -132,31 +149,55 @@ const EditorPage: React.FunctionComponent = () => {
           </div>
           <div className="col-lg-3">
             <div className="white-card-elevated py-3 px-4 elevation-2 mb-4">
-              <button
-                className="btn btn-success w-100 mb-3"
-                onClick={saveTravellog}
-                disabled={!!isSaving}
-              >
-                {!!isSaving && (
-                  <span
-                    className="spinner-grow spinner-grow-sm mr-2"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                )}
-                {!!is_draft ? 'Запази като чернова' : 'Запази'}
-              </button>
-              <button className="btn btn-light w-100">
-                Публикувай в сайта
-              </button>
+              {!!is_draft && (
+                <>
+                  <button
+                    className="btn btn-success w-100 mb-3"
+                    onClick={updateTravellog}
+                    disabled={!!isSaving}
+                  >
+                    {!!isSaving && (
+                      <span
+                        className="spinner-grow spinner-grow-sm mr-2"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    )}
+                    Запази като чернова
+                  </button>
+                  <button
+                    className="btn btn-light w-100"
+                    onClick={publishTravellog}
+                    disabled={!!isSaving}
+                  >
+                    Публикувай
+                  </button>
+                </>
+              )}
+              {!is_draft && (
+                <button
+                  className="btn btn-success w-100"
+                  onClick={updateTravellog}
+                  disabled={!!isSaving}
+                >
+                  {!!isSaving && (
+                    <span
+                      className="spinner-grow spinner-grow-sm mr-2"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  )}
+                  Запази
+                </button>
+              )}
               <hr />
-              <p className="small text-muted m-0">
+              <p className="small text-muted m-0 mb-1">
                 Статус:
                 {!!is_draft && (
-                  <span className="text-warning ml-1">Чернова</span>
+                  <span className="text-warning ml-2">Чернова</span>
                 )}
                 {!is_draft && (
-                  <span className="text-info ml-1">Публикувано</span>
+                  <span className="text-info ml-2">Публикувано</span>
                 )}
               </p>
               <hr />
@@ -300,7 +341,7 @@ function SuccessMessageAlert() {
                 alt="Write illustration"
               />
               <h3 className="text-primary mb-2">Страхотно!</h3>
-              <h2 className="mb-5">Твоят пътепис беше запазен успешно!</h2>
+              <h2 className="mb-5">Твоят пътепис беше публикуван успешно!</h2>
               <div className="row">
                 <div className="col-md-6">
                   <button className="btn btn-success w-100">
