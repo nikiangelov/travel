@@ -22,7 +22,10 @@ type FormDataState = {
 const RegisterPage: React.FunctionComponent = () => {
   const i18n = useI18n();
   const router = useRouter();
-  const [registerUserMutation] = useRegisterUserMutation();
+  const [
+    registerUserMutation,
+    { loading: isLoading },
+  ] = useRegisterUserMutation();
   const [formData, setFormData] = React.useState<FormDataState>({
     firstName: {
       value: '',
@@ -117,122 +120,160 @@ const RegisterPage: React.FunctionComponent = () => {
     <AnimatedLayout>
       <div className="row">
         <div className="col-md-5 mx-auto">
-          <h2>{i18n.t('pages.register.title')}</h2>
-          <p className="text-muted">{i18n.t('pages.register.description')}</p>
-          <form onSubmit={handleFormSubmit}>
-            <div className="form-group">
-              <label htmlFor="firstNameInput">
-                {i18n.t('common.firstName')}
-              </label>
-              <input
-                type="text"
-                name="firstName"
-                value={firstName.value}
-                onChange={updateFormData}
-                className={`form-control ${firstName.errors.length &&
-                  'is-invalid'}`}
-                id="firstNameInput"
+          <div className="white-card-elevated py-5 px-5 elevation-5">
+            <div className="d-flex">
+              <div className="flex-grow-1">
+                <h2>{i18n.t('pages.register.title')}</h2>
+                <p className="text-muted">
+                  {i18n.t('pages.register.description')}
+                </p>
+              </div>
+              <img
+                src={require('../../assets/illustrations/backpack2.svg')}
+                className="card-illustration mt-1 mb-4 ml-2"
+                alt="Write illustration"
               />
-              {!!firstName.errors &&
-                firstName.errors.map((error, index) => (
-                  <div
-                    key={`firstNameError${index}`}
-                    className="invalid-feedback"
-                  >
-                    {i18n.t(`errors.forms.${error}`)}
-                  </div>
-                ))}
             </div>
-            <div className="form-group">
-              <label htmlFor="lastNameInput">{i18n.t('common.lastName')}</label>
-              <input
-                type="text"
-                name="lastName"
-                value={lastName.value}
-                onChange={updateFormData}
-                className={`form-control ${lastName.errors.length &&
-                  'is-invalid'}`}
-                id="lastNameInput"
-              />
-              {!!lastName.errors &&
-                lastName.errors.map((error, index) => (
-                  <div
-                    key={`lastNameError${index}`}
-                    className="invalid-feedback"
-                  >
-                    {i18n.t(`errors.forms.${error}`)}
+            <form onSubmit={handleFormSubmit}>
+              <div className="form-row">
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label htmlFor="firstNameInput">
+                      {i18n.t('common.firstName')}
+                    </label>
+                    <input
+                      type="text"
+                      name="firstName"
+                      value={firstName.value}
+                      onChange={updateFormData}
+                      className={`form-control ${firstName.errors.length &&
+                        'is-invalid'}`}
+                      id="firstNameInput"
+                    />
+                    {!!firstName.errors &&
+                      firstName.errors.map((error, index) => (
+                        <div
+                          key={`firstNameError${index}`}
+                          className="invalid-feedback"
+                        >
+                          {i18n.t(`errors.forms.${error}`)}
+                        </div>
+                      ))}
                   </div>
-                ))}
-            </div>
-            <div className="form-group">
-              <label htmlFor="emailInput">{i18n.t('common.email')}</label>
-              <input
-                type="email"
-                name="email"
-                value={email.value}
-                onChange={updateFormData}
-                className={`form-control ${email.errors.length &&
-                  'is-invalid'}`}
-                id="emailInput"
-                autoComplete="username"
-              />
-              {!!email.errors &&
-                email.errors.map((error, index) => (
-                  <div key={`emailError${index}`} className="invalid-feedback">
-                    {i18n.t(`errors.forms.${error}`)}
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label htmlFor="lastNameInput">
+                      {i18n.t('common.lastName')}
+                    </label>
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={lastName.value}
+                      onChange={updateFormData}
+                      className={`form-control ${lastName.errors.length &&
+                        'is-invalid'}`}
+                      id="lastNameInput"
+                    />
+                    {!!lastName.errors &&
+                      lastName.errors.map((error, index) => (
+                        <div
+                          key={`lastNameError${index}`}
+                          className="invalid-feedback"
+                        >
+                          {i18n.t(`errors.forms.${error}`)}
+                        </div>
+                      ))}
                   </div>
-                ))}
-            </div>
-            <div className="form-group">
-              <label htmlFor="passwordInput">{i18n.t('common.password')}</label>
-              <input
-                type="password"
-                name="password"
-                value={password.value}
-                onChange={updateFormData}
-                className={`form-control ${password.errors.length &&
-                  'is-invalid'}`}
-                id="passwordInput"
-                autoComplete="new-password"
-              />
-              {!!password.errors &&
-                password.errors.map((error, index) => (
-                  <div
-                    key={`passwordError${index}`}
-                    className="invalid-feedback"
-                  >
-                    {i18n.t(`errors.forms.${error}`)}
-                  </div>
-                ))}
-            </div>
-            <div className="form-group">
-              <label htmlFor="passwordConfirmInput">
-                {i18n.t('common.passwordConfirm')}
-              </label>
-              <input
-                type="password"
-                name="passwordConfirm"
-                value={passwordConfirm.value}
-                onChange={updateFormData}
-                className={`form-control ${passwordConfirm.errors.length &&
-                  'is-invalid'}`}
-                id="passwordConfirmInput"
-                autoComplete="new-password"
-              />
-              {!!passwordConfirm.errors &&
-                passwordConfirm.errors.map((error, index) => (
-                  <div
-                    key={`passwordConfirmError${index}`}
-                    className="invalid-feedback"
-                  >
-                    {i18n.t(`errors.forms.${error}`)}
-                  </div>
-                ))}
-            </div>
-            <button type="submit" className="btn btn-primary text-white">
-              {i18n.t('pages.register.register-button')}
-            </button>
-          </form>
+                </div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="emailInput">{i18n.t('common.email')}</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={email.value}
+                  onChange={updateFormData}
+                  className={`form-control ${email.errors.length &&
+                    'is-invalid'}`}
+                  id="emailInput"
+                  autoComplete="username"
+                />
+                {!!email.errors &&
+                  email.errors.map((error, index) => (
+                    <div
+                      key={`emailError${index}`}
+                      className="invalid-feedback"
+                    >
+                      {i18n.t(`errors.forms.${error}`)}
+                    </div>
+                  ))}
+              </div>
+              <div className="form-group">
+                <label htmlFor="passwordInput">
+                  {i18n.t('common.password')}
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  value={password.value}
+                  onChange={updateFormData}
+                  className={`form-control ${password.errors.length &&
+                    'is-invalid'}`}
+                  id="passwordInput"
+                  autoComplete="new-password"
+                />
+                {!!password.errors &&
+                  password.errors.map((error, index) => (
+                    <div
+                      key={`passwordError${index}`}
+                      className="invalid-feedback"
+                    >
+                      {i18n.t(`errors.forms.${error}`)}
+                    </div>
+                  ))}
+              </div>
+              <div className="form-group">
+                <label htmlFor="passwordConfirmInput">
+                  {i18n.t('common.passwordConfirm')}
+                </label>
+                <input
+                  type="password"
+                  name="passwordConfirm"
+                  value={passwordConfirm.value}
+                  onChange={updateFormData}
+                  className={`form-control ${passwordConfirm.errors.length &&
+                    'is-invalid'}`}
+                  id="passwordConfirmInput"
+                  autoComplete="new-password"
+                />
+                {!!passwordConfirm.errors &&
+                  passwordConfirm.errors.map((error, index) => (
+                    <div
+                      key={`passwordConfirmError${index}`}
+                      className="invalid-feedback"
+                    >
+                      {i18n.t(`errors.forms.${error}`)}
+                    </div>
+                  ))}
+              </div>
+              <button
+                type="submit"
+                disabled={!!isLoading}
+                className="btn btn-primary text-white"
+              >
+                {!!isLoading && (
+                  <span
+                    className="spinner-grow spinner-grow-sm mr-2"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                )}
+                {!isLoading && <i className="fas fa-sign-in-alt mr-2" />}
+                {i18n.t('pages.register.register-button')}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </AnimatedLayout>
