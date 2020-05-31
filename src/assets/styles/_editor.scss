@@ -20,12 +20,6 @@
       text-align: center;
       justify-content: center;
       //   align-items: center;
-
-      .card-illustration {
-        max-width: 25%;
-        margin-top: -10%;
-        margin: -12% auto 0;
-      }
     }
 
     .contentBlock {
@@ -82,6 +76,11 @@
     }
   }
 }
+.card-illustration {
+  max-width: 25%;
+  margin-top: -10%;
+  margin: -12% auto 0;
+}
 
 // text editor
 .ql-editor {
@@ -103,9 +102,30 @@
   min-height: 250px;
 }
 .ql-editor h2 {
-  margin: 0 0 2rem !important;
+  margin: 0 0 1.5rem !important;
 }
 .ql-editor p {
   margin: 0 0 1rem !important;
   color: #6c757d !important;
+}
+
+[data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: #888;
+  cursor: text;
+  font-style: italic;
+  font-weight: normal;
+}
+
+#travellog-editable-description:hover,
+#travellog-editable-title:hover {
+  background: #fafafa;
+  border-radius: 1px;
+  box-shadow: 0 1px 0 8px #fafafa;
+}
+#travellog-editable-description:focus,
+#travellog-editable-title:focus {
+  background: #f8fcff;
+  border-radius: 1px;
+  box-shadow: 0 1px 0 8px #f8fcff;
 }

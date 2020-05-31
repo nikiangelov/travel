@@ -23,11 +23,11 @@ export default function CardIntro({
         Асистент за добавяне на <span className="text-primary">пътеписи</span>.
       </h4>
       <p className=" text-muted">
-        Ще ви помогнем лесно да попълните нужните данни за вашия пътепис. Това
-        ще го направи лесно откриваем за другите потребители.
+        Ще ти помогнем лесно да попълниш нужните данни за твоя пътепис. Това ще
+        го направи лесно откриваем за другите потребители.
       </p>
       <div className="row mt-2">
-        <div className="col-md-6">
+        <div className="col-md-6 mx-auto">
           <button
             onClick={onStartPress}
             className="btn btn-lg btn-success w-100"
@@ -35,18 +35,25 @@ export default function CardIntro({
             Започни
           </button>
         </div>
-        <div className="col-md-6">
-          <button onClick={onSkipPress} className="btn btn-lg btn-light w-100">
-            Пропусни
-          </button>
-        </div>
+        {false && (
+          <div className="col-md-6">
+            <button
+              onClick={onSkipPress}
+              className="btn btn-lg btn-light w-100"
+            >
+              Пропусни
+            </button>
+          </div>
+        )}
       </div>
-      <p className="small text-muted mt-5 mb-0">
-        Бутонът &quot;Пропусни&quot; ще ви отведе директно към текстовия
-        редактор.
-        <br />
-        Винаги може да се върнете към тези въпроси.
-      </p>
+      {false && (
+        <p className="small text-muted mt-5 mb-0">
+          Бутонът &quot;Пропусни&quot; ще ви отведе директно към текстовия
+          редактор.
+          <br />
+          Винаги може да се върнете към тези въпроси.
+        </p>
+      )}
     </CardLayout>
   );
 }

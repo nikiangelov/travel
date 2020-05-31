@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
@@ -40,10 +40,11 @@ const formats = [
   'video',
 ];
 
-export default function Editor() {
-  const [value, setValue] = useState('');
-  const [editorHTML, setEditorHTML] = useState('');
-  const [quillEditor, setQuillEditor] = useState<any>(false);
+export type EditorPropTypes = {
+  initialValue?: string | null;
+};
+export default function Editor({ initialValue }: EditorPropTypes) {
+  const [value, setValue] = useState(initialValue || '');
   return (
     <>
       <div className="mb-5">
@@ -53,7 +54,7 @@ export default function Editor() {
           theme="snow"
           value={value}
           placeholder="Въведете текста на вашия пътепис тук..."
-          onChange={(content, delta, source, editor) => {
+          onChange={(content, _delta, _source, editor) => {
             if (editor) {
               // setEditorHTML(editor.getHTML());
             }
@@ -61,14 +62,6 @@ export default function Editor() {
           }}
         />
       </div>
-      <button
-        className="btn btn-success"
-        onClick={() => {
-          console.log(document.querySelector('.ql-editor')?.innerHTML);
-        }}
-      >
-        Save
-      </button>
     </>
   );
 }

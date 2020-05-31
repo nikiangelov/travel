@@ -290,7 +290,7 @@ function createIsomorphLink(resolverContext?: ResolverContext): any {
     const { createHttpLink } = require('apollo-link-http');
     const { setContext } = require('apollo-link-context');
     const { ApolloLink } = require('apollo-link');
-    const { onError } = require('apollo-link-error');
+    // const { onError } = require('apollo-link-error');
     const { TokenRefreshLink } = require('apollo-link-token-refresh');
 
     const httpLink = createHttpLink({

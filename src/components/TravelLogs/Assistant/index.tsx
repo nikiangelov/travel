@@ -19,21 +19,17 @@ export type AssistantDataType = {
   seasonKey: null | string;
 };
 type TravelLogAssistantType = {
+  initialState?: AssistantDataType;
   onComplete: () => void;
   onStart?: () => void;
   onSkip?: () => void;
   onChange: (data: AssistantDataType) => void;
 };
 function TravelLogAssistant(props: TravelLogAssistantType) {
-  const { onSkip, onStart, onChange, onComplete } = props;
-  const [assistantData, setAssistantData] = useState<AssistantDataType>({
-    location: null,
-    title: null,
-    timeKey: null,
-    priceKey: null,
-    categoryKey: null,
-    seasonKey: null,
-  });
+  const { initialState, onSkip, onStart, onChange, onComplete } = props;
+  const [assistantData, setAssistantData] = useState<
+    AssistantDataType | undefined
+  >(initialState);
   const [sliderState, setSliderState] = useState({
     isStarted: false,
     currentIndex: 1,

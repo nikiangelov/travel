@@ -15,8 +15,8 @@ const Query: QueryResolvers<ResolverContext> = {
     });
   },
   travellog: async (_parent, _args, _context, _info): Promise<any> => {
-    const findCity = await Travellog.findOne(_args).exec();
-    return findCity;
+    const findTravellog = await Travellog.findOne(_args).exec();
+    return findTravellog;
   },
 };
 const Mutation: MutationResolvers<ResolverContext> = {
