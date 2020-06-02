@@ -5,6 +5,7 @@ export default `
         lastName: String!
         email: String!
         password: String!
+        avatar: String,
         userType: String!
     }
 
@@ -12,12 +13,14 @@ export default `
         firstName: String!
         lastName: String!
         email: String!
+        avatar: String,
         password: String!
         passwordConfirm: String!
     }
     input UserEditInput {
         firstName: String
         lastName: String
+        avatar: String,
         password: String
         userType: String
     }

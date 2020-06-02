@@ -86,6 +86,13 @@
     "profile": {
       "travel-photos": "**Снимки** от пътешествия",
       "my-travel-logs": "Моите **пътеписи**"
+    },
+    "settings": {
+      "title": "Редакция на профил",
+      "avatar": {
+        "upload": "Качи снимка",
+        "edit": "Редактирай"
+      }
     }
   },
   "countries": {

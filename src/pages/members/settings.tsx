@@ -5,12 +5,16 @@ import withApollo from '../../apollo/with-apollo';
 import { setAccessToken } from '../../utils/auth';
 import useI18n from '../../hooks/useI18n';
 import NProgress from 'nprogress';
-import { useRegisterUserMutation } from '../../graphql/mutations/user.graphql';
+import {
+  useRegisterUserMutation,
+  useEditUserMutation,
+} from '../../graphql/mutations/user.graphql';
 import {
   CurrentUserQuery,
   CurrentUserDocument,
   useCurrentUserQuery,
 } from '../../graphql/queries/user.graphql';
+import { imageUploadHandler } from '../../utils/image-uploader';
 
 type InputField = {
   value: string;
@@ -24,8 +28,13 @@ const SettingsPage: React.FunctionComponent = () => {
   const i18n = useI18n();
   const router = useRouter();
 
+  const [userAvatarIsLoading, setUserAvatarIsLoading] = React.useState(false);
+
   const { data: userData } = useCurrentUserQuery();
   const { currentUser } = userData || {};
+
+  const [userAvatar, setUserAvatar] = React.useState(currentUser?.avatar);
+  const [editUserMutation, { loading: isEditLoading }] = useEditUserMutation();
 
   const [
     registerUserMutation,
@@ -71,6 +80,23 @@ const SettingsPage: React.FunctionComponent = () => {
       newFormData[key] = { ...newFormData[key], errors: [] };
     });
     setFormData(newFormData);
+  };
+  const handleImageUpload = async () => {
+    setUserAvatarIsLoading(true);
+    const uploadedImageUrl = await imageUploadHandler('avatars/');
+    console.log(uploadedImageUrl);
+    if (uploadedImageUrl) {
+      editUserMutation({
+        variables: {
+          id: currentUser?._id || '',
+          user: {
+            avatar: uploadedImageUrl,
+          },
+        },
+      });
+      setUserAvatar(uploadedImageUrl);
+    }
+    setUserAvatarIsLoading(false);
   };
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,21 +151,40 @@ const SettingsPage: React.FunctionComponent = () => {
     <AnimatedLayout>
       <div className="row">
         <div className="col-md-5 mx-auto">
+          <div className="text-center mb-5">
+            <h2>{i18n.t('pages.settings.title')}</h2>
+          </div>
           <div className="white-card-elevated py-5 px-5 elevation-5">
-            <div className="d-flex">
-              <div className="flex-grow-1">
-                <h2>{i18n.t('pages.register.title')}</h2>
-                <p className="text-muted">
-                  {i18n.t('pages.register.description')}
-                </p>
-              </div>
-              <img
-                src={require('../../assets/illustrations/backpack2.svg')}
-                className="card-illustration mt-1 mb-4 ml-2"
-                alt="Write illustration"
-              />
-            </div>
             <form onSubmit={handleFormSubmit}>
+              <div className="form-row mb-4 mt-n5">
+                <div className="col-lg-3 col-md-4 mx-auto">
+                  <div
+                    className="uploadAvatarPlaceholder mt-n2 mb-2"
+                    style={{
+                      backgroundImage: userAvatar ? `url('${userAvatar}')` : '',
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={handleImageUpload}
+                      className="uploadAvatarButton"
+                    >
+                      {!!userAvatarIsLoading && (
+                        <div
+                          className="spinner-border text-primary"
+                          role="status"
+                        />
+                      )}
+                      {!userAvatarIsLoading && !userAvatar && (
+                        <i className="icon fas fa-camera" />
+                      )}
+                      {!userAvatarIsLoading && !!userAvatar && (
+                        <i className="icon edit fas fa-camera text-white" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
               <div className="form-row">
                 <div className="col-md-6">
                   <div className="form-group">

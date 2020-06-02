@@ -944,6 +944,52 @@ select.custom-select {
   }
 }
 
+/* Settings */
+.uploadAvatarPlaceholder {
+  display: block;
+  padding-bottom: 100%;
+  background: #eee no-repeat center;
+  background-size: cover;
+  border-radius: 50%;
+  position: relative;
+
+  .uploadAvatarButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border-radius: 50%;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1) inset;
+    transition: background 0.2s ease-out;
+    .icon {
+      font-size: 2rem;
+      opacity: 0.2;
+      transition: opacity 0.2s ease-out;
+      &.edit {
+        opacity: 0;
+      }
+    }
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+      .icon {
+        opacity: 0.5;
+        &.edit {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
 /* Media Queries */
 
 /* TODO: 🔴 remove  */

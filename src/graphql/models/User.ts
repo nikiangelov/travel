@@ -11,6 +11,9 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  avatar: {
+    type: String,
+  },
   email: {
     type: String,
     required: true,
@@ -32,6 +35,7 @@ export interface UserType extends Document {
   email: string;
   password: string;
   userType: string;
+  avatar: string;
 }
 const User =
   mongoose.models.User || mongoose.model<UserType>('User', UserSchema);

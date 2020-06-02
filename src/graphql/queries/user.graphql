@@ -4,6 +4,7 @@ query Users {
     email
     firstName
     lastName
+    avatar
   }
 }
 query CurrentUser {
@@ -12,5 +13,6 @@ query CurrentUser {
     email
     firstName
     lastName
+    avatar
   }
 }

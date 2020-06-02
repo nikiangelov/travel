@@ -208,6 +208,9 @@ const Mutation: MutationResolvers<ResolverContext> = {
     if (user.lastName) {
       newSet.lastName = user.lastName;
     }
+    if (user.avatar) {
+      newSet.avatar = user.avatar;
+    }
     if (user.password) {
       const cryptedPassword = await bcrypt.hash(user.password, 12);
       newSet.password = cryptedPassword;
@@ -217,6 +220,7 @@ const Mutation: MutationResolvers<ResolverContext> = {
       { $set: newSet },
       { new: true },
     ).exec();
+    console.log(response);
     if (!response) {
       throw new Error(`Проблем при редакцията`);
     }

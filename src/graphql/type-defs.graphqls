@@ -369,6 +369,7 @@ type User {
   lastName: String!
   email: String!
   password: String!
+  avatar: String
   userType: String!
 }
 
@@ -376,6 +377,7 @@ input UserInput {
   firstName: String!
   lastName: String!
   email: String!
+  avatar: String
   password: String!
   passwordConfirm: String!
 }
@@ -383,6 +385,7 @@ input UserInput {
 input UserEditInput {
   firstName: String
   lastName: String
+  avatar: String
   password: String
   userType: String
 }

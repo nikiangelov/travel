@@ -6,6 +6,7 @@ mutation LoginUser($email: String!, $password: String!) {
       email
       firstName
       lastName
+      avatar
     }
   }
 }
@@ -22,6 +23,17 @@ mutation RegisterUser($user: UserInput!) {
       email
       firstName
       lastName
+      avatar
     }
+  }
+}
+
+mutation EditUser($id: String!, $user: UserEditInput!) {
+  editUser(_id: $id, user: $user) {
+    _id
+    firstName
+    lastName
+    email
+    avatar
   }
 }
