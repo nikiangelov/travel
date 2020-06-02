@@ -21,6 +21,7 @@ input CoordinatesInput {
   lng: Float!
 }
 
+
 # Quote Types
 type Quote {
   quote: String
@@ -31,6 +32,7 @@ input QuoteInput {
   quote: String
   author: String
 }
+
 
 # Transport Types
 type Transport {
@@ -138,7 +140,6 @@ type Query {
   currentUser: User
   travellogs: [Travellog]
   travellog(_id: ID): Travellog
-  userCount: Int
 }
 
 type Mutation {
@@ -154,7 +155,6 @@ type Mutation {
   editUser(_id: String!, user: UserEditInput!): User
   newTravellog: Travellog
   editTravellog(_id: ID, travellog: TravellogInput): Travellog
-  setUserCount(count: Int!): Int
 }
 
 type City {
@@ -396,6 +396,7 @@ type Travellog {
   _id: String!
   title: String
   author: Author
+  images: [String]
   short_description: String
   html_content: String
   plain_text_content: String
@@ -428,6 +429,7 @@ input AuthorInput {
 input TravellogInput {
   title: String
   author: AuthorInput
+  images: [String]
   short_description: String
   html_content: String
   plain_text_content: String

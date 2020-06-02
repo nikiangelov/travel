@@ -67,7 +67,7 @@ const Mutation: MutationResolvers<ResolverContext> = {
     if (!currentTravellog.author._id.equals(userData._id)) {
       throw new Error('Нямате право да редактирате този пътепис');
     }
-
+    // TODO: add html sanitize
     return Travellog.findByIdAndUpdate(
       { _id },
       { $set: { ...travellog } },

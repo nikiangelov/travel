@@ -51,10 +51,19 @@ const EditorPage: React.FunctionComponent = () => {
       'travellog-editable-description',
     );
     const editorEl = document.querySelector('.ql-editor');
+    const editorImagesEl = editorEl?.querySelectorAll('img');
+    // TODO
+    let images: string[] = [];
+    if (editorImagesEl) {
+      editorImagesEl.forEach(imageEl => {
+        images.push(imageEl.src);
+      });
+    }
     return {
       title: titleEl?.innerText,
       description: descriptionEl?.innerText,
       editorContent: editorEl?.innerHTML,
+      images,
     };
   };
   const saveTravellog = async (options?: any) => {
@@ -72,6 +81,7 @@ const EditorPage: React.FunctionComponent = () => {
         title: editedData.title,
         short_description: editedData.description,
         html_content: editedData.editorContent,
+        images: editedData.images,
       },
     };
     if (isDraft !== undefined) {
@@ -118,7 +128,7 @@ const EditorPage: React.FunctionComponent = () => {
         <div className="row justify-content-between">
           <div className="col-lg-9 pr-5">
             {/* Title */}
-            <section className="mb-3">
+            <section className="mb-4">
               <h1
                 className="mb-3"
                 id="travellog-editable-title"

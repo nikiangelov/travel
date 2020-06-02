@@ -20,7 +20,7 @@ const uploadFile = async (file: File): Promise<string> => {
   const imageUrl = await snapshot.ref.getDownloadURL();
   return imageUrl;
 };
-const imageHandler = function() {
+const imageHandler = function(this: any) {
   const input = document.createElement('input');
   input.setAttribute('type', 'file');
   input.setAttribute('accept', 'image/*');
@@ -64,7 +64,7 @@ const modules = {
   },
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
-    matchVisual: false,
+    matchVisual: true,
   },
 };
 /*

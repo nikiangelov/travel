@@ -23,6 +23,9 @@ const TravellogSchema = new Schema(
     author: {
       type: AuthorSchema,
     },
+    images: {
+      type: [String],
+    },
     short_description: {
       type: String,
     },

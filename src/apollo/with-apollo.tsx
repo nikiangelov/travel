@@ -135,8 +135,7 @@ export default function withApollo(
       }
 
       // check for protected routes
-      const { redirected } = ctx.query || {};
-      if (protectedRoute && !redirected) {
+      if (protectedRoute) {
         if (typeof window === 'undefined') {
           if (!serverAccessToken) {
             redirectToLogin(ctx.res);

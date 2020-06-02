@@ -3,6 +3,7 @@ export default `
         _id: String!
         title: String
         author: Author
+        images: [String]
         short_description: String
         html_content: String
         plain_text_content: String
@@ -32,6 +33,7 @@ export default `
     input TravellogInput {
         title: String
         author: AuthorInput
+        images: [String]
         short_description: String
         html_content: String
         plain_text_content: String

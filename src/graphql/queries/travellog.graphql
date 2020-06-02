@@ -2,6 +2,7 @@ query Travellog($id: ID) {
   travellog(_id: $id) {
     _id
     title
+    images
     author {
       firstName
       lastName

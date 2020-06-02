@@ -110,9 +110,16 @@
 .ql-editor h2 {
   margin: 0 0 1.5rem !important;
 }
+.ql-editor ul,
+.ql-editor ol,
+.ql-editor blockquote,
 .ql-editor p {
   margin: 0 0 1rem !important;
   color: #6c757d !important;
+}
+.ql-editor img {
+  border-radius: 6px;
+  max-width: 600px;
 }
 
 [data-placeholder]:empty:before {
