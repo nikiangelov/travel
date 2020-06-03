@@ -135,10 +135,11 @@ type Query {
   city(_id: ID, url_slug: String): City
   country(code: String): Country
   countries: [Country]
-  user(_id: String!): User
+  user(_id: ID!): User
   users: [User]
   currentUser: User
   travellogs: [Travellog]
+  travellogsByAuthor(authorId: ID): [Travellog]
   travellog(_id: ID): Travellog
 }
 

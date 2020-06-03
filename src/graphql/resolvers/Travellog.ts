@@ -18,6 +18,15 @@ const Query: QueryResolvers<ResolverContext> = {
     const findTravellog = await Travellog.findOne(_args).exec();
     return findTravellog;
   },
+  travellogsByAuthor: async (_parent, _args, _context, _info): Promise<any> => {
+    return new Promise((resolve, reject) => {
+      Travellog.find({
+        'author._id': _args.authorId,
+      }).exec((error, response) => {
+        error ? reject(error) : resolve(response);
+      });
+    });
+  },
 };
 const Mutation: MutationResolvers<ResolverContext> = {
   newTravellog: async (_: any, _args, { authenticatedUser }): Promise<any> => {

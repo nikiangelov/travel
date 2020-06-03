@@ -1,6 +1,19 @@
 import React, { ReactElement } from 'react';
 import Link from 'next/link';
-import { PopularTravelLog } from '../../constants/dashboardData';
+
+type Author = {
+  firstName?: string | null;
+  lastName?: string | null;
+  avatar?: string | null;
+};
+interface PropTypes {
+  title?: string;
+  descriptionShort?: string;
+  href?: string;
+  asPath?: string;
+  imageUrl?: string;
+  author?: Author | null;
+}
 
 function TravelLogHorizontalListItem({
   title,
@@ -8,7 +21,8 @@ function TravelLogHorizontalListItem({
   href,
   asPath,
   imageUrl,
-}: PopularTravelLog): ReactElement {
+  author,
+}: PropTypes): ReactElement {
   return (
     <div className="user-review-card white-card-elevated mt-4 p-4 mb-6">
       <div className="row">
@@ -30,12 +44,14 @@ function TravelLogHorizontalListItem({
                 <a
                   className="navbar-user-avatar rounded-circle bg-cover-img mr-2 user-review-avatar"
                   style={{
-                    backgroundImage: `url(/images/avatars/profile256.jpg)`,
+                    backgroundImage: `url(${author?.avatar})`,
                   }}
                 />
               </Link>
               <span className="h5 mb-0 mr-2">
-                <span className="user-review-fullname">Николай</span>{' '}
+                <span className="user-review-fullname">
+                  {author?.firstName}
+                </span>{' '}
                 <span className="font-weight-normal text-muted">написа </span>
                 {/* <b className="user-review-rating">пътепис</b> */}
               </span>

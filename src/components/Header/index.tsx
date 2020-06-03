@@ -63,7 +63,12 @@ function Header(): ReactElement {
           {!!loading && <span className="btn btn-light text-primary">...</span>}
           {!loading && !!currentUser && currentUser._id && (
             <>
-              <Link href={linkBuilder('/profile', i18n.activeLocale)}>
+              <Link
+                href={linkBuilder(
+                  `/profile/${currentUser._id}`,
+                  i18n.activeLocale,
+                )}
+              >
                 <a className="btn btn-light text-primary font-weight-bold">
                   {!currentUser.avatar && (
                     <i className="fas fa-user-circle mr-2" />

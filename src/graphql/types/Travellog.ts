@@ -47,6 +47,7 @@ export default `
     
     type Query {
         travellogs: [Travellog]
+        travellogsByAuthor(authorId: ID): [Travellog] 
         travellog(_id: ID): Travellog
     }
     type Mutation {

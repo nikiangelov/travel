@@ -7,6 +7,37 @@ query Users {
     avatar
   }
 }
+query User($id: ID!) {
+  user(_id: $id) {
+    _id
+    email
+    firstName
+    lastName
+    avatar
+  }
+  travellogsByAuthor(authorId: $id) {
+    _id
+    title
+    images
+    author {
+      firstName
+      lastName
+      email
+      avatar
+    }
+    short_description
+    html_content
+    plain_text_content
+    where
+    duration
+    price
+    category
+    season
+    is_draft
+    created_at
+    updated_at
+  }
+}
 query CurrentUser {
   currentUser {
     _id

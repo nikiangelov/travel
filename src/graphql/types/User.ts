@@ -31,7 +31,7 @@ export default `
     }
 
     type Query {
-        user(_id: String!): User
+        user(_id: ID!): User
         users: [User]
         currentUser: User
     }

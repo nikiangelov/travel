@@ -1,40 +1,35 @@
-import React, { ReactElement } from 'react';
-import Head from 'next/head';
-import dynamic from 'next/dynamic';
+import * as React from 'react';
 import AnimatedLayout from '../../components/Layout/AnimatedLayout';
+import withApollo from '../../apollo/with-apollo';
+import useI18n from '../../hooks/useI18n';
+import { useRouter } from 'next/router';
+import { useUserQuery } from '../../graphql/queries/user.graphql';
 import PageSection from '../../components/Layout/PageSection';
 import UserPhotosGrid from '../../components/Profile/UserPhotosGrid';
 import TravelLogHorizontalList from '../../components/TravelLogs/TravelLogHorizontalList';
-import useI18n from '../../hooks/useI18n';
-import withApollo from '../../apollo/with-apollo';
+import { Travellog } from '../../apollo/state/queries/user.graphql';
 
-const VisitedPlacesMap = dynamic(
-  () => import('../../components/Maps/VisitedPlacesMap'),
-  { loading: () => <div className="loading-map-placeholder" />, ssr: false },
-);
-
-const ProfilePage: React.FunctionComponent = () => {
+const SettingsPage: React.FunctionComponent = () => {
   const i18n = useI18n();
-  const visitedPlacesSectionRef = React.createRef<HTMLDivElement>();
-  const photosSectionRef = React.createRef<HTMLDivElement>();
-  const travellogsSectionRef = React.createRef<HTMLDivElement>();
+  const router = useRouter();
+  const { uid } = router.query;
+  const userId = uid ? uid.toString() : '';
 
-  function scrollToRef(ref: any): void {
-    window.scrollTo(0, ref.current.offsetTop);
+  const { data: queryData, loading: isLoading } = useUserQuery({
+    variables: {
+      id: userId,
+    },
+  });
+
+  if (!queryData || isLoading) {
+    return <AnimatedLayout>Loading...</AnimatedLayout>;
   }
+
+  const { user, travellogsByAuthor } = queryData;
+  console.log(travellogsByAuthor);
 
   return (
     <AnimatedLayout>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css"
-        />
-        <link
-          href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700&display=swap"
-          rel="stylesheet"
-        ></link>
-      </Head>
       <main>
         <div className="container-fluid mx-n4">
           <div className="row">
@@ -43,42 +38,27 @@ const ProfilePage: React.FunctionComponent = () => {
                 <div
                   className="aside-user-box-avatar mt-n6 mb-2 bg-cover-img"
                   style={{
-                    backgroundImage: `url(/images/avatars/profile256.jpg)`,
+                    backgroundImage: `url(${user?.avatar})`,
                   }}
                 ></div>
                 <h3 className="text-center">
-                  <small>Николай</small>
-                  <span className="d-block font-weight-bolder">Ангелов</span>
+                  <small>{user?.firstName}</small>
+                  <span className="d-block font-weight-bolder">
+                    {user?.lastName}
+                  </span>
                 </h3>
-                <p className="text-black-50 text-center">
-                  info@nikiangelov.com
-                </p>
+                <p className="text-black-50 text-center">{user?.email}</p>
                 <hr />
                 <nav className="nav flex-column nav-pills mt-4">
-                  <span
-                    onClick={(): void => {
-                      scrollToRef(visitedPlacesSectionRef);
-                    }}
-                    className="link nav-link"
-                  >
+                  <span className="link nav-link">
                     <i className="far fa-compass mr-2"></i>
                     Посетени места
                   </span>
-                  <span
-                    onClick={(): void => {
-                      scrollToRef(photosSectionRef);
-                    }}
-                    className="link nav-link"
-                  >
+                  <span className="link nav-link">
                     <i className="far fa-images mr-2"></i>
                     Добавени снимки
                   </span>
-                  <span
-                    onClick={(): void => {
-                      scrollToRef(travellogsSectionRef);
-                    }}
-                    className="link nav-link"
-                  >
+                  <span className="link nav-link">
                     <i className="fas fa-feather mr-2"></i>
                     Пътеписи
                   </span>
@@ -86,6 +66,15 @@ const ProfilePage: React.FunctionComponent = () => {
               </div>
             </div>
             <div className="col-lg-9 px-4">
+              <div>
+                {!!travellogsByAuthor && !!travellogsByAuthor.length && (
+                  <PageSection title={i18n.t('pages.profile.my-travel-logs')}>
+                    <TravelLogHorizontalList
+                      data={Object.values(travellogsByAuthor) as Travellog[]}
+                    />
+                  </PageSection>
+                )}
+              </div>
               <PageSection title="Моята **активност**">
                 <div className="row text-center">
                   <div className="col-lg-3">
@@ -135,24 +124,16 @@ const ProfilePage: React.FunctionComponent = () => {
                   `}</style>
                 </div>
               </PageSection>
-              <div ref={visitedPlacesSectionRef}>
-                <VisitedPlacesMap />
-              </div>
-              <div ref={photosSectionRef}>
+              <div>
                 <PageSection
                   title={i18n.t('pages.profile.travel-photos')}
-                  titleRightComponent={(): ReactElement => (
+                  titleRightComponent={(): React.ReactElement => (
                     <button className="btn btn-sm btn-light">
                       Разгледай всички
                     </button>
                   )}
                 >
                   <UserPhotosGrid path="/site/uploads/users/nikiangelov" />
-                </PageSection>
-              </div>
-              <div ref={travellogsSectionRef}>
-                <PageSection title={i18n.t('pages.profile.my-travel-logs')}>
-                  <TravelLogHorizontalList />
                 </PageSection>
               </div>
             </div>
@@ -163,6 +144,6 @@ const ProfilePage: React.FunctionComponent = () => {
   );
 };
 
-export default withApollo(ProfilePage, {
+export default withApollo(SettingsPage, {
   protectedRoute: true,
 });
