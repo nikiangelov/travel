@@ -53,14 +53,6 @@ const SettingsPage: React.FunctionComponent = () => {
       value: currentUser?.email || '',
       errors: [],
     },
-    password: {
-      value: '',
-      errors: [],
-    },
-    passwordConfirm: {
-      value: '',
-      errors: [],
-    },
   });
   const { firstName, lastName, email, password, passwordConfirm } = formData;
 
@@ -84,7 +76,6 @@ const SettingsPage: React.FunctionComponent = () => {
   const handleImageUpload = async () => {
     setUserAvatarIsLoading(true);
     const uploadedImageUrl = await imageUploadHandler('avatars/');
-    console.log(uploadedImageUrl);
     if (uploadedImageUrl) {
       editUserMutation({
         variables: {
@@ -102,35 +93,27 @@ const SettingsPage: React.FunctionComponent = () => {
     e.preventDefault();
     clearErrors();
     NProgress.start();
-    registerUserMutation({
+    editUserMutation({
       variables: {
+        id: currentUser?._id || '',
         user: {
           firstName: firstName.value,
           lastName: lastName.value,
-          email: email.value,
-          password: password.value,
-          passwordConfirm: passwordConfirm.value,
         },
       },
       update: (store, { data }) => {
-        if (!data || !data.registerUser) {
+        if (!data || !data.editUser) {
           return null;
         }
         store.writeQuery<CurrentUserQuery>({
           query: CurrentUserDocument,
           data: {
             __typename: 'Query',
-            currentUser: data.registerUser.user,
+            currentUser: data.editUser,
           },
         });
       },
     })
-      .then(({ data }) => {
-        if (data && data.registerUser && data.registerUser.accessToken) {
-          setAccessToken(data.registerUser.accessToken);
-          router.push('/');
-        }
-      })
       .catch(({ graphQLErrors }) => {
         const { validationErrors } = graphQLErrors[0];
         if (validationErrors) {
@@ -257,54 +240,7 @@ const SettingsPage: React.FunctionComponent = () => {
                     </div>
                   ))}
               </div>
-              <div className="form-group">
-                <label htmlFor="passwordInput">
-                  {i18n.t('common.password')}
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  value={password.value}
-                  onChange={updateFormData}
-                  className={`form-control ${password.errors.length &&
-                    'is-invalid'}`}
-                  id="passwordInput"
-                  autoComplete="new-password"
-                />
-                {!!password.errors &&
-                  password.errors.map((error, index) => (
-                    <div
-                      key={`passwordError${index}`}
-                      className="invalid-feedback"
-                    >
-                      {i18n.t(`errors.forms.${error}`)}
-                    </div>
-                  ))}
-              </div>
-              <div className="form-group">
-                <label htmlFor="passwordConfirmInput">
-                  {i18n.t('common.passwordConfirm')}
-                </label>
-                <input
-                  type="password"
-                  name="passwordConfirm"
-                  value={passwordConfirm.value}
-                  onChange={updateFormData}
-                  className={`form-control ${passwordConfirm.errors.length &&
-                    'is-invalid'}`}
-                  id="passwordConfirmInput"
-                  autoComplete="new-password"
-                />
-                {!!passwordConfirm.errors &&
-                  passwordConfirm.errors.map((error, index) => (
-                    <div
-                      key={`passwordConfirmError${index}`}
-                      className="invalid-feedback"
-                    >
-                      {i18n.t(`errors.forms.${error}`)}
-                    </div>
-                  ))}
-              </div>
+              <hr />
               <button
                 type="submit"
                 disabled={!!isLoading}
@@ -317,8 +253,8 @@ const SettingsPage: React.FunctionComponent = () => {
                     aria-hidden="true"
                   />
                 )}
-                {!isLoading && <i className="fas fa-sign-in-alt mr-2" />}
-                {i18n.t('pages.register.register-button')}
+                {!isLoading && <i className="far fa-check-circle mr-2" />}
+                {i18n.t('pages.settings.save-button')}
               </button>
             </form>
           </div>

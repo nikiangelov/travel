@@ -40,8 +40,5 @@ export const imageUploadHandler = async function(
         reject(error);
       }
     };
-    input.oncancel = () => {
-      resolve('Cancel');
-    };
   });
 };

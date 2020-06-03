@@ -15,6 +15,8 @@
     "register-button": "Регистрация",
     "email": "Email адрес",
     "password": "Парола",
+    "new-password": "Нова парола",
+    "old-password": "Стара парола",
     "passwordConfirm": "Потвърди паролата",
     "firstName": "Име",
     "lastName": "Фамилия",
@@ -92,7 +94,8 @@
       "avatar": {
         "upload": "Качи снимка",
         "edit": "Редактирай"
-      }
+      },
+      "save-button": "Запази промените"
     }
   },
   "countries": {
