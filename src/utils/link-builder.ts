@@ -14,8 +14,9 @@ const build = (url: string, lang: string): string => {
 export default function(
   url: string,
   lang: string | undefined = undefined,
+  forceSet: boolean | undefined = undefined,
 ): string {
-  if (lang && lang !== constants.defaultLanguage) {
+  if (lang && (lang !== constants.defaultLanguage || forceSet)) {
     return build(url, lang);
   }
   return url;

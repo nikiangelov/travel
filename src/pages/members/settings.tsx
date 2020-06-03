@@ -2,13 +2,9 @@ import * as React from 'react';
 import AnimatedLayout from '../../components/Layout/AnimatedLayout';
 import { useRouter } from 'next/router';
 import withApollo from '../../apollo/with-apollo';
-import { setAccessToken } from '../../utils/auth';
 import useI18n from '../../hooks/useI18n';
 import NProgress from 'nprogress';
-import {
-  useRegisterUserMutation,
-  useEditUserMutation,
-} from '../../graphql/mutations/user.graphql';
+import { useEditUserMutation } from '../../graphql/mutations/user.graphql';
 import {
   CurrentUserQuery,
   CurrentUserDocument,
@@ -26,7 +22,6 @@ type FormDataState = {
 // TODO: not finished
 const SettingsPage: React.FunctionComponent = () => {
   const i18n = useI18n();
-  const router = useRouter();
 
   const [userAvatarIsLoading, setUserAvatarIsLoading] = React.useState(false);
 
@@ -35,11 +30,8 @@ const SettingsPage: React.FunctionComponent = () => {
 
   const [userAvatar, setUserAvatar] = React.useState(currentUser?.avatar);
   const [editUserMutation, { loading: isEditLoading }] = useEditUserMutation();
+  const [editSuccessMessage, setEditSuccessMessage] = React.useState(false);
 
-  const [
-    registerUserMutation,
-    { loading: isLoading },
-  ] = useRegisterUserMutation();
   const [formData, setFormData] = React.useState<FormDataState>({
     firstName: {
       value: currentUser?.firstName || '',
@@ -54,7 +46,7 @@ const SettingsPage: React.FunctionComponent = () => {
       errors: [],
     },
   });
-  const { firstName, lastName, email, password, passwordConfirm } = formData;
+  const { firstName, lastName, email } = formData;
 
   const updateFormData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fieldName = e.target.name;
@@ -75,9 +67,11 @@ const SettingsPage: React.FunctionComponent = () => {
   };
   const handleImageUpload = async () => {
     setUserAvatarIsLoading(true);
+    setEditSuccessMessage(false);
     const uploadedImageUrl = await imageUploadHandler('avatars/');
     if (uploadedImageUrl) {
-      editUserMutation({
+      setUserAvatar(uploadedImageUrl);
+      await editUserMutation({
         variables: {
           id: currentUser?._id || '',
           user: {
@@ -85,7 +79,10 @@ const SettingsPage: React.FunctionComponent = () => {
           },
         },
       });
-      setUserAvatar(uploadedImageUrl);
+      setEditSuccessMessage(true);
+      setTimeout(() => {
+        setEditSuccessMessage(false);
+      }, 3000);
     }
     setUserAvatarIsLoading(false);
   };
@@ -93,6 +90,7 @@ const SettingsPage: React.FunctionComponent = () => {
     e.preventDefault();
     clearErrors();
     NProgress.start();
+    setEditSuccessMessage(false);
     editUserMutation({
       variables: {
         id: currentUser?._id || '',
@@ -114,6 +112,12 @@ const SettingsPage: React.FunctionComponent = () => {
         });
       },
     })
+      .then(() => {
+        setEditSuccessMessage(true);
+        setTimeout(() => {
+          setEditSuccessMessage(false);
+        }, 3000);
+      })
       .catch(({ graphQLErrors }) => {
         const { validationErrors } = graphQLErrors[0];
         if (validationErrors) {
@@ -241,21 +245,29 @@ const SettingsPage: React.FunctionComponent = () => {
                   ))}
               </div>
               <hr />
-              <button
-                type="submit"
-                disabled={!!isLoading}
-                className="btn btn-primary text-white"
-              >
-                {!!isLoading && (
-                  <span
-                    className="spinner-grow spinner-grow-sm mr-2"
-                    role="status"
-                    aria-hidden="true"
-                  />
+              <div className="d-flex justify-content-between">
+                <button
+                  type="submit"
+                  disabled={!!isEditLoading}
+                  className="btn btn-primary text-white"
+                >
+                  {!!isEditLoading && (
+                    <span
+                      className="spinner-grow spinner-grow-sm mr-2"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  )}
+                  {!isEditLoading && <i className="fas fa-pen mr-2" />}
+                  {i18n.t('pages.settings.save-button')}
+                </button>
+                {!!editSuccessMessage && (
+                  <span className="btn btn-link text-success">
+                    <i className="far fa-check-circle mr-1" />
+                    Готово
+                  </span>
                 )}
-                {!isLoading && <i className="far fa-check-circle mr-2" />}
-                {i18n.t('pages.settings.save-button')}
-              </button>
+              </div>
             </form>
           </div>
         </div>

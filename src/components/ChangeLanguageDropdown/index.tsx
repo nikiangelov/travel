@@ -7,6 +7,7 @@ import {
 } from 'reactstrap';
 import useI18n from '../../hooks/useI18n';
 import { useRouter } from 'next/router';
+import linkBuilder from '../../utils/link-builder';
 
 const ChangeLanguageDropdown = () => {
   const i18n = useI18n();
@@ -31,7 +32,9 @@ const ChangeLanguageDropdown = () => {
         <DropdownItem
           onClick={() => {
             setLocale('bg');
-            router.replace('/');
+            const loc = linkBuilder(window.location.href, 'bg', true);
+            console.log(loc);
+            router.replace(loc);
           }}
           className="mb-2"
         >
@@ -41,7 +44,8 @@ const ChangeLanguageDropdown = () => {
         <DropdownItem
           onClick={() => {
             setLocale('en');
-            router.replace('/index?lang=en');
+            const loc = linkBuilder(window.location.href, 'en');
+            router.replace(loc);
           }}
           className="mb-2"
         >

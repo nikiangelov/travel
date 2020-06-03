@@ -5,6 +5,7 @@ import theme from '../../constants/theme';
 import routes from '../../constants/routes';
 import NavigationItem from './NavigationItem';
 import useI18n from '../../hooks/useI18n';
+import linkBuilder from '../../utils/link-builder';
 
 const AsideNavigation: React.FC = () => {
   const i18n = useI18n();
@@ -14,7 +15,7 @@ const AsideNavigation: React.FC = () => {
     <div className="d-none d-lg-block base-placeholder mr-4">
       <div className="base pt-5 pb-4 fixed-top ">
         <div className="separator my-4" />
-        <Link href="/">
+        <Link href={linkBuilder('/index', i18n.activeLocale)}>
           <a className="logo d-block mb-6 mt-n1">
             <img
               src={require('../../assets/images/logo-t.svg')}

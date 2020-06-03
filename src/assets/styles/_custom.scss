@@ -858,6 +858,18 @@ select.custom-select {
   transform: translateY(-2px);
 }
 
+.user-avatar-tiny {
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  background: #eee no-repeat center;
+  background-size: cover;
+  vertical-align: middle;
+  margin-top: -3px;
+  margin-right: 0.5em;
+}
+
 // Travellog steps
 .travellog_plan_step {
   padding-left: 35px;
