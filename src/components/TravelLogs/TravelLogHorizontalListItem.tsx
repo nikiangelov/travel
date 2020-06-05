@@ -7,6 +7,7 @@ type Author = {
   avatar?: string | null;
 };
 interface PropTypes {
+  id?: string;
   title?: string;
   descriptionShort?: string;
   href?: string;
@@ -16,6 +17,7 @@ interface PropTypes {
 }
 
 function TravelLogHorizontalListItem({
+  id,
   title,
   descriptionShort,
   href,
@@ -27,7 +29,7 @@ function TravelLogHorizontalListItem({
     <div className="user-review-card white-card-elevated mt-4 p-4 mb-6">
       <div className="row">
         <div className="col-3">
-          <Link href={href} as={asPath}>
+          <Link href={href || ''} as={asPath}>
             <a
               className="movie-card-pic no-overlay bg-cover-img mt-n5 user-review-movie-poster"
               data-poster-path="/bm6zKJjKYKrIy3dcnOLk0kF85cl.jpg"
@@ -57,8 +59,8 @@ function TravelLogHorizontalListItem({
               </span>
             </div>
 
-            <Link href={href} as={asPath}>
-              <a className="btn btn-sm btn-outline-primary">Прочети</a>
+            <Link href={`/travellogs/add/editor?id=${id}`} as={asPath}>
+              <a className="btn btn-sm btn-outline-primary">Редактирай</a>
             </Link>
           </div>
           <div className="d-flex bg-light py-2 px-3 rounded-lg align-items-start">

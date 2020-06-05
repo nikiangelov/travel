@@ -30,7 +30,6 @@ const Query: QueryResolvers<ResolverContext> = {
 };
 const Mutation: MutationResolvers<ResolverContext> = {
   newTravellog: async (_: any, _args, { authenticatedUser }): Promise<any> => {
-    console.log('newTravellog');
     if (!authenticatedUser) {
       throw new Error('Не сте влезли в профила си');
     }
@@ -57,7 +56,6 @@ const Mutation: MutationResolvers<ResolverContext> = {
     { _id, travellog },
     { authenticatedUser },
   ): Promise<any> => {
-    console.log('newTravellog');
     if (!authenticatedUser) {
       throw new Error('Не сте влезли в профила си');
     }

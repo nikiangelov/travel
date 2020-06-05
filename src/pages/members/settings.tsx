@@ -1,6 +1,5 @@
 import * as React from 'react';
 import AnimatedLayout from '../../components/Layout/AnimatedLayout';
-import { useRouter } from 'next/router';
 import withApollo from '../../apollo/with-apollo';
 import useI18n from '../../hooks/useI18n';
 import NProgress from 'nprogress';

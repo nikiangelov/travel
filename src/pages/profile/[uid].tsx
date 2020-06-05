@@ -7,7 +7,7 @@ import { useUserQuery } from '../../graphql/queries/user.graphql';
 import PageSection from '../../components/Layout/PageSection';
 import UserPhotosGrid from '../../components/Profile/UserPhotosGrid';
 import TravelLogHorizontalList from '../../components/TravelLogs/TravelLogHorizontalList';
-import { Travellog } from '../../apollo/state/queries/user.graphql';
+import { Travellog } from '../../graphql/type-defs.graphqls';
 
 const SettingsPage: React.FunctionComponent = () => {
   const i18n = useI18n();
@@ -19,6 +19,7 @@ const SettingsPage: React.FunctionComponent = () => {
     variables: {
       id: userId,
     },
+    fetchPolicy: 'network-only',
   });
 
   if (!queryData || isLoading) {
@@ -26,7 +27,6 @@ const SettingsPage: React.FunctionComponent = () => {
   }
 
   const { user, travellogsByAuthor } = queryData;
-  console.log(travellogsByAuthor);
 
   return (
     <AnimatedLayout>

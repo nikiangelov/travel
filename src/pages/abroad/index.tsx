@@ -95,7 +95,7 @@ class AbroadPage extends React.Component<NextPage> {
                 </div>
               )}
             >
-              <TravelLogHorizontalList />
+              <TravelLogHorizontalList data={[]} />
             </PageSection>
           </div>
         </div>

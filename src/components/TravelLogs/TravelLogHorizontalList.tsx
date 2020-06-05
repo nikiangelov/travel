@@ -19,6 +19,7 @@ const PopularTravelLogsList = ({ data }: PropTypes) => {
         return (
           <div key={`travellog${i}`}>
             <TravelLogHorizontalListItem
+              id={item._id}
               author={{
                 firstName: item.author?.firstName,
                 lastName: item.author?.lastName,

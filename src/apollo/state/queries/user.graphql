@@ -1,6 +1,0 @@
-query userCount {
-  userCount @client
-}
-mutation SetUserCount($count: Int!) {
-  setUserCount(count: $count) @client
-}

@@ -220,7 +220,6 @@ const Mutation: MutationResolvers<ResolverContext> = {
       { $set: newSet },
       { new: true },
     ).exec();
-    console.log(response);
     if (!response) {
       throw new Error(`Проблем при редакцията`);
     }

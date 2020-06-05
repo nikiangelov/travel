@@ -8,9 +8,12 @@ import PopularDestinationsGrid from '../components/PopularDestinationsGrid';
 import PopularTravelLogsList from '../components/TravelLogs/PopularTravelLogsList';
 import withApollo from '../apollo/with-apollo';
 import useI18n from '../hooks/useI18n';
+import { useCurrentUserQuery } from '../graphql/queries/user.graphql';
 
 function IndexPage() {
   const i18n = useI18n();
+  const { data: currentUserData } = useCurrentUserQuery();
+  const { currentUser } = currentUserData || {};
   return (
     <AnimatedLayout>
       <div className="row">
@@ -30,11 +33,14 @@ function IndexPage() {
           </PageSection>
         </div>
         <aside className="col-lg-3">
-          <div className="d-none d-lg-block white-card-elevated text-muted small elevation-5 py-3 px-4 mb-5">
-            <Link href="/travellogs/add">
-              <a className="btn btn-primary">Добави пътешествие</a>
-            </Link>
-          </div>
+          {!!currentUser && currentUser._id && (
+            <div className="d-none d-lg-block white-card-elevated text-muted small elevation-5 py-3 px-4 mb-5">
+              <h5 className="mb-3">Здравей, {currentUser.firstName}!</h5>
+              <Link href="/travellogs/add">
+                <a className="btn btn-primary text-white">Добави пътешествие</a>
+              </Link>
+            </div>
+          )}
           <div className="d-none d-lg-block index-intro-box white-card-elevated text-muted small elevation-5 pt-3 px-4 mb-5">
             <h6>Добре дошъл!</h6>
             <p>

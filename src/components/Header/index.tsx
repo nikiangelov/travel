@@ -2,8 +2,6 @@ import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SearchBar from './SearchBar';
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import withApollo from '../../apollo/with-apollo';
 import ChangeLanguageDropdown from '../ChangeLanguageDropdown';
 import linkBuilder from '../../utils/link-builder';
@@ -18,11 +16,6 @@ function Header(): ReactElement {
   const [logoutUserMutation, { client }] = useLogoutUserMutation();
   const { currentUser } = currentUserData || {};
 
-  const { data } = useQuery(gql`
-    query UserCount {
-      userCount @client
-    }
-  `);
   const router = useRouter();
   const handleUserLogout = async () => {
     await logoutUserMutation();

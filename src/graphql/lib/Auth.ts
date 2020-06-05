@@ -34,7 +34,7 @@ export const createAccessToken = (user: AuthenticatedUserType) => {
     },
     JWT_ACCESS_TOKEN_SECRET!,
     {
-      expiresIn: '15m',
+      expiresIn: '30m',
     },
   );
 };
@@ -45,7 +45,7 @@ export const createRefreshToken = (user: AuthenticatedUserType) => {
     },
     JWT_REFRESH_TOKEN_SECRET!,
     {
-      expiresIn: '7d',
+      expiresIn: '30d',
     },
   );
 };

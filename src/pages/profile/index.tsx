@@ -152,7 +152,7 @@ const ProfilePage: React.FunctionComponent = () => {
               </div>
               <div ref={travellogsSectionRef}>
                 <PageSection title={i18n.t('pages.profile.my-travel-logs')}>
-                  <TravelLogHorizontalList />
+                  <TravelLogHorizontalList data={[]} />
                 </PageSection>
               </div>
             </div>

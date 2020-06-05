@@ -33,7 +33,6 @@ const ChangeLanguageDropdown = () => {
           onClick={() => {
             setLocale('bg');
             const loc = linkBuilder(window.location.href, 'bg', true);
-            console.log(loc);
             router.replace(loc);
           }}
           className="mb-2"

@@ -27,9 +27,7 @@ type TravelLogAssistantType = {
 };
 function TravelLogAssistant(props: TravelLogAssistantType) {
   const { initialState, onSkip, onStart, onChange, onComplete } = props;
-  const [assistantData, setAssistantData] = useState<
-    AssistantDataType | undefined
-  >(initialState);
+  const [assistantData, setAssistantData] = useState<any>(initialState);
   const [sliderState, setSliderState] = useState({
     isStarted: false,
     currentIndex: 1,
