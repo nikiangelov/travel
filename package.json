@@ -43,7 +43,7 @@
     "read-more-react": "^1.0.10"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.13.5",
+    "@graphql-codegen/cli": "^1.21.8",
     "@graphql-codegen/typescript": "^1.13.5",
     "@graphql-codegen/typescript-operations": "^1.13.5",
     "@graphql-codegen/typescript-react-apollo": "^1.13.5",
